@@ -24,62 +24,112 @@ export const AxonixLogo: React.FC<{ className?: string; textClassName?: string }
   );
 };
 
+export const LogoipsumBolt: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-3 shrink-0 ${className}`}>
+    <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white shrink-0 shadow-xs">
+      <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+        <path d="M13 2.5L4 14H11.5L10 21.5L20 9.5H12.5L13 2.5Z" />
+      </svg>
+    </div>
+    <span className="text-[19px] font-bold tracking-[-0.025em] text-black select-none">
+      Logoipsum
+    </span>
+  </div>
+);
+
+export const LogoipsumClover: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-3 shrink-0 ${className}`}>
+    <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white shrink-0 shadow-xs">
+      <svg className="w-4.5 h-4.5 fill-white" viewBox="0 0 24 24">
+        <circle cx="8" cy="8" r="3" />
+        <circle cx="16" cy="8" r="3" />
+        <circle cx="8" cy="16" r="3" />
+        <circle cx="16" cy="16" r="3" />
+      </svg>
+    </div>
+    <span className="text-[19px] font-bold tracking-[-0.025em] text-black select-none">
+      Logoipsum
+    </span>
+  </div>
+);
+
+export const LogoipsumBear: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-1.5 shrink-0 ${className}`}>
+    <span className="text-[20px] font-bold tracking-[-0.025em] text-black select-none">
+      logo
+    </span>
+    <div className="w-7 h-7 flex items-center justify-center shrink-0 mx-0.5">
+      <svg className="w-6 h-6 fill-black" viewBox="0 0 32 32">
+        <path d="M7 6C5.343 6 4 7.343 4 9C4 10.386 4.935 11.554 6.215 11.895C6.075 12.88 6 13.91 6 15C6 21.075 10.477 26 16 26C21.523 26 26 21.075 26 15C26 13.91 25.925 12.88 25.785 11.895C27.065 11.554 28 10.386 28 9C28 7.343 26.657 6 25 6C23.614 6 22.446 6.935 22.105 8.215C20.25 7.45 18.18 7 16 7C13.82 7 11.75 7.45 9.895 8.215C9.554 6.935 8.386 6 7 6ZM16 17C17.657 17 19 18.119 19 19.5C19 20.881 17.657 22 16 22C14.343 22 13 20.881 13 19.5C13 18.119 14.343 17 16 17Z" />
+      </svg>
+    </div>
+    <span className="text-[20px] font-bold tracking-[-0.025em] text-black select-none relative inline-flex items-center">
+      ipsum
+      <span className="text-[9px] font-bold -top-1 relative ml-0.5">™</span>
+    </span>
+  </div>
+);
+
+export const LogoipsumSunburst: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-2.5 shrink-0 ${className}`}>
+    <div className="w-8 h-8 flex items-center justify-center shrink-0">
+      <svg className="w-7 h-7" viewBox="0 0 32 32" fill="none">
+        {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => (
+          <rect
+            key={deg}
+            x="14.3"
+            y="2"
+            width="3.4"
+            height="8"
+            rx="1.7"
+            fill="black"
+            transform={`rotate(${deg} 16 16)`}
+          />
+        ))}
+      </svg>
+    </div>
+    <span className="text-[19px] font-bold tracking-[-0.025em] text-black select-none">
+      Logoipsum
+    </span>
+  </div>
+);
+
+
+export const LogoipsumDisc: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-3 shrink-0 ${className}`}>
+    <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white shrink-0 shadow-xs">
+      <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+      </svg>
+    </div>
+    <span className="text-[19px] font-bold tracking-[-0.025em] text-black select-none">
+      Logoipsum
+    </span>
+  </div>
+);
+
+export const LogoipsumDiamond: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-3 shrink-0 ${className}`}>
+    <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white shrink-0 shadow-xs">
+      <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+        <path d="M12 3L2 12L12 21L22 12L12 3Z" />
+      </svg>
+    </div>
+    <span className="text-[19px] font-bold tracking-[-0.025em] text-black select-none">
+      Logoipsum
+    </span>
+  </div>
+);
+
 export const Logoipsum: React.FC<{ variant?: 1 | 2 | 3 | 4 | 5; className?: string }> = ({
   variant = 1,
-  className = 'h-5 opacity-70 hover:opacity-100 transition-opacity',
+  className = '',
 }) => {
-  if (variant === 1) {
-    return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        <svg className="w-4 h-4 text-neutral-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 3a9 9 0 0 0 9 9" />
-          <circle cx="12" cy="12" r="3" fill="currentColor" />
-        </svg>
-        <span className="font-semibold tracking-tight text-sm text-neutral-800">logoipsum</span>
-      </div>
-    );
-  }
-
-  if (variant === 2) {
-    return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        <svg className="w-4 h-4 text-neutral-800" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" />
-        </svg>
-        <span className="font-semibold tracking-tight text-sm text-neutral-800">logo&apos;ipsum&apos;</span>
-      </div>
-    );
-  }
-
-  if (variant === 3) {
-    return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        <div className="w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center">
-          <div className="w-1.5 h-1.5 rounded-full bg-white" />
-        </div>
-        <span className="font-bold tracking-tight text-sm text-neutral-900">Logoipsum</span>
-      </div>
-    );
-  }
-
-  if (variant === 4) {
-    return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        <svg className="w-4 h-4 text-neutral-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-          <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" />
-        </svg>
-        <span className="font-semibold tracking-tight text-sm text-neutral-800">Logoipsum</span>
-      </div>
-    );
-  }
-
-  return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <svg className="w-4 h-4 text-neutral-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
-      </svg>
-      <span className="font-semibold tracking-tight text-sm text-neutral-800">Logoipsum</span>
-    </div>
-  );
+  if (variant === 1) return <LogoipsumBolt className={className} />;
+  if (variant === 2) return <LogoipsumClover className={className} />;
+  if (variant === 3) return <LogoipsumBear className={className} />;
+  if (variant === 4) return <LogoipsumDisc className={className} />;
+  return <LogoipsumDiamond className={className} />;
 };
+

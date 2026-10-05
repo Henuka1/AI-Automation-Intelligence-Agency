@@ -109,6 +109,9 @@ export const Hero: React.FC<HeroProps> = ({ onBookDemo, onExploreWork }) => {
           />
         </div>
 
+        {/* Modern bottom feather fade raised higher up to blend seamlessly into 'Trusted by 2,200 Companies' */}
+        <div className="absolute bottom-0 left-0 right-0 h-44 sm:h-56 md:h-[18vh] min-h-[175px] max-h-[250px] bg-gradient-to-t from-white via-white/85 via-white/40 to-transparent pointer-events-none z-10" />
+
         {/* Delicate curved vector lines matching design */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-10 opacity-30">
           <svg
@@ -148,28 +151,42 @@ export const Hero: React.FC<HeroProps> = ({ onBookDemo, onExploreWork }) => {
             We build intelligent tools, systems, and strategies that help businesses scale, automate, and innovate—faster.
           </p>
 
-          {/* CTA Buttons - Always clearly interactive and visible */}
+          {/* CTA Buttons - Interactive CSS Hover Transition / Transform Animation */}
           <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4">
-            {/* Primary Book a Demo Button */}
+            {/* Primary Book a Demo Button with Text Rolling Hover Effect */}
             <button
               onClick={() => {
                 if (onBookDemo) onBookDemo();
                 else document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="h-[52px] min-w-[170px] px-8 bg-gradient-to-b from-[#232326] to-[#111113] hover:from-[#2a2a2e] hover:to-[#17171a] text-white text-[15px] sm:text-[15.5px] font-medium rounded-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_10px_25px_rgba(0,0,0,0.22)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_12px_28px_rgba(0,0,0,0.28)] transition-all duration-200 active:scale-[0.98] flex items-center justify-center cursor-pointer"
+              className="group relative h-[52px] min-w-[175px] px-8 bg-gradient-to-b from-[#232326] to-[#111113] hover:from-[#2d2e33] hover:to-[#18181b] text-white text-[15px] sm:text-[15.5px] font-medium rounded-[14px] shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_10px_25px_rgba(0,0,0,0.22)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_14px_32px_rgba(0,0,0,0.32)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center cursor-pointer overflow-hidden"
             >
-              Book a Demo
+              <div className="relative overflow-hidden h-[22px] flex items-center justify-center">
+                <span className="block transform transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[135%]">
+                  Book a Demo
+                </span>
+                <span className="absolute inset-0 flex items-center justify-center transform transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] translate-y-[135%] group-hover:translate-y-0 text-white font-medium select-none pointer-events-none">
+                  Book a Demo
+                </span>
+              </div>
             </button>
 
-            {/* Secondary Explore Our Work Button */}
+            {/* Secondary Explore Our Work Button with Text Rolling Hover Effect */}
             <button
               onClick={() => {
                 if (onExploreWork) onExploreWork();
                 else document.getElementById('case-study')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="h-[52px] min-w-[170px] px-8 bg-gradient-to-b from-white to-[#F8F8FA] hover:to-[#F0F0F3] border border-neutral-200/90 text-[#141416] text-[15px] sm:text-[15.5px] font-medium rounded-[14px] shadow-[0_4px_16px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.09)] transition-all duration-200 active:scale-[0.98] flex items-center justify-center cursor-pointer"
+              className="group relative h-[52px] min-w-[175px] px-8 bg-gradient-to-b from-white to-[#F8F8FA] hover:to-[#ECECF0] border border-neutral-200/90 text-[#141416] text-[15px] sm:text-[15.5px] font-medium rounded-[14px] shadow-[0_4px_16px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_26px_rgba(0,0,0,0.1)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center cursor-pointer overflow-hidden"
             >
-              Explore Our Work
+              <div className="relative overflow-hidden h-[22px] flex items-center justify-center">
+                <span className="block transform transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[135%]">
+                  Explore Our Work
+                </span>
+                <span className="absolute inset-0 flex items-center justify-center transform transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] translate-y-[135%] group-hover:translate-y-0 text-[#141416] font-medium select-none pointer-events-none">
+                  Explore Our Work
+                </span>
+              </div>
             </button>
           </div>
         </div>
