@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #111113;
+    background-color: #ffffff;
+  }
+}
+
+/* Subtle concentric wave background pattern visible in the reference */
+.bg-topo-pattern {
+  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.04), transparent 70%),
+                    radial-gradient(circle at 50% 30%, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(245, 245, 247, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Explicit vertical gradient text fade matching screenshot */
+.hero-gradient-headline {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(180deg, #9A9DA8 0%, #636671 28%, #2A2C33 65%, #0B0C0E 92%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  display: inline-block;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Axonix - AI Automation & Intelligence Agency",
+  "description": "Smarter Solutions, Powered by AI. Recreating the high-end minimalist AI agency website with intelligent automation, predictive analytics, and enterprise AI transformation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
