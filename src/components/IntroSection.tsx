@@ -43,7 +43,7 @@ export const IntroSection: React.FC = () => {
     <section
       id="about"
       ref={containerRef}
-      className="py-24 sm:py-32 pb-24 sm:pb-32 md:pb-36 bg-white border-b border-neutral-100/80 overflow-hidden"
+      className="pt-10 sm:pt-14 pb-4 sm:pb-6 bg-white overflow-hidden"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 text-center">
         {/* Eyebrow badge matching screenshot */}
