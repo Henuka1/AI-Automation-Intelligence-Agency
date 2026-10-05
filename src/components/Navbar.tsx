@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { AxonixLogo } from './BrandLogos';
 
@@ -9,6 +9,21 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Switch to transparent blur as soon as user scrolls down
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleBookDemo = () => {
     if (onBookDemo) {
@@ -21,7 +36,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-100 transition-all">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'navbar-transparent-blur'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand wordmark */}
         <a href="#" className="flex items-center group">

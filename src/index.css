@@ -28,3 +28,12 @@
   color: transparent !important;
   display: inline-block;
 }
+
+/* Glassmorphism transparent blur navbar on scroll */
+.navbar-transparent-blur {
+  background-color: rgba(255, 255, 255, 0.22);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
