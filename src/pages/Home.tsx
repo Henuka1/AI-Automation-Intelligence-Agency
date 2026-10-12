@@ -17,7 +17,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 
 interface HomeProps {
-  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
 }
 
 export const Home: React.FC<HomeProps> = ({ onNavigate }) => {

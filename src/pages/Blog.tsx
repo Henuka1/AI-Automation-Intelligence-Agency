@@ -7,7 +7,7 @@ import { images } from '../assets/images';
 import { X, ArrowRight, Clock, Calendar } from 'lucide-react';
 
 interface BlogProps {
-  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
 }
 
 interface BlogPost {
