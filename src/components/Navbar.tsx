@@ -3,10 +3,16 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { AxonixLogo } from './BrandLogos';
 
 interface NavbarProps {
+  currentPage?: 'home' | 'about' | 'pricing' | 'blog' | 'contact';
+  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
   onBookDemo?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  currentPage = 'home',
+  onNavigate,
+  onBookDemo,
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,6 +41,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
     setMobileMenuOpen(false);
   };
 
+  const handleNavClick = (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact', anchorId?: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+      if (anchorId) {
+        setTimeout(() => {
+          const el = document.getElementById(anchorId);
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      if (page === 'about') {
+        window.location.href = '/about';
+      } else if (page === 'pricing') {
+        window.location.href = '/pricing';
+      } else if (page === 'blog') {
+        window.location.href = '/blog';
+      } else if (page === 'contact') {
+        window.location.href = '/contact';
+      } else if (anchorId) {
+        const el = document.getElementById(anchorId);
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -45,9 +78,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand wordmark */}
-        <a href="#" className="flex items-center group">
+        <button
+          onClick={() => handleNavClick('home')}
+          className="flex items-center group cursor-pointer text-left"
+        >
           <AxonixLogo />
-        </a>
+        </button>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8 text-[14px] text-neutral-600 font-medium">
@@ -57,37 +93,81 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
             onMouseEnter={() => setActiveDropdown('home')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 hover:text-neutral-950 transition-colors py-2">
+            <button
+              onClick={() => handleNavClick('home')}
+              className={`flex items-center gap-1 transition-colors py-2 cursor-pointer ${
+                currentPage === 'home'
+                  ? 'text-neutral-950 font-semibold'
+                  : 'hover:text-neutral-950 text-neutral-600'
+              }`}
+            >
               <span>Home</span>
               <ChevronDown className="w-3.5 h-3.5 opacity-60" />
             </button>
             {activeDropdown === 'home' && (
               <div className="absolute top-full left-0 w-44 bg-white rounded-xl shadow-lg border border-neutral-100 py-2 animate-in fade-in zoom-in-95 duration-150">
-                <a href="#about" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                <button
+                  onClick={() => handleNavClick('home', 'about')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   Overview
-                </a>
-                <a href="#features" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                </button>
+                <button
+                  onClick={() => handleNavClick('home', 'features')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   Core Features
-                </a>
-                <a href="#stats" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                </button>
+                <button
+                  onClick={() => handleNavClick('home', 'stats')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   Metrics & Impact
-                </a>
+                </button>
               </div>
             )}
           </div>
 
-          <a href="#about" className="hover:text-neutral-950 transition-colors">
+          <button
+            onClick={() => handleNavClick('about')}
+            className={`transition-colors cursor-pointer ${
+              currentPage === 'about'
+                ? 'text-neutral-950 font-semibold'
+                : 'hover:text-neutral-950 text-neutral-600'
+            }`}
+          >
             About us
-          </a>
-          <a href="#pricing" className="hover:text-neutral-950 transition-colors">
+          </button>
+          <button
+            onClick={() => handleNavClick('pricing')}
+            className={`transition-colors cursor-pointer ${
+              currentPage === 'pricing'
+                ? 'text-neutral-950 font-semibold'
+                : 'hover:text-neutral-950 text-neutral-600'
+            }`}
+          >
             Pricing
-          </a>
-          <a href="#blog" className="hover:text-neutral-950 transition-colors">
+          </button>
+          <button
+            onClick={() => handleNavClick('blog')}
+            className={`transition-colors cursor-pointer ${
+              currentPage === 'blog'
+                ? 'text-neutral-950 font-semibold'
+                : 'hover:text-neutral-950 text-neutral-600'
+            }`}
+          >
             Blog
-          </a>
-          <a href="#faq" className="hover:text-neutral-950 transition-colors">
+          </button>
+          <button
+            onClick={() => handleNavClick('contact')}
+            className={`transition-colors cursor-pointer ${
+              currentPage === 'contact'
+                ? 'text-neutral-950 font-semibold'
+                : 'hover:text-neutral-950 text-neutral-600'
+            }`}
+          >
             Contact
-          </a>
+          </button>
 
           {/* Pages with dropdown */}
           <div
@@ -95,24 +175,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
             onMouseEnter={() => setActiveDropdown('pages')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="flex items-center gap-1 hover:text-neutral-950 transition-colors py-2">
+            <button className="flex items-center gap-1 hover:text-neutral-950 transition-colors py-2 cursor-pointer">
               <span>Pages</span>
               <ChevronDown className="w-3.5 h-3.5 opacity-60" />
             </button>
             {activeDropdown === 'pages' && (
               <div className="absolute top-full right-0 w-44 bg-white rounded-xl shadow-lg border border-neutral-100 py-2 animate-in fade-in zoom-in-95 duration-150">
-                <a href="#case-study" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                <button
+                  onClick={() => handleNavClick('home', 'case-study')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   Case Studies
-                </a>
-                <a href="#testimonials" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                </button>
+                <button
+                  onClick={() => handleNavClick('home', 'testimonials')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   Client Reviews
-                </a>
-                <a href="#services" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                </button>
+                <button
+                  onClick={() => handleNavClick('home', 'services')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   Capabilities
-                </a>
-                <a href="#faq" className="block px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950">
+                </button>
+                <button
+                  onClick={() => handleNavClick('home', 'faq')}
+                  className="w-full text-left px-4 py-1.5 text-xs text-neutral-700 hover:bg-neutral-50 hover:text-neutral-950 cursor-pointer"
+                >
                   FAQ
-                </a>
+                </button>
               </div>
             )}
           </div>
@@ -149,45 +241,56 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookDemo }) => {
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-neutral-200 bg-white px-6 pt-3 pb-6 space-y-3 animate-in slide-in-from-top-2 duration-200">
-          <a
-            href="#about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-neutral-800 hover:text-black"
+          <button
+            onClick={() => handleNavClick('home')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === 'home' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
+          >
+            Home
+          </button>
+          <button
+            onClick={() => handleNavClick('about')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === 'about' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
           >
             About us
-          </a>
-          <a
-            href="#features"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-neutral-800 hover:text-black"
+          </button>
+          <button
+            onClick={() => handleNavClick('home', 'features')}
+            className="block w-full text-left py-2 text-sm font-medium text-neutral-800 hover:text-black"
           >
             Features
-          </a>
-          <a
-            href="#pricing"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-neutral-800 hover:text-black"
+          </button>
+          <button
+            onClick={() => handleNavClick('pricing')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === 'pricing' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
           >
             Pricing
-          </a>
-          <a
-            href="#blog"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-neutral-800 hover:text-black"
+          </button>
+          <button
+            onClick={() => handleNavClick('blog')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === 'blog' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
           >
-            Blog & Insights
-          </a>
-          <a
-            href="#faq"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-neutral-800 hover:text-black"
+            Blog
+          </button>
+          <button
+            onClick={() => handleNavClick('contact')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === 'contact' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
           >
-            FAQ & Contact
-          </a>
+            Contact
+          </button>
           <div className="pt-2">
             <button
               onClick={handleBookDemo}
-              className="w-full bg-[#111113] text-white rounded-full py-2.5 text-sm font-medium"
+              className="w-full bg-[#111113] text-white rounded-full py-2.5 text-sm font-medium cursor-pointer"
             >
               Book a Demo
             </button>

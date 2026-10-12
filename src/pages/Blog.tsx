@@ -1,0 +1,363 @@
+import React, { useState } from 'react';
+import { Navbar } from '../components/Navbar';
+import { FinalCTA } from '../components/FinalCTA';
+import { Footer } from '../components/Footer';
+import { DemoModal } from '../components/DemoModal';
+import { images } from '../assets/images';
+import { X, ArrowRight, Clock, Calendar } from 'lucide-react';
+
+interface BlogProps {
+  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+}
+
+interface BlogPost {
+  id: string;
+  image: string;
+  title: string;
+  category: string;
+  readTime: string;
+  date: string;
+  author: {
+    name: string;
+    role: string;
+  };
+  content: string[];
+}
+
+export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activePost, setActivePost] = useState<BlogPost | null>(null);
+
+  // Exactly the 9 cards from the user's screenshot
+  const blogPosts: BlogPost[] = [
+    {
+      id: '1',
+      image: images.insightSpiral,
+      title: 'Explore trends, case studies, and insights from our AI experts.',
+      category: 'Insights & Research',
+      readTime: '5 min read',
+      date: 'May 18, 2025',
+      author: {
+        name: 'Dr. Aris Thorne',
+        role: 'Chief AI Architect',
+      },
+      content: [
+        'Artificial intelligence is progressing from disconnected narrow tools into deeply unified autonomous enterprise nervous systems.',
+        'In this briefing, our research team analyzes the key structural shifts organizations must undertake when embedding multi-agent reasoning into high-stakes operational workflows.',
+        'From dynamic prompt graphs to continuous parameter optimization, discover the patterns proven to yield defensible business advantage.'
+      ],
+    },
+    {
+      id: '2',
+      image: images.insightParticles,
+      title: 'Discover trends, case studies, and insights from our AI specialists.',
+      category: 'Case Studies',
+      readTime: '6 min read',
+      date: 'May 14, 2025',
+      author: {
+        name: 'Elena Rostova',
+        role: 'VP of Applied Intelligence',
+      },
+      content: [
+        'Deploying generative intelligence inside mission-critical pipelines requires bulletproof reliability, zero data leakage, and sub-second deterministic latency.',
+        'We unpack three practical client case studies across supply chain forecasting, automated reconciliation, and executive scenario simulation.',
+        'Learn how each architecture achieved over 40% reduction in cycle time while retaining human-in-the-loop governance.'
+      ],
+    },
+    {
+      id: '3',
+      image: images.caseStudyFabric,
+      title: 'Explore the latest trends, success stories,from our AI experts.',
+      category: 'Innovation',
+      readTime: '4 min read',
+      date: 'May 10, 2025',
+      author: {
+        name: 'Marcus Vance',
+        role: 'Principal Systems Engineer',
+      },
+      content: [
+        'Success in machine learning initiatives is rarely determined by raw model parameter scale alone, but by data orchestration and pipeline ergonomics.',
+        'Here, we review the foundational building blocks required to elevate conversational prototypes into resilient production systems.',
+        'See how top-tier teams establish guardrails, automated regression evals, and audit-ready observability.'
+      ],
+    },
+    {
+      id: '4',
+      image: images.insightWaves,
+      title: 'Get inspired by emerging trends, real-world case studies, and AI insights.',
+      category: 'Industry Trends',
+      readTime: '5 min read',
+      date: 'May 05, 2025',
+      author: {
+        name: 'Sophia Sterling',
+        role: 'Head of Product Strategy',
+      },
+      content: [
+        'The transition from rule-based robotic process automation (RPA) to cognitive agent orchestration represents the biggest productivity inflection of this decade.',
+        'We examine real-world deployments where cognitive agents autonomously negotiate contracts, reconcile discrepancies, and route decisions.',
+        'Discover how leaders are architecting these workflows to maximize leverage while maintaining absolute control.'
+      ],
+    },
+    {
+      id: '5',
+      image: images.abstractWaves || images.insightWaves,
+      title: 'Dive into AI trends, practical case studies, and expert perspectives.',
+      category: 'Deep Tech',
+      readTime: '7 min read',
+      date: 'Apr 28, 2025',
+      author: {
+        name: 'Dr. Vikram Patel',
+        role: 'Lead ML Scientist',
+      },
+      content: [
+        'Modern multimodal models present both immense promise and unique operational hurdles in enterprise production.',
+        'This deep dive explores retrieval augmented generation (RAG) at scale, hybrid vector-lexical indexing, and deterministic structured outputs.',
+        'Get practical recipes for minimizing hallucinations and maintaining rock-solid SLA compliance.'
+      ],
+    },
+    {
+      id: '6',
+      image: images.abstractSpiral || images.insightSpiral,
+      title: 'Stay ahead with the latest AI trends, case studies, and expert insights.',
+      category: 'Executive Strategy',
+      readTime: '4 min read',
+      date: 'Apr 22, 2025',
+      author: {
+        name: 'Claire Chen',
+        role: 'Director of Technology Solutions',
+      },
+      content: [
+        'Technology leaders are under unprecedented pressure to show tangible ROI from artificial intelligence initiatives within 90 days.',
+        'We outline a battle-tested decision framework for prioritizing high-impact AI opportunities versus low-yield vanity demos.',
+        'Learn how to calculate true cost of ownership, risk mitigation vectors, and user adoption velocity.'
+      ],
+    },
+    {
+      id: '7',
+      image: images.abstractWaves || images.insightWaves,
+      title: 'Learn from industry trends, proven case studies, and our AI specialists.',
+      category: 'Best Practices',
+      readTime: '5 min read',
+      date: 'Apr 16, 2025',
+      author: {
+        name: 'Julian Hayes',
+        role: 'Enterprise Architect',
+      },
+      content: [
+        'Enterprise data rarely exists in clean, pre-indexed vector formats. It is scattered across legacy SQL tables, PDFs, spreadsheets, and APIs.',
+        'In this edition, our engineering team shares the ingestion and normalization pipelines that turn messy corporate repositories into high-precision knowledge engines.',
+        'Read about privacy preserving techniques and role-based access control inside intelligent retrieval.'
+      ],
+    },
+    {
+      id: '8',
+      image: images.caseStudyFabric || images.insightParticles,
+      title: 'Explore AI innovations, real-world results, and insights from our experts.',
+      category: 'Engineering',
+      readTime: '6 min read',
+      date: 'Apr 09, 2025',
+      author: {
+        name: 'Nadia Benali',
+        role: 'Senior AI Engineer',
+      },
+      content: [
+        'Autonomous agents must coordinate seamlessly across asynchronous task trees without falling into cyclic loops or degraded reasoning states.',
+        'We showcase real-world benchmarking results across multi-agent consensus protocols, state rollbacks, and recovery mechanisms.',
+        'Explore how these architectures are currently operating in production fintech and manufacturing environments.'
+      ],
+    },
+    {
+      id: '9',
+      image: images.insightSpiral,
+      title: 'Keep up with AI trends, success stories, and insights from experienced experts.',
+      category: 'Future of Work',
+      readTime: '4 min read',
+      date: 'Apr 02, 2025',
+      author: {
+        name: 'Liam Gallagher',
+        role: 'Head of Automation Research',
+      },
+      content: [
+        'As intelligent systems take on heavier cognitive workloads, organizational roles must evolve from execution to curation and governance.',
+        'We share empirical observations from deploying enterprise automation across 50,000+ knowledge workers over the past 18 months.',
+        'Discover how leading firms are restructuring teams, training talent, and measuring human-machine collaborative efficiency.'
+      ],
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#fafafa] text-[#111111] antialiased selection:bg-neutral-900 selection:text-white font-sans relative overflow-x-hidden">
+      {/* Background Subtle Flowing Wave Graphic matching screenshot */}
+      <div 
+        className="pointer-events-none absolute inset-0 z-0 opacity-40 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px]" 
+        aria-hidden="true" 
+      />
+
+      {/* Top Navigation Bar */}
+      <Navbar
+        currentPage="blog"
+        onNavigate={onNavigate}
+        onBookDemo={() => setModalOpen(true)}
+      />
+
+      {/* Main Content Container */}
+      <main className="relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neutral-300 bg-white/90 backdrop-blur-sm text-xs font-semibold text-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.04)] tracking-wide">
+            {/* Small icon representing insight / spiral */}
+            <span className="w-3.5 h-3.5 rounded-full bg-neutral-900 flex items-center justify-center text-white text-[8px] font-bold">
+              ✦
+            </span>
+            <span>BLOG & INSIGHT</span>
+          </div>
+        </div>
+
+        {/* Hero Title & Subtitle - Exact match to screenshot */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+          <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-normal tracking-tight text-[#111113] leading-[1.12]">
+            Insights on AI,<br />
+            Automation & Innovation
+          </h1>
+          <p className="mt-4 text-sm sm:text-base text-neutral-600 max-w-xl mx-auto font-normal leading-relaxed">
+            We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
+          </p>
+        </div>
+
+        {/* 3x3 Card Grid matching exact screenshot layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+          {blogPosts.map((post) => (
+            <article
+              key={post.id}
+              className="bg-[#f4f4f4] rounded-2xl sm:rounded-3xl p-4 sm:p-4.5 border border-neutral-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:border-neutral-300 group"
+            >
+              {/* Card Image */}
+              <div className="relative aspect-[16/11] sm:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-white mb-5 shadow-xs">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-500 ease-out"
+                />
+              </div>
+
+              {/* Card Content */}
+              <div className="flex-1 flex flex-col justify-between px-1.5 pb-1">
+                {/* Title */}
+                <h3 className="text-[17px] sm:text-[18px] font-medium text-[#111113] leading-snug tracking-tight mb-6">
+                  {post.title}
+                </h3>
+
+                {/* Read Blog Button */}
+                <button
+                  onClick={() => setActivePost(post)}
+                  className="w-full py-3 px-4 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 text-xs sm:text-sm font-medium text-[#111113] hover:bg-neutral-50 hover:border-neutral-300 active:scale-[0.99] transition-all cursor-pointer text-center shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                >
+                  Read Blog
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </main>
+
+      {/* Pre-Footer Final CTA Card: "Let's Build the Future, Together" */}
+      <div className="relative z-10">
+        <FinalCTA onConsultationClick={() => setModalOpen(true)} />
+      </div>
+
+      {/* Footer with Isometric Cube background */}
+      <Footer onNavigate={onNavigate} />
+
+      {/* Article Reader Modal */}
+      {activePost && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+          <div
+            className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-neutral-200 shadow-2xl p-6 sm:p-8 animate-scaleUp relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setActivePost(null)}
+              className="absolute top-6 right-6 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 hover:text-black transition-colors cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Modal Image */}
+            <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-100 mb-6">
+              <img
+                src={activePost.image}
+                alt={activePost.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Badges / Metadata */}
+            <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-500 mb-3">
+              <span className="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-800 font-semibold">
+                {activePost.category}
+              </span>
+              <span className="flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5" />
+                {activePost.readTime}
+              </span>
+              <span className="flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5" />
+                {activePost.date}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h2 className="text-2xl sm:text-3xl font-medium text-neutral-950 tracking-tight mb-4 leading-tight">
+              {activePost.title}
+            </h2>
+
+            {/* Author */}
+            <div className="flex items-center gap-3 pb-6 mb-6 border-b border-neutral-100">
+              <div className="w-9 h-9 rounded-full bg-neutral-900 text-white flex items-center justify-center text-xs font-semibold">
+                {activePost.author.name.charAt(0)}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-neutral-900">{activePost.author.name}</p>
+                <p className="text-xs text-neutral-500">{activePost.author.role}</p>
+              </div>
+            </div>
+
+            {/* Content Paragraphs */}
+            <div className="space-y-4 text-sm sm:text-base text-neutral-700 leading-relaxed">
+              {activePost.content.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+
+            {/* Footer Modal CTA */}
+            <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <button
+                onClick={() => {
+                  setActivePost(null);
+                  setModalOpen(true);
+                }}
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-neutral-950 text-white text-xs font-medium hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Discuss with Axonix Team</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setActivePost(null)}
+                className="w-full sm:w-auto px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 text-xs font-medium hover:bg-neutral-50 transition-colors cursor-pointer"
+              >
+                Close Article
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Book Demo Modal */}
+      <DemoModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+      />
+    </div>
+  );
+};
