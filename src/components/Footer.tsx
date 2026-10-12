@@ -2,7 +2,34 @@ import React from 'react';
 import { images } from '../assets/images';
 import { AxonixLogo } from './BrandLogos';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const handleNav = (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact', anchorId?: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+      if (anchorId) {
+        setTimeout(() => {
+          document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      if (page === 'about') {
+        window.location.href = '/about';
+      } else if (page === 'pricing') {
+        window.location.href = '/pricing';
+      } else if (page === 'blog') {
+        window.location.href = '/blog';
+      } else if (page === 'contact') {
+        window.location.href = '/contact';
+      } else if (anchorId) {
+        document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <footer
       className="footer-surface relative isolate overflow-hidden pt-[18rem] sm:pt-[28rem] pb-8"
@@ -38,29 +65,52 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3 text-lg leading-[1.05] font-medium text-neutral-800">
               <li>
-                <a href="#about" className="hover:text-black transition-colors">
+                <button
+                  onClick={() => handleNav('about')}
+                  className="hover:text-black transition-colors cursor-pointer text-left"
+                >
                   About Us
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#features" className="hover:text-black transition-colors">
+                <button
+                  onClick={() => handleNav('home', 'features')}
+                  className="hover:text-black transition-colors cursor-pointer text-left"
+                >
                   Features
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-black transition-colors">
+                <button
+                  onClick={() => handleNav('pricing')}
+                  className="hover:text-black transition-colors cursor-pointer text-left"
+                >
                   Pricing
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#case-study" className="hover:text-black transition-colors">
+                <button
+                  onClick={() => handleNav('blog')}
+                  className="hover:text-black transition-colors cursor-pointer text-left"
+                >
+                  Blog
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('home', 'case-study')}
+                  className="hover:text-black transition-colors cursor-pointer text-left"
+                >
                   Case Study
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#faq" className="hover:text-black transition-colors">
+                <button
+                  onClick={() => handleNav('contact')}
+                  className="hover:text-black transition-colors cursor-pointer text-left"
+                >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>
