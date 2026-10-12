@@ -1,6 +1,6 @@
-export interface ServiceItem {
+﻿export interface ServiceItem {
   id: string;
-  iconName: 'zap' | 'monitor' | 'activity' | 'award' | 'shieldCheck';
+  iconName: 'zap' | 'monitor' | 'loader' | 'star' | 'shieldCheck';
   title: string;
   description: string;
 }
@@ -20,13 +20,13 @@ export const servicesData: ServiceItem[] = [
   },
   {
     id: '3',
-    iconName: 'activity',
+    iconName: 'loader',
     title: 'Results-driven with measurable ROI',
     description: 'Stay ahead of regulations with automated KYC/AML checks and audit trails.',
   },
   {
     id: '4',
-    iconName: 'award',
+    iconName: 'star',
     title: 'Cross-industry experience',
     description: 'Send, receive, and manage payments—all in one place, fully encrypted and compliant.',
   },
