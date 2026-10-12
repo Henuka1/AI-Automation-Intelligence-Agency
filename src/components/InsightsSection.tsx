@@ -16,6 +16,12 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadArticle 
         return images.insightParticles;
       case 'insightSpiral':
         return images.insightSpiral;
+      case 'caseStudyFabric':
+        return images.caseStudyFabric;
+      case 'collabHands':
+        return images.collabHands;
+      case 'aboutJourneyVR':
+        return images.aboutJourneyVR;
       default:
         return images.insightWaves;
     }
@@ -46,7 +52,7 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadArticle 
 
         {/* 3 Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 sm:mt-16">
-          {insightsData.map((article) => (
+          {insightsData.slice(0, 3).map((article) => (
             <div
               key={article.id}
               className="bg-white rounded-3xl border border-neutral-200/80 p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all hover:border-neutral-300"
