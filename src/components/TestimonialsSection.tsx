@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { testimonials } from '../data/testimonials';
 import { Logoipsum } from './BrandLogos';
 import { Avatar } from './Avatar';
@@ -11,22 +11,44 @@ export const TestimonialsSection: React.FC = () => {
   return (
     <section id="testimonials" className="py-16 sm:py-24 bg-white border-t border-neutral-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Eyebrow tag */}
-        <div className="text-center mb-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200 shadow-2xs">
-            <Sparkles className="w-3 h-3 text-neutral-700" />
-            <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
+        {/* Eyebrow badge matching reference screenshot */}
+        <div className="text-center mb-5 sm:mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_4px_14px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:scale-105 select-none">
+            {/* Overlapping rounded triangle and circle icon - bold stroke matching screenshot */}
+            <svg
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 text-black shrink-0"
+            >
+              <circle
+                cx="13"
+                cy="13"
+                r="4.4"
+                stroke="currentColor"
+                strokeWidth="2.2"
+              />
+              <path
+                d="M7.4 3.4C8 2.4 9.4 2.4 10 3.4L13.8 9.8C14.4 10.8 13.7 12 12.5 12H4.9C3.7 12 3 10.8 3.6 9.8L7.4 3.4Z"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="text-[12.5px] font-bold tracking-[-0.01em] uppercase text-black">
               TESTIMONIALS
             </span>
           </div>
         </div>
 
-        {/* Heading */}
+        {/* Heading with vertical fade gradient matching reference screenshot */}
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-medium text-[#111113] tracking-tight leading-tight">
-            What Our Clients Say
+          <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold tracking-[-0.03em] leading-[1.15]">
+            <span className="bg-gradient-to-b from-[#555963] via-[#2A2D35] to-[#0B0C0E] bg-clip-text text-transparent inline-block">
+              What Our Clients Say
+            </span>
           </h2>
-          <p className="mt-3 text-sm sm:text-[14.5px] text-neutral-500 leading-relaxed">
+          <p className="mt-3 text-sm sm:text-[15px] text-neutral-500 leading-relaxed font-normal tracking-[-0.01em]">
             Live dashboards and custom reports that surface the insights you need—instantly.
           </p>
         </div>
@@ -38,7 +60,7 @@ export const TestimonialsSection: React.FC = () => {
             {topRow.map((item, idx) => (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all hover:border-neutral-300"
+                className="bg-white rounded-2xl sm:rounded-[22px] border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-0.5"
               >
                 <div>
                   <div className="mb-4">
@@ -76,7 +98,7 @@ export const TestimonialsSection: React.FC = () => {
             {bottomRow.map((item, idx) => (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all hover:border-neutral-300"
+                className="bg-white rounded-2xl sm:rounded-[22px] border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-0.5"
               >
                 <div>
                   <div className="mb-4">

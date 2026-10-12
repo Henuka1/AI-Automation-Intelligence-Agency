@@ -16,7 +16,11 @@ import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 
-export const Home: React.FC = () => {
+interface HomeProps {
+  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+}
+
+export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedInterest, setSelectedInterest] = useState<string | undefined>(undefined);
 
@@ -32,7 +36,11 @@ export const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
       {/* SECTION 1 — NAVIGATION */}
-      <Navbar onBookDemo={() => handleOpenModal('Strategy Consultation')} />
+      <Navbar
+        currentPage="home"
+        onNavigate={onNavigate}
+        onBookDemo={() => handleOpenModal('Strategy Consultation')}
+      />
 
       <main className="flex-1">
         {/* SECTION 2 — HERO */}
@@ -82,7 +90,7 @@ export const Home: React.FC = () => {
       </main>
 
       {/* SECTION 15 — FOOTER */}
-      <Footer />
+      <Footer onNavigate={onNavigate} />
 
       {/* Interactive Modal */}
       <DemoModal
