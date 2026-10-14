@@ -2,11 +2,11 @@ import React from 'react';
 import { images } from '../assets/images';
 
 interface FooterProps {
-  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const handleNav = (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact', anchorId?: string) => {
+  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms', anchorId?: string) => {
     if (onNavigate) {
       onNavigate(page);
       if (anchorId) {
@@ -15,7 +15,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         }, 100);
       }
     } else {
-      if (page === 'about') {
+      if (page === 'features') {
+        window.location.href = '/features';
+      } else if (page === 'about') {
         window.location.href = '/about';
       } else if (page === 'pricing') {
         window.location.href = '/pricing';
@@ -23,6 +25,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         window.location.href = '/blog';
       } else if (page === 'contact') {
         window.location.href = '/contact';
+      } else if (page === 'terms') {
+        window.location.href = '/terms';
       } else if (anchorId) {
         document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth' });
       }
@@ -75,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => handleNav('home', 'features')}
+                  onClick={() => handleNav('features')}
                   className="hover:text-black transition-colors cursor-pointer text-left"
                 >
                   Features
@@ -181,9 +185,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <a href="#privacy" className="hover:text-neutral-800 transition-colors">
               Privacy Policy
             </a>
-            <a href="#terms" className="hover:text-neutral-800 transition-colors">
+            <button
+              onClick={() => handleNav('terms')}
+              className="hover:text-neutral-800 transition-colors cursor-pointer"
+            >
               Terms & Condition
-            </a>
+            </button>
           </div>
         </div>
       </div>
