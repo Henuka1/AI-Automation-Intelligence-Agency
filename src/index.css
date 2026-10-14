@@ -22,6 +22,113 @@
   background: radial-gradient(circle at 50% 50%, rgba(245, 245, 247, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
+.feature-hover-card {
+  position: relative;
+  border-radius: 22px;
+  outline: none;
+  cursor: pointer;
+  transition: transform .45s cubic-bezier(.2,.9,.3,1.2), box-shadow .45s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 12px 28px rgba(0,0,0,.05);
+}
+
+.feature-hover-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 23px;
+  z-index: 0;
+  background: conic-gradient(from var(--feature-card-angle), #c9ced4, #ffffff, #8f959c, #f4f6f8, #b5bbc2, #ffffff, #c9ced4);
+  opacity: 0;
+  transition: opacity .35s ease;
+  animation: feature-card-spin 2.6s linear infinite;
+  animation-play-state: paused;
+}
+
+.pricing-plan-card::before {
+  inset: 0;
+  box-sizing: border-box;
+  padding: 1.5px;
+  border-radius: 22px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.feature-hover-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  z-index: 0;
+  box-shadow: 0 0 0 0 rgba(180,186,194,0);
+  transition: box-shadow .45s ease;
+}
+
+.feature-hover-card:hover,
+.feature-hover-card:focus-visible {
+  z-index: 1;
+  transform: translateY(-14px) scale(1.035);
+  box-shadow: 0 6px 14px rgba(0,0,0,.08), 0 30px 50px rgba(0,0,0,.14);
+}
+
+.feature-hover-card:hover::after,
+.feature-hover-card:focus-visible::after {
+  box-shadow: 0 0 26px 4px rgba(176,182,190,.55);
+}
+
+.feature-hover-card:hover::before,
+.feature-hover-card:focus-visible::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.feature-hover-card-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.feature-hover-card-inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+.feature-hover-card:hover .feature-hover-card-inner::after,
+.feature-hover-card:focus-visible .feature-hover-card-inner::after {
+  left: 140%;
+  transition: left .9s ease;
+}
+
+@property --feature-card-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes feature-card-spin {
+  to { --feature-card-angle: 360deg; }
+}
+
+.pricing-heading {
+  font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, rgba(20,20,20,.45) 0%, rgba(20,20,20,.6) 35%, #141414 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* Explicit vertical gradient text fade matching screenshot */
 .hero-gradient-headline {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -69,3 +176,17 @@
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .feature-hover-card,
+  .feature-hover-card::before,
+  .feature-hover-card::after,
+  .feature-hover-card-inner::after {
+    animation: none;
+    transition: none;
+  }
+
+  .feature-hover-card:hover,
+  .feature-hover-card:focus-visible {
+    transform: none;
+  }
+}

@@ -4,7 +4,11 @@ import { testimonials } from '../data/testimonials';
 import { Logoipsum } from './BrandLogos';
 import { Avatar } from './Avatar';
 
-export const TestimonialsSection: React.FC = () => {
+interface TestimonialsSectionProps {
+  withHoverEffect?: boolean;
+}
+
+export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ withHoverEffect = false }) => {
   const topRow = testimonials.slice(0, 2);
   const bottomRow = testimonials.slice(2, 5);
 
@@ -13,13 +17,12 @@ export const TestimonialsSection: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Eyebrow badge matching reference screenshot */}
         <div className="text-center mb-5 sm:mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_4px_14px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:scale-105 select-none">
-            {/* Overlapping rounded triangle and circle icon - bold stroke matching screenshot */}
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_4px_14px_rgba(0,0,0,0.15),0_1px_3px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:scale-105 select-none">
             <svg
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 text-black shrink-0"
+              className="w-3.5 h-3.5 text-black shrink-0"
             >
               <circle
                 cx="13"
@@ -30,12 +33,13 @@ export const TestimonialsSection: React.FC = () => {
               />
               <path
                 d="M7.4 3.4C8 2.4 9.4 2.4 10 3.4L13.8 9.8C14.4 10.8 13.7 12 12.5 12H4.9C3.7 12 3 10.8 3.6 9.8L7.4 3.4Z"
+                fill="white"
                 stroke="currentColor"
                 strokeWidth="2.2"
                 strokeLinejoin="round"
               />
             </svg>
-            <span className="text-[12.5px] font-bold tracking-[-0.01em] uppercase text-black">
+            <span className="text-[11.5px] font-semibold tracking-[0.14em] uppercase text-black">
               TESTIMONIALS
             </span>
           </div>
@@ -43,8 +47,8 @@ export const TestimonialsSection: React.FC = () => {
 
         {/* Heading with vertical fade gradient matching reference screenshot */}
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold tracking-[-0.03em] leading-[1.15]">
-            <span className="bg-gradient-to-b from-[#555963] via-[#2A2D35] to-[#0B0C0E] bg-clip-text text-transparent inline-block">
+          <h2 className="text-[28px] sm:text-[30px] font-medium tracking-[-0.04em] leading-[1.15]">
+            <span className="pricing-heading inline-block">
               What Our Clients Say
             </span>
           </h2>
@@ -58,76 +62,82 @@ export const TestimonialsSection: React.FC = () => {
           {/* Top Row: 2 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {topRow.map((item, idx) => (
-              <div
+              <article
                 key={item.id}
-                className="bg-white rounded-2xl sm:rounded-[22px] border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-0.5"
+                tabIndex={withHoverEffect ? 0 : undefined}
+                className={withHoverEffect ? 'feature-hover-card rounded-[22px]' : undefined}
               >
-                <div>
-                  <div className="mb-4">
-                    <Logoipsum variant={((idx % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="h-5" />
+                <div className={`bg-white rounded-2xl sm:rounded-[22px] border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 ${withHoverEffect ? 'feature-hover-card-inner' : ''}`}>
+                  <div>
+                    <div className="mb-4">
+                      <Logoipsum variant={((idx % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="h-5" />
+                    </div>
+                    <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
+                      {item.quote}
+                    </p>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
-                    {item.quote}
-                  </p>
-                </div>
 
-                <div className="mt-6 pt-5 border-t border-neutral-100 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Avatar src={item.avatar} name={item.author} className="w-9 h-9" />
-                    <div>
-                      <h4 className="text-xs sm:text-[13px] font-semibold text-[#111113]">
-                        {item.author}
-                      </h4>
-                      <p className="text-[11px] text-neutral-400">
-                        {item.role}
-                      </p>
+                  <div className="mt-6 pt-5 border-t border-neutral-100 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Avatar src={item.avatar} name={item.author} className="w-9 h-9" />
+                      <div>
+                        <h4 className="text-xs sm:text-[13px] font-semibold text-[#111113]">
+                          {item.author}
+                        </h4>
+                        <p className="text-[11px] text-neutral-400">
+                          {item.role}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1 text-[#111113] text-xs font-semibold">
+                      <Star className="w-3.5 h-3.5 fill-current text-neutral-900" />
+                      <span>{item.rating}</span>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-1 text-[#111113] text-xs font-semibold">
-                    <Star className="w-3.5 h-3.5 fill-current text-neutral-900" />
-                    <span>{item.rating}</span>
-                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
           {/* Bottom Row: 3 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {bottomRow.map((item, idx) => (
-              <div
+              <article
                 key={item.id}
-                className="bg-white rounded-2xl sm:rounded-[22px] border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-0.5"
+                tabIndex={withHoverEffect ? 0 : undefined}
+                className={withHoverEffect ? 'feature-hover-card rounded-[22px]' : undefined}
               >
-                <div>
-                  <div className="mb-4">
-                    <Logoipsum variant={(((idx + 2) % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="h-5" />
+                <div className={`bg-white rounded-2xl sm:rounded-[22px] border border-neutral-200/80 p-6 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 ${withHoverEffect ? 'feature-hover-card-inner' : ''}`}>
+                  <div>
+                    <div className="mb-4">
+                      <Logoipsum variant={(((idx + 2) % 5) + 1) as 1 | 2 | 3 | 4 | 5} className="h-5" />
+                    </div>
+                    <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
+                      {item.quote}
+                    </p>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed font-normal">
-                    {item.quote}
-                  </p>
-                </div>
 
-                <div className="mt-6 pt-5 border-t border-neutral-100 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Avatar src={item.avatar} name={item.author} className="w-9 h-9" />
-                    <div>
-                      <h4 className="text-xs sm:text-[13px] font-semibold text-[#111113]">
-                        {item.author}
-                      </h4>
-                      <p className="text-[11px] text-neutral-400">
-                        {item.role}
-                      </p>
+                  <div className="mt-6 pt-5 border-t border-neutral-100 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Avatar src={item.avatar} name={item.author} className="w-9 h-9" />
+                      <div>
+                        <h4 className="text-xs sm:text-[13px] font-semibold text-[#111113]">
+                          {item.author}
+                        </h4>
+                        <p className="text-[11px] text-neutral-400">
+                          {item.role}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1 text-[#111113] text-xs font-semibold">
+                      <Star className="w-3.5 h-3.5 fill-current text-neutral-900" />
+                      <span>{item.rating}</span>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-1 text-[#111113] text-xs font-semibold">
-                    <Star className="w-3.5 h-3.5 fill-current text-neutral-900" />
-                    <span>{item.rating}</span>
-                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
