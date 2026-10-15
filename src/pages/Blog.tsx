@@ -187,12 +187,6 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-[#111111] antialiased selection:bg-neutral-900 selection:text-white font-sans relative overflow-x-hidden">
-      {/* Background Subtle Flowing Wave Graphic matching screenshot */}
-      <div 
-        className="pointer-events-none absolute inset-0 z-0 opacity-40 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px]" 
-        aria-hidden="true" 
-      />
-
       {/* Top Navigation Bar */}
       <Navbar
         currentPage="blog"
@@ -214,7 +208,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
 
         {/* Hero Title & Subtitle */}
         <div className="mx-auto mb-14 max-w-4xl text-center sm:mb-20">
-          <h1 className="font-['Inter'] text-[40px] font-semibold leading-[1.08] tracking-[-0.055em] sm:text-[52px] lg:text-[64px]">
+          <h1 className="blog-hero-title font-['Inter'] text-[40px] font-semibold leading-[1.12] tracking-[-0.055em] sm:text-[52px] lg:text-[64px]">
             <span className="hero-gradient-headline">Insights on AI,</span>
             <br />
             <span className="hero-gradient-headline">Automation &amp; Innovation</span>
@@ -229,7 +223,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
           {blogPosts.slice(0, 3).map((post) => (
             <article
               key={post.id}
-              className="group flex flex-col"
+              className="blog-card-hover group flex flex-col"
             >
               <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
                 <img
@@ -260,7 +254,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
           {blogPosts.slice(3, 6).map((post) => (
             <article
               key={post.id}
-              className="group flex flex-col"
+              className="blog-card-hover group flex flex-col"
             >
               <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
                 <img
@@ -291,7 +285,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
           {blogPosts.slice(6).map((post) => (
             <article
               key={post.id}
-              className="group flex flex-col"
+              className="blog-card-hover group flex flex-col"
             >
               <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
                 <img
