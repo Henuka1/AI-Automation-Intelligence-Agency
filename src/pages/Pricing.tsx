@@ -255,7 +255,7 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
         <TestimonialsSection withHoverEffect />
 
         {/* 4. FREQUENTLY ASKED QUESTIONS SECTION */}
-        <FAQSection onContactClick={() => handleOpenModal('Pricing Questions')} />
+        <FAQSection onContactClick={() => handleOpenModal('Pricing Questions')} variant="pricing" />
 
         {/* 5. PRE-FOOTER CTA SECTION */}
         <FinalCTA onConsultationClick={() => handleOpenModal('Custom AI Plan Consultation')} />
