@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 
 interface PricingProps {
-  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
 }
 
 const darkButtonStyle =

@@ -12,6 +12,8 @@ import teamPortraitTwo from './team_portrait_two_1791815155557.jpg';
 import contactRobotHandAi from './contact_robot_hand_ai_1791822274917.jpg';
 import abstractWaves from './abstract_white_architecture_waves_1791823169955.jpg';
 import abstractSpiral from './abstract_white_spiral_mesh_1791823193143.jpg';
+import featuresLaptopAi from './features_laptop_ai_1791832801184.jpg';
+import securedShieldAi from './secured_shield_ai_1791832849225.jpg';
 
 export const images = {
   heroHands,
@@ -29,4 +31,6 @@ export const images = {
   contactRobotHandAi,
   abstractWaves,
   abstractSpiral,
+  featuresLaptopAi,
+  securedShieldAi,
 };
