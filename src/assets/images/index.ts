@@ -31,4 +31,8 @@ export const images = {
   contactRobotHandAi,
   abstractWaves,
   abstractSpiral,
+  featuresLaptopAi,
+  securedShieldAi,
+  kondamSwirlFabric,
+  lokosArchitecture,
 };

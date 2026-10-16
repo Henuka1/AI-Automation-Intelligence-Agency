@@ -155,8 +155,8 @@ export function AgencySection() {
 
       <div className="of-grid">
         {CARDS.map((c) => (
-          <article className="of-card" key={c.title} tabIndex={0}>
-            <div className="of-card-in">
+          <article className="of-card feature-hover-card" key={c.title} tabIndex={0}>
+            <div className="of-card-in feature-hover-card-inner">
               <div className="of-visual">{c.visual}</div>
               <h3>{c.title}</h3>
               <p>{c.text}</p>
@@ -172,8 +172,6 @@ export function AgencySection() {
 
 const css = `
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap");
-@property --of-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-
 .of-section {
   --ink: #141414; --muted: #5c5c5c;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -211,45 +209,12 @@ const css = `
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
 }
 
-/* card + silver rotating border */
-.of-card {
-  position: relative; border-radius: 22px; outline: none; cursor: pointer;
-  transition: transform .45s cubic-bezier(.2,.9,.3,1.2), box-shadow .45s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 12px 28px rgba(0,0,0,.05);
-}
-.of-card::before {
-  content: ""; position: absolute; inset: -2px; border-radius: 24px; z-index: 0;
-  background: conic-gradient(from var(--of-angle),
-    #c9ced4, #ffffff, #8f959c, #f4f6f8, #b5bbc2, #ffffff, #c9ced4);
-  opacity: 0; transition: opacity .35s ease;
-  animation: of-spin 2.6s linear infinite; animation-play-state: paused;
-}
-.of-card::after { /* soft silver glow */
-  content: ""; position: absolute; inset: 0; border-radius: 22px; z-index: 0;
-  box-shadow: 0 0 0 0 rgba(180,186,194,0); transition: box-shadow .45s ease;
-}
-.of-card:hover, .of-card:focus-visible {
-  transform: translateY(-14px) scale(1.035);
-  box-shadow: 0 6px 14px rgba(0,0,0,.08), 0 30px 50px rgba(0,0,0,.14);
-}
-.of-card:hover::before, .of-card:focus-visible::before { opacity: 1; animation-play-state: running; }
-.of-card:hover::after, .of-card:focus-visible::after { box-shadow: 0 0 26px 4px rgba(176,182,190,.55); }
-@keyframes of-spin { to { --of-angle: 360deg; } }
-
 .of-card-in {
   position: relative; z-index: 1; height: 100%; box-sizing: border-box;
   border-radius: 22px; padding: 24px 24px 26px;
   background: linear-gradient(180deg, #fbfbfb, #f1f1f1);
   border: 1px solid #fff; overflow: hidden;
 }
-/* silver sheen sweep on hover */
-.of-card-in::after {
-  content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent);
-  transform: skewX(-18deg); pointer-events: none;
-}
-.of-card:hover .of-card-in::after { left: 140%; transition: left .9s ease; }
-
 .of-visual { height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 26px; }
 .of-card h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 .of-card p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--muted); }
@@ -306,7 +271,6 @@ const css = `
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .of-card, .of-card::before, .of-card-in::after { animation: none; transition: none; }
-  .of-card:hover { transform: none; }
+  .of-card { animation: none; transition: none; }
 }
 `;

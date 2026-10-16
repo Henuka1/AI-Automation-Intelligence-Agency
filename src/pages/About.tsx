@@ -7,10 +7,12 @@ import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
-import { Users, Zap, Globe, Sparkles, Navigation } from 'lucide-react';
+import blogBackground from '../assets/images/blog_bg.png';
+import { Users, Zap, Globe, Sparkles, Cpu } from 'lucide-react';
+import { FeatureBadgeIcon } from '../components/BrandLogos';
 
 interface AboutProps {
-  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
 }
 
 export const About: React.FC<AboutProps> = ({ onNavigate }) => {
@@ -30,13 +32,17 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const teamMembers = [
     {
       id: 1,
-      image: images.teamPortraitOne,
+      image:
+        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80',
       alt: 'Team member - Senior AI Engineer',
+      fallback: images.teamPortraitOne,
     },
     {
       id: 2,
-      image: images.teamPortraitTwo,
+      image:
+        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
       alt: 'Team member - Product Designer',
+      fallback: images.teamPortraitTwo,
     },
     {
       id: 3,
@@ -79,6 +85,8 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
     'AUTOMATION & RPA',
   ];
 
+  const marqueeIcons = [Cpu, Cpu, Zap, Globe, Sparkles, Cpu, Cpu, Zap];
+
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
       {/* 1. TOP NAVBAR */}
@@ -90,28 +98,41 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
 
       <main className="flex-1 pt-24 sm:pt-28">
         {/* 2. HERO SECTION */}
-        <section className="pt-12 sm:pt-16 pb-12 sm:pb-16 text-center">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <section
+          className="about-hero-feature relative h-[432px] overflow-hidden bg-white pt-20 pb-0 text-center sm:h-[432px]"
+        >
+          {/* Responsive background artwork matching the About hero design */}
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+            <img
+              src={blogBackground}
+              alt=""
+              className="absolute -top-4 h-[calc(100%+16px)] w-full object-cover object-center sm:-top-6 sm:h-[calc(100%+24px)]"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
             {/* Pill Eyebrow Badge matching screenshot */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.06)] mb-8 transition-transform hover:scale-105">
-              <span className="w-2 h-2 rounded-full bg-neutral-900" />
-              <span className="text-[11.5px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
+            <div className="about-hero-feature__badge inline-flex h-11 items-center gap-2 rounded-full bg-white px-2 pr-4 border border-white shadow-[0_10px_24px_rgba(0,0,0,0.14)] mb-5 transition-transform hover:scale-105">
+              <span className="about-hero-feature__badge-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#151515] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25),0_3px_8px_rgba(0,0,0,0.25)]">
+                <Cpu className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
+              </span>
+              <span className="text-[13px] font-medium tracking-[0.08em] uppercase text-[#171717]">
                 ABOUT US
               </span>
             </div>
 
             {/* Title with vertical fade matching screenshot */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] tracking-[-0.035em] leading-[1.12] font-semibold max-w-4xl mx-auto">
-              <span className="block text-[#5B5E68] font-medium">
+            <h1 className="about-hero-feature__title tracking-[-0.04em] leading-[1.08] font-semibold max-w-6xl mx-auto">
+              <span className="hero-gradient-headline about-hero-feature__first-line block font-medium">
                 Building the Future with
               </span>
-              <span className="block text-[#0D0E11] font-bold mt-1">
+              <span className="hero-gradient-headline about-hero-feature__second-line block font-bold mt-1 whitespace-nowrap">
                 Human-Centered AI
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-5 sm:mt-6 text-sm sm:text-base md:text-[17px] text-neutral-500 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="about-hero-feature__copy about-hero-feature__description mt-7 text-[15px] sm:text-base md:text-[17px] font-normal leading-relaxed max-w-none mx-auto whitespace-nowrap">
               We build intelligent tools, systems, and strategies that help businesses scale,
               automate, and innovate—faster.
             </p>
@@ -122,61 +143,70 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         <LogoStrip />
 
         {/* 4. STATEMENT & 4 STAT METRICS SECTION */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <section className="about-story-feature bg-white py-16 sm:py-24">
+          <div className="mx-auto max-w-[1500px] px-4 sm:px-8">
             {/* Main Statement */}
-            <div className="max-w-4xl mx-auto text-center text-2xl sm:text-3xl md:text-[34px] lg:text-[38px] leading-[1.3] font-medium tracking-tight">
-              <p className="text-[#0D0E11]">
-                Since our founding, we&apos;ve helped startups, enterprises, and global brands unlock
-                the power of intelligent automation and machine learning.
+            <div className="about-story-feature__text mx-auto text-center font-medium">
+              <p className="about-story-feature__lead text-[#0D0E11]">
+                <span className="about-story-feature__line block">
+                  Since our founding, we&apos;ve helped startups, enterprises, and global brands
+                </span>
+                <span className="about-story-feature__line block">
+                  unlock the power of intelligent automation and machine learning.
+                </span>
               </p>
-              <p className="mt-6 text-[#0D0E11]">
-                Whether it&apos;s building custom AI tools, automating operations, or enhancing
-                customer experiences, we partner closely with clients{' '}
-                <span className="text-neutral-400 font-normal">
-                  to turn ambitious ideas into real-world impact.
+              <p className="mt-8 text-[#0D0E11] sm:mt-10">
+                <span className="about-story-feature__line block">
+                  Whether it&apos;s building custom AI tools, automating operations, or
+                </span>
+                <span className="about-story-feature__line block">
+                  enhancing customer experiences, we partner closely with clients{' '}
+                  <span className="about-story-feature__muted font-normal">to turn</span>
+                </span>
+                <span className="about-story-feature__line about-story-feature__muted block font-normal">
+                  ambitious ideas into real-world impact.
                 </span>
               </p>
             </div>
 
             {/* 4 Metric Cards matching screenshot */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 max-w-5xl mx-auto mt-14 sm:mt-20">
+            <div className="about-story-feature__metrics grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mx-auto mt-14 sm:mt-20">
               {/* Metric 1 */}
-              <div className="bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-transform hover:-translate-y-0.5">
-                <div className="text-3xl sm:text-4xl md:text-[42px] font-bold text-[#0D0E11] tracking-tight leading-none">
+              <div className="about-metric-card bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)]" tabIndex={0}>
+                <div className="about-metric-value text-3xl sm:text-4xl md:text-[42px] font-bold tracking-tight leading-none">
                   20%
                 </div>
-                <p className="text-xs sm:text-[13px] text-neutral-500 mt-3 font-normal">
+                <p className="about-metric-label text-xs sm:text-[13px] mt-3 font-normal">
                   Average selling product
                 </p>
               </div>
 
               {/* Metric 2 */}
-              <div className="bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-transform hover:-translate-y-0.5">
-                <div className="text-3xl sm:text-4xl md:text-[42px] font-bold text-[#0D0E11] tracking-tight leading-none">
+              <div className="about-metric-card bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)]" tabIndex={0}>
+                <div className="about-metric-value text-3xl sm:text-4xl md:text-[42px] font-bold tracking-tight leading-none">
                   9%
                 </div>
-                <p className="text-xs sm:text-[13px] text-neutral-500 mt-3 font-normal">
+                <p className="about-metric-label text-xs sm:text-[13px] mt-3 font-normal">
                   Improved team output
                 </p>
               </div>
 
               {/* Metric 3 */}
-              <div className="bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-transform hover:-translate-y-0.5">
-                <div className="text-3xl sm:text-4xl md:text-[42px] font-bold text-[#0D0E11] tracking-tight leading-none">
+              <div className="about-metric-card bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)]" tabIndex={0}>
+                <div className="about-metric-value text-3xl sm:text-4xl md:text-[42px] font-bold tracking-tight leading-none">
                   22%
                 </div>
-                <p className="text-xs sm:text-[13px] text-neutral-500 mt-3 font-normal">
+                <p className="about-metric-label text-xs sm:text-[13px] mt-3 font-normal">
                   Client trust with Us
                 </p>
               </div>
 
               {/* Metric 4 */}
-              <div className="bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)] transition-transform hover:-translate-y-0.5">
-                <div className="text-3xl sm:text-4xl md:text-[42px] font-bold text-[#0D0E11] tracking-tight leading-none">
+              <div className="about-metric-card bg-white rounded-2xl border border-neutral-200/80 p-6 sm:p-7 text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)]" tabIndex={0}>
+                <div className="about-metric-value text-3xl sm:text-4xl md:text-[42px] font-bold tracking-tight leading-none">
                   $1M+
                 </div>
-                <p className="text-xs sm:text-[13px] text-neutral-500 mt-3 font-normal">
+                <p className="about-metric-label text-xs sm:text-[13px] mt-3 font-normal">
                   Snapshot in every month
                 </p>
               </div>
@@ -185,30 +215,32 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         </section>
 
         {/* 5. OUR JOURNEY SECTION */}
-        <section className="py-16 sm:py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <section className="about-journey-feature relative overflow-hidden bg-white py-16 sm:py-20">
+          <div className="about-journey-feature__surface" aria-hidden="true" />
+          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
             {/* Eyebrow badge */}
             <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-                <Navigation className="w-3.5 h-3.5 text-neutral-800 rotate-45" />
-                <span className="text-[11.5px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
+              <div className="about-journey-feature__badge inline-flex h-12 items-center gap-2 rounded-full bg-white px-4 pr-5 border border-white shadow-[0_9px_20px_rgba(0,0,0,0.14)]">
+                <FeatureBadgeIcon className="h-[26px] w-[26px] text-[#111111]" />
+                <span className="text-[15px] font-medium tracking-[0.06em] uppercase text-[#111111]">
                   OUR JOURNEY
                 </span>
               </div>
             </div>
 
             {/* Heading */}
-            <h2 className="text-2xl sm:text-3xl md:text-[38px] font-medium text-[#111113] tracking-tight leading-[1.28] max-w-4xl mx-auto text-center mb-12 sm:mb-16">
-              We&apos;re a team of builders, designers, and strategists who believe software
-              shouldn&apos;t slow you down — it should accelerate your business.
+            <h2 className="about-journey-feature__title text-2xl sm:text-3xl md:text-[42px] font-medium text-[#111113] tracking-[-0.045em] leading-[1.2] max-w-5xl mx-auto text-center mb-12 sm:mb-16">
+              <span className="block">We&apos;re a team of builders, designers, and strategists</span>
+              <span className="block">who believe software shouldn&apos;t slow you down — it</span>
+              <span className="block">should accelerate your business.</span>
             </h2>
 
             {/* Large Centerpiece Photo matching screenshot */}
-            <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden border border-neutral-200/80 shadow-[0_4px_28px_rgba(0,0,0,0.04)]">
+            <div className="about-journey-image-feature relative rounded-[28px] sm:rounded-[38px] overflow-hidden border border-white bg-white p-2.5 sm:p-3">
               <img
                 src={images.aboutJourneyVR}
                 alt="Axonix Team Journey and Innovation"
-                className="w-full aspect-[16/9] md:aspect-[2.1/1] object-cover filter grayscale contrast-105"
+                className="about-journey-image-feature__image w-full aspect-[16/9] md:aspect-[2.1/1] object-cover filter grayscale contrast-105"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -219,9 +251,12 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
                 {marqueeTags.concat(marqueeTags).map((tag, idx) => (
                   <div
                     key={`${tag}-${idx}`}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-neutral-200/80 shadow-xs text-[11px] sm:text-xs font-semibold tracking-wider text-neutral-800 uppercase shrink-0"
+                    className="about-marquee-pill inline-flex h-12 items-center gap-2.5 rounded-full border border-white bg-gradient-to-b from-white to-[#f1f1f1] px-5 text-[11px] font-semibold tracking-[0.08em] text-neutral-800 uppercase shrink-0 sm:text-xs"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />
+                    {(() => {
+                      const Icon = marqueeIcons[idx % marqueeIcons.length];
+                      return <Icon className="h-5 w-5 shrink-0 text-[#111111]" strokeWidth={2} aria-hidden="true" />;
+                    })()}
                     {tag}
                   </div>
                 ))}
@@ -231,95 +266,105 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         </section>
 
         {/* 6. OUR VALUES SECTION (Our Core Commitments) */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <section className="about-values-feature bg-white py-16 sm:py-24">
+          <div className="w-full px-4 sm:px-8 lg:px-12 text-center">
             {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-neutral-800" />
-              <span className="text-[11.5px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
+            <div className="about-values-feature__badge inline-flex h-12 items-center gap-2 rounded-full bg-white px-4 pr-5 border border-white shadow-[0_9px_20px_rgba(0,0,0,0.14)] mb-6">
+              <FeatureBadgeIcon className="h-[26px] w-[26px] text-[#111111]" />
+              <span className="text-[15px] font-medium tracking-[0.06em] uppercase text-[#111111]">
                 OUR VALUES
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold text-[#111113] tracking-tight">
+            <h2 className="about-values-feature__title text-3xl sm:text-4xl md:text-[44px] font-semibold text-[#111113] tracking-tight">
               Our Core Commitments
             </h2>
 
             {/* Subtitle */}
-            <p className="mt-4 text-sm sm:text-base text-neutral-500 max-w-2xl mx-auto leading-relaxed">
-              Our values are the foundation of everything we do. They guide how we think, create,
-              and collaborate—shaping the way we approach challenges and deliver solutions.
+            <p className="about-values-feature__description mt-4 text-sm sm:text-base text-neutral-500 max-w-3xl mx-auto leading-relaxed">
+              <span className="block">
+                Our values are the foundation of everything we do. They guide how we think, create, and
+              </span>
+              <span className="block">
+                collaborate—shaping the way we approach challenges and deliver solutions.
+              </span>
             </p>
 
             {/* 3 Values Cards matching screenshot */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 mt-12 sm:mt-16 text-left">
+            <div className="about-values-feature__cards grid w-full grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mt-12 sm:mt-16 text-left">
               {/* Card 1 */}
-              <div className="bg-white rounded-3xl border border-neutral-200/80 p-8 sm:p-9 shadow-[0_2px_12px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-1">
-                <div className="w-11 h-11 rounded-full bg-[#111113] flex items-center justify-center text-white mb-6">
-                  <Users className="w-5 h-5" />
+              <div className="feature-hover-card rounded-[22px]">
+                <div className="feature-hover-card-inner about-value-card bg-white rounded-3xl border border-neutral-200/80 p-8 sm:p-9">
+                <div className="about-value-card__icon w-16 h-16 rounded-2xl bg-[#111113] flex items-center justify-center text-white mb-20">
+                  <Users className="w-8 h-8" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-[#111113] tracking-tight">
+                <h3 className="about-value-card__title text-lg sm:text-xl font-semibold text-[#111113] tracking-tight">
                   Customer Obsession
                 </h3>
-                <p className="mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
+                <p className="about-value-card__copy mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
                   With just five dedicated employees, we took the plunge into the emerging digital
                   world, to help companies maximise their online presence and realise their full
                   potential in e-commerce.
                 </p>
+                </div>
               </div>
 
               {/* Card 2 */}
-              <div className="bg-white rounded-3xl border border-neutral-200/80 p-8 sm:p-9 shadow-[0_2px_12px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-1">
-                <div className="w-11 h-11 rounded-full bg-[#111113] flex items-center justify-center text-white mb-6">
-                  <Zap className="w-5 h-5" />
+              <div className="feature-hover-card rounded-[22px]">
+                <div className="feature-hover-card-inner about-value-card bg-white rounded-3xl border border-neutral-200/80 p-8 sm:p-9">
+                <div className="about-value-card__icon w-16 h-16 rounded-2xl bg-[#111113] flex items-center justify-center text-white mb-20">
+                  <Zap className="w-8 h-8" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-[#111113] tracking-tight">
+                <h3 className="about-value-card__title text-lg sm:text-xl font-semibold text-[#111113] tracking-tight">
                   Operational Mastery
                 </h3>
-                <p className="mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
+                <p className="about-value-card__copy mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
                   With just five dedicated employees, we took the plunge into the emerging digital
                   world, to help companies maximise their online presence and realise their full
                   potential in e-commerce.
                 </p>
+                </div>
               </div>
 
               {/* Card 3 */}
-              <div className="bg-white rounded-3xl border border-neutral-200/80 p-8 sm:p-9 shadow-[0_2px_12px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:-translate-y-1">
-                <div className="w-11 h-11 rounded-full bg-[#111113] flex items-center justify-center text-white mb-6">
-                  <Globe className="w-5 h-5" />
+              <div className="feature-hover-card rounded-[22px]">
+                <div className="feature-hover-card-inner about-value-card bg-white rounded-3xl border border-neutral-200/80 p-8 sm:p-9">
+                <div className="about-value-card__icon w-16 h-16 rounded-2xl bg-[#111113] flex items-center justify-center text-white mb-20">
+                  <Globe className="w-8 h-8" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-[#111113] tracking-tight">
+                <h3 className="about-value-card__title text-lg sm:text-xl font-semibold text-[#111113] tracking-tight">
                   Global Belonging
                 </h3>
-                <p className="mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
+                <p className="about-value-card__copy mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
                   With just five dedicated employees, we took the plunge into the emerging digital
                   world, to help companies maximise their online presence and realise their full
                   potential in e-commerce.
                 </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* 7. MEET OUR TEAM SECTION */}
-        <section className="py-16 sm:py-24 bg-white">
+        <section className="about-team-feature bg-white py-16 sm:py-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
             {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
-              <Users className="w-3.5 h-3.5 text-neutral-800" />
+            <div className="about-team-feature__badge inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 mb-6">
+              <FeatureBadgeIcon className="h-4 w-4 text-neutral-800" />
               <span className="text-[11.5px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
                 MEET OUR TEAM
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold text-[#111113] tracking-tight">
+            <h2 className="about-team-feature__title font-semibold text-[#111113]">
               Real humans. Real experience. Real results.
             </h2>
 
             {/* Subtitle */}
-            <p className="mt-4 text-sm sm:text-base text-neutral-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="about-team-feature__description mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
               Live dashboards and custom reports that surface the insights you need—instantly.
             </p>
 
@@ -328,12 +373,12 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
               {teamMembers.map((member) => (
                 <div
                   key={member.id}
-                  className="rounded-3xl border border-neutral-200/80 bg-neutral-100 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition-transform duration-300 hover:scale-[1.02]"
+                  className="about-team-card relative aspect-square overflow-hidden rounded-[34px] border-2 border-white bg-white p-3 sm:p-4"
                 >
                   <img
                     src={member.image}
                     alt={member.alt}
-                    className="w-full aspect-square object-cover filter grayscale contrast-105"
+                    className="about-team-card__image w-full aspect-square rounded-[22px] object-cover filter grayscale contrast-105"
                     onError={(e) => {
                       if (member.fallback) {
                         (e.target as HTMLImageElement).src = member.fallback;
@@ -351,7 +396,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         <CaseStudySection onSeeCaseStudy={() => handleOpenModal('Case Study Exploration')} />
 
         {/* 9. TESTIMONIALS SECTION (With exact bold badge & bottom shadow) */}
-        <TestimonialsSection />
+        <TestimonialsSection withHoverEffect />
 
         {/* 10. PRE-FOOTER CTA SECTION */}
         <FinalCTA onConsultationClick={() => handleOpenModal('Strategy Consultation')} />
