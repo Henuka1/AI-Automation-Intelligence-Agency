@@ -17,7 +17,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 
 interface HomeProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
 }
 
 export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
@@ -71,7 +71,15 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <ServicesSection onGetStarted={() => handleOpenModal('Custom AI Partnership')} />
 
         {/* SECTION 9 — PROVEN RESULTS, REAL IMPACT */}
-        <CaseStudySection onSeeCaseStudy={() => handleOpenModal('Fresh Care Case Study')} />
+        <CaseStudySection
+          onSeeCaseStudy={() => {
+            if (onNavigate) {
+              onNavigate('case-study');
+            } else {
+              handleOpenModal('Fresh Care Case Study');
+            }
+          }}
+        />
 
         {/* SECTION 10 — TESTIMONIALS */}
         <TestimonialsSection />

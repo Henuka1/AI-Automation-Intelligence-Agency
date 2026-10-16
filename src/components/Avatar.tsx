@@ -39,7 +39,7 @@ export const Avatar: React.FC<AvatarProps> = ({ src, name, className = 'w-9 h-9'
           alt={name}
           referrerPolicy="no-referrer"
           onError={() => setHasError(true)}
-          className="w-full h-full object-cover grayscale contrast-110"
+          className="w-full h-full object-cover"
         />
       ) : (
         <span className="text-xs font-semibold tracking-wider">{initials}</span>
