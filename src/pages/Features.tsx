@@ -30,7 +30,7 @@ import {
 import { LogoipsumDisc } from '../components/BrandLogos';
 
 interface FeaturesProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
 }
 
 export const Features: React.FC<FeaturesProps> = ({ onNavigate }) => {

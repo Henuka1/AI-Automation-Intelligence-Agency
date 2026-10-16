@@ -12,9 +12,10 @@ import { Blog } from './pages/Blog';
 import { Contact } from './pages/Contact';
 import { Terms } from './pages/Terms';
 import { CaseStudy } from './pages/CaseStudy';
+import { Privacy } from './pages/Privacy';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study'>(() => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy'>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
@@ -39,6 +40,9 @@ export default function App() {
       if (path.includes('case-study') || hash === '#case-study-page' || hash === '#case-studies') {
         return 'case-study';
       }
+      if (path.includes('privacy') || hash === '#privacy' || hash === '#privacy-policy') {
+        return 'privacy';
+      }
     }
     return 'home';
   });
@@ -61,6 +65,8 @@ export default function App() {
         setCurrentPage('terms');
       } else if (path.includes('case-study') || hash === '#case-study-page' || hash === '#case-studies') {
         setCurrentPage('case-study');
+      } else if (path.includes('privacy') || hash === '#privacy' || hash === '#privacy-policy') {
+        setCurrentPage('privacy');
       } else {
         setCurrentPage('home');
       }
@@ -74,7 +80,7 @@ export default function App() {
     };
   }, []);
 
-  const navigate = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => {
+  const navigate = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (page === 'pricing') {
@@ -91,6 +97,8 @@ export default function App() {
       window.history.pushState({}, '', '/terms');
     } else if (page === 'case-study') {
       window.history.pushState({}, '', '/case-study');
+    } else if (page === 'privacy') {
+      window.history.pushState({}, '', '/privacy');
     } else {
       window.history.pushState({}, '', '/');
     }
@@ -116,6 +124,9 @@ export default function App() {
   }
   if (currentPage === 'case-study') {
     return <CaseStudy onNavigate={navigate} />;
+  }
+  if (currentPage === 'privacy') {
+    return <Privacy onNavigate={navigate} />;
   }
   return <Home onNavigate={navigate} />;
 }

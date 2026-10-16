@@ -23,7 +23,7 @@ import {
 
 interface CaseStudyProps {
   onNavigate?: (
-    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study'
+    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy'
   ) => void;
 }
 

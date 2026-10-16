@@ -7,7 +7,7 @@ import blogBackground from '../assets/images/blog_bg.png';
 
 interface TermsProps {
   onNavigate?: (
-    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study'
+    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy'
   ) => void;
 }
 
