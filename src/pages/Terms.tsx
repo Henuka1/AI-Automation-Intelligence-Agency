@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 interface TermsProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
 }
 
 export const Terms: React.FC<TermsProps> = ({ onNavigate }) => {

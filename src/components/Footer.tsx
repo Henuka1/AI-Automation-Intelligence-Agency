@@ -2,11 +2,11 @@ import React from 'react';
 import { images } from '../assets/images';
 
 interface FooterProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms', anchorId?: string) => {
+  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study', anchorId?: string) => {
     if (onNavigate) {
       onNavigate(page);
       if (anchorId) {
@@ -27,6 +27,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         window.location.href = '/contact';
       } else if (page === 'terms') {
         window.location.href = '/terms';
+      } else if (page === 'case-study') {
+        window.location.href = '/case-study';
       } else if (anchorId) {
         document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth' });
       }
@@ -103,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => handleNav('home', 'case-study')}
+                  onClick={() => handleNav('case-study')}
                   className="hover:text-black transition-colors cursor-pointer text-left"
                 >
                   Case Study

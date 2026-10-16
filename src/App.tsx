@@ -11,9 +11,10 @@ import { Pricing } from './pages/Pricing';
 import { Blog } from './pages/Blog';
 import { Contact } from './pages/Contact';
 import { Terms } from './pages/Terms';
+import { CaseStudy } from './pages/CaseStudy';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms'>(() => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study'>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
@@ -35,6 +36,9 @@ export default function App() {
       if (path.includes('terms') || hash === '#terms' || hash === '#terms-page') {
         return 'terms';
       }
+      if (path.includes('case-study') || hash === '#case-study-page' || hash === '#case-studies') {
+        return 'case-study';
+      }
     }
     return 'home';
   });
@@ -55,6 +59,8 @@ export default function App() {
         setCurrentPage('contact');
       } else if (path.includes('terms') || hash === '#terms' || hash === '#terms-page') {
         setCurrentPage('terms');
+      } else if (path.includes('case-study') || hash === '#case-study-page' || hash === '#case-studies') {
+        setCurrentPage('case-study');
       } else {
         setCurrentPage('home');
       }
@@ -68,7 +74,7 @@ export default function App() {
     };
   }, []);
 
-  const navigate = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => {
+  const navigate = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (page === 'pricing') {
@@ -83,6 +89,8 @@ export default function App() {
       window.history.pushState({}, '', '/contact');
     } else if (page === 'terms') {
       window.history.pushState({}, '', '/terms');
+    } else if (page === 'case-study') {
+      window.history.pushState({}, '', '/case-study');
     } else {
       window.history.pushState({}, '', '/');
     }
@@ -105,6 +113,9 @@ export default function App() {
   }
   if (currentPage === 'terms') {
     return <Terms onNavigate={navigate} />;
+  }
+  if (currentPage === 'case-study') {
+    return <CaseStudy onNavigate={navigate} />;
   }
   return <Home onNavigate={navigate} />;
 }
