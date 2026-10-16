@@ -8,7 +8,7 @@ import blogBackground from '../assets/images/blog_bg.png';
 import { X, ArrowRight, Clock, Calendar, Cpu } from 'lucide-react';
 
 interface BlogProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
 }
 
 interface BlogPost {

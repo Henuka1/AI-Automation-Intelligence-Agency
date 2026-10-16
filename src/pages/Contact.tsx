@@ -6,7 +6,7 @@ import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 
 interface ContactProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
 }
 
 export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
