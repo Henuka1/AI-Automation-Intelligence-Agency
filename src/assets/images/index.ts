@@ -12,6 +12,10 @@ import teamPortraitTwo from './team_portrait_two_1791815155557.jpg';
 import contactRobotHandAi from './contact_robot_hand_ai_1791822274917.jpg';
 import abstractWaves from './abstract_white_architecture_waves_1791823169955.jpg';
 import abstractSpiral from './abstract_white_spiral_mesh_1791823193143.jpg';
+import featuresLaptopAi from './features_laptop_ai_1791832801184.jpg';
+import securedShieldAi from './secured_shield_ai_1791832849225.jpg';
+import kondamSwirlFabric from './kondam_swirl_fabric_1792168261826.jpg';
+import lokosArchitecture from './lokos_architecture_1792168287028.jpg';
 import collabHandsMesh from './collab_hands_mesh.png';
 
 export const images = {
