@@ -12,7 +12,7 @@ import { Users, Zap, Globe, Sparkles, Cpu } from 'lucide-react';
 import { FeatureBadgeIcon } from '../components/BrandLogos';
 
 interface AboutProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404') => void;
 }
 
 export const About: React.FC<AboutProps> = ({ onNavigate }) => {

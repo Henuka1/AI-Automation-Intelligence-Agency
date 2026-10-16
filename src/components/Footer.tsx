@@ -2,11 +2,11 @@ import React from 'react';
 import { images } from '../assets/images';
 
 interface FooterProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy', anchorId?: string) => {
+  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404', anchorId?: string) => {
     if (onNavigate) {
       onNavigate(page);
       if (anchorId) {
@@ -31,6 +31,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         window.location.href = '/case-study';
       } else if (page === 'privacy') {
         window.location.href = '/privacy';
+      } else if (page === '404') {
+        window.location.href = '/404';
       } else if (anchorId) {
         document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth' });
       }
