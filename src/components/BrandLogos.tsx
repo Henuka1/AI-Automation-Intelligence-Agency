@@ -1,5 +1,24 @@
 import React from 'react';
 
+export const FeatureBadgeIcon: React.FC<{ className?: string }> = ({ className = 'h-4 w-4' }) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    aria-hidden="true"
+  >
+    <circle cx="13" cy="13" r="4.4" stroke="currentColor" strokeWidth="2.2" />
+    <path
+      d="M7.4 3.4C8 2.4 9.4 2.4 10 3.4L13.8 9.8C14.4 10.8 13.7 12 12.5 12H4.9C3.7 12 3 10.8 3.6 9.8L7.4 3.4Z"
+      fill="white"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const AxonixLogo: React.FC<{ className?: string; textClassName?: string }> = ({
   className = 'w-6 h-6',
   textClassName = 'text-xl font-bold tracking-tight text-neutral-950',
@@ -66,6 +85,20 @@ export const LogoipsumBear: React.FC<{ className?: string }> = ({ className = ''
     <span className="text-[20px] font-bold tracking-[-0.025em] text-black select-none relative inline-flex items-center">
       ipsum
       <span className="text-[9px] font-bold -top-1 relative ml-0.5">™</span>
+    </span>
+  </div>
+);
+
+export const LogoipsumMark: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <div className={`flex items-center gap-2.5 shrink-0 ${className}`}>
+    <div className="logoipsum-mark__icon w-8 h-8 flex items-center justify-center shrink-0">
+      <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 2.5C15.4 2.5 14.9 2.8 14.5 3.3L3.6 20.6C2.5 22.3 3.7 24.5 5.7 24.5H26.3C28.3 24.5 29.5 22.3 28.4 20.6L17.5 3.3C17.1 2.8 16.6 2.5 16 2.5Z" fill="black" />
+        <path d="M16 8.2L24.1 21.2H7.9L16 8.2Z" fill="white" />
+      </svg>
+    </div>
+    <span className="logoipsum-mark__word text-black select-none">
+      Logoipsum
     </span>
   </div>
 );

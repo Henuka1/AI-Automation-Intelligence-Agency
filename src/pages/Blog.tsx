@@ -4,10 +4,11 @@ import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
-import { X, ArrowRight, Clock, Calendar } from 'lucide-react';
+import blogBackground from '../assets/images/blog_bg.png';
+import { X, ArrowRight, Clock, Calendar, Cpu } from 'lucide-react';
 
 interface BlogProps {
-  onNavigate?: (page: 'home' | 'about' | 'pricing' | 'blog' | 'contact') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
 }
 
 interface BlogPost {
@@ -187,12 +188,6 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-[#111111] antialiased selection:bg-neutral-900 selection:text-white font-sans relative overflow-x-hidden">
-      {/* Background Subtle Flowing Wave Graphic matching screenshot */}
-      <div 
-        className="pointer-events-none absolute inset-0 z-0 opacity-40 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px]" 
-        aria-hidden="true" 
-      />
-
       {/* Top Navigation Bar */}
       <Navbar
         currentPage="blog"
@@ -202,55 +197,123 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
 
       {/* Main Content Container */}
       <main className="relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neutral-300 bg-white/90 backdrop-blur-sm text-xs font-semibold text-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.04)] tracking-wide">
-            {/* Small icon representing insight / spiral */}
-            <span className="w-3.5 h-3.5 rounded-full bg-neutral-900 flex items-center justify-center text-white text-[8px] font-bold">
-              ✦
-            </span>
-            <span>BLOG & INSIGHT</span>
+        <section className="relative left-1/2 isolate min-h-[390px] w-screen -translate-x-1/2 overflow-hidden px-4 pb-8 sm:min-h-[400px] sm:px-6 sm:pb-10 lg:px-8">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+            <img
+              src={blogBackground}
+              alt=""
+              className="absolute -top-4 h-[calc(100%+16px)] w-full object-cover object-center sm:-top-6 sm:h-[calc(100%+24px)]"
+            />
           </div>
-        </div>
 
-        {/* Hero Title & Subtitle - Exact match to screenshot */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
-          <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-normal tracking-tight text-[#111113] leading-[1.12]">
-            Insights on AI,<br />
-            Automation & Innovation
-          </h1>
-          <p className="mt-4 text-sm sm:text-base text-neutral-600 max-w-xl mx-auto font-normal leading-relaxed">
-            We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
-          </p>
-        </div>
+          {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
+          <div className="mb-7 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white bg-gradient-to-b from-white to-[#f0f0f0] px-4 py-2 font-['Inter'] text-[13px] font-semibold tracking-[-0.02em] text-[#1a1a1a] shadow-[inset_0_1px_0_#fff,0_1px_2px_rgba(0,0,0,0.06),0_6px_14px_rgba(0,0,0,0.08),0_14px_26px_rgba(0,0,0,0.05)]">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111113] text-white shadow-[0_2px_5px_rgba(0,0,0,0.22)]">
+                <Cpu className="h-3.5 w-3.5" strokeWidth={2.1} />
+              </span>
+              <span>BLOG &amp; INSIGHT</span>
+            </div>
+          </div>
 
-        {/* 3x3 Card Grid matching exact screenshot layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {blogPosts.map((post) => (
+          {/* Hero Title & Subtitle */}
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="blog-hero-title font-['Inter'] text-[40px] font-semibold leading-[1.12] tracking-[-0.055em] sm:text-[52px] lg:text-[64px]">
+              <span className="hero-gradient-headline">Insights on AI,</span>
+              <br />
+              <span className="hero-gradient-headline">Automation &amp; Innovation</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
+              We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
+            </p>
+          </div>
+        </section>
+
+        {/* Featured cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+          {blogPosts.slice(0, 3).map((post) => (
             <article
               key={post.id}
-              className="bg-[#f4f4f4] rounded-2xl sm:rounded-3xl p-4 sm:p-4.5 border border-neutral-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:border-neutral-300 group"
+              className="blog-card-hover group flex flex-col"
             >
-              {/* Card Image */}
-              <div className="relative aspect-[16/11] sm:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-white mb-5 shadow-xs">
+              <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-500 ease-out"
+                  className="h-full w-full object-cover object-center grayscale contrast-105 transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
 
-              {/* Card Content */}
-              <div className="flex-1 flex flex-col justify-between px-1.5 pb-1">
-                {/* Title */}
-                <h3 className="text-[17px] sm:text-[18px] font-medium text-[#111113] leading-snug tracking-tight mb-6">
+              <div className="-mt-px flex min-h-[214px] flex-1 flex-col rounded-[24px] border border-white bg-[#f7f7f7] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px] sm:p-7">
+                <h3 className="text-[21px] font-medium leading-[1.28] tracking-[-0.045em] text-[#111113] sm:text-[24px]">
                   {post.title}
                 </h3>
 
-                {/* Read Blog Button */}
                 <button
                   onClick={() => setActivePost(post)}
-                  className="w-full py-3 px-4 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 text-xs sm:text-sm font-medium text-[#111113] hover:bg-neutral-50 hover:border-neutral-300 active:scale-[0.99] transition-all cursor-pointer text-center shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                  className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99]"
+                >
+                  Read Blog
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Featured cards - second row */}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-3">
+          {blogPosts.slice(3, 6).map((post) => (
+            <article
+              key={post.id}
+              className="blog-card-hover group flex flex-col"
+            >
+              <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="h-full w-full object-cover object-center grayscale contrast-105 transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
+
+              <div className="-mt-px flex min-h-[214px] flex-1 flex-col rounded-[24px] border border-white bg-[#f7f7f7] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px] sm:p-7">
+                <h3 className="text-[21px] font-medium leading-[1.28] tracking-[-0.045em] text-[#111113] sm:text-[24px]">
+                  {post.title}
+                </h3>
+
+                <button
+                  onClick={() => setActivePost(post)}
+                  className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99]"
+                >
+                  Read Blog
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* More articles */}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-3">
+          {blogPosts.slice(6).map((post) => (
+            <article
+              key={post.id}
+              className="blog-card-hover group flex flex-col"
+            >
+              <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="h-full w-full object-cover object-center grayscale contrast-105 transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
+
+              <div className="-mt-px flex min-h-[214px] flex-1 flex-col rounded-[24px] border border-white bg-[#f7f7f7] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px] sm:p-7">
+                <h3 className="text-[21px] font-medium leading-[1.28] tracking-[-0.045em] text-[#111113] sm:text-[24px]">
+                  {post.title}
+                </h3>
+
+                <button
+                  onClick={() => setActivePost(post)}
+                  className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99]"
                 >
                   Read Blog
                 </button>
