@@ -4,6 +4,7 @@ import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
+import blogBackground from '../assets/images/blog_bg.png';
 import { X, ArrowRight, Clock, Calendar, Cpu } from 'lucide-react';
 
 interface BlogProps {
@@ -196,27 +197,37 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
 
       {/* Main Content Container */}
       <main className="relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
-        <div className="mb-7 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white bg-gradient-to-b from-white to-[#f0f0f0] px-4 py-2 font-['Inter'] text-[13px] font-semibold tracking-[-0.02em] text-[#1a1a1a] shadow-[inset_0_1px_0_#fff,0_1px_2px_rgba(0,0,0,0.06),0_6px_14px_rgba(0,0,0,0.08),0_14px_26px_rgba(0,0,0,0.05)]">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111113] text-white shadow-[0_2px_5px_rgba(0,0,0,0.22)]">
-              <Cpu className="h-3.5 w-3.5" strokeWidth={2.1} />
-            </span>
-            <span>BLOG &amp; INSIGHT</span>
+        <section className="relative left-1/2 isolate min-h-[390px] w-screen -translate-x-1/2 overflow-hidden px-4 pb-8 sm:min-h-[400px] sm:px-6 sm:pb-10 lg:px-8">
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+            <img
+              src={blogBackground}
+              alt=""
+              className="absolute -top-4 h-[calc(100%+16px)] w-full object-cover object-center sm:-top-6 sm:h-[calc(100%+24px)]"
+            />
           </div>
-        </div>
 
-        {/* Hero Title & Subtitle */}
-        <div className="mx-auto mb-14 max-w-4xl text-center sm:mb-20">
-          <h1 className="blog-hero-title font-['Inter'] text-[40px] font-semibold leading-[1.12] tracking-[-0.055em] sm:text-[52px] lg:text-[64px]">
-            <span className="hero-gradient-headline">Insights on AI,</span>
-            <br />
-            <span className="hero-gradient-headline">Automation &amp; Innovation</span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
-            We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
-          </p>
-        </div>
+          {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
+          <div className="mb-7 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white bg-gradient-to-b from-white to-[#f0f0f0] px-4 py-2 font-['Inter'] text-[13px] font-semibold tracking-[-0.02em] text-[#1a1a1a] shadow-[inset_0_1px_0_#fff,0_1px_2px_rgba(0,0,0,0.06),0_6px_14px_rgba(0,0,0,0.08),0_14px_26px_rgba(0,0,0,0.05)]">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111113] text-white shadow-[0_2px_5px_rgba(0,0,0,0.22)]">
+                <Cpu className="h-3.5 w-3.5" strokeWidth={2.1} />
+              </span>
+              <span>BLOG &amp; INSIGHT</span>
+            </div>
+          </div>
+
+          {/* Hero Title & Subtitle */}
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="blog-hero-title font-['Inter'] text-[40px] font-semibold leading-[1.12] tracking-[-0.055em] sm:text-[52px] lg:text-[64px]">
+              <span className="hero-gradient-headline">Insights on AI,</span>
+              <br />
+              <span className="hero-gradient-headline">Automation &amp; Innovation</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
+              We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
+            </p>
+          </div>
+        </section>
 
         {/* Featured cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">

@@ -7,18 +7,12 @@ import {
 } from './BrandLogos';
 
 export const LogoStrip: React.FC = () => {
-  // Exact logo list and sequence matching user's screenshot:
-  // 1. logo bear ipsum™
-  // 2. circle clover Logoipsum
-  // 3. sunburst 12 rays Logoipsum
-  // 4. circle bolt Logoipsum
-  // 5. circle clover Logoipsum
+  // Logo order matching the reference strip.
   const logos = [
-    { id: 'bear-1', Component: LogoipsumBear },
-    { id: 'clover-1', Component: LogoipsumClover },
     { id: 'sunburst-1', Component: LogoipsumSunburst },
     { id: 'bolt-1', Component: LogoipsumBolt },
-    { id: 'clover-2', Component: LogoipsumClover },
+    { id: 'clover-1', Component: LogoipsumClover },
+    { id: 'bear-1', Component: LogoipsumBear },
   ];
 
   return (
