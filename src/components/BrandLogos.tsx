@@ -19,6 +19,55 @@ export const FeatureBadgeIcon: React.FC<{ className?: string }> = ({ className =
   </svg>
 );
 
+export const CaseStudyBadgeIcon: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <rect width="16" height="16" x="4" y="4" rx="2" />
+    <rect width="6" height="6" x="9" y="9" rx="1" />
+    <path d="M15 2v2" />
+    <path d="M15 20v2" />
+    <path d="M2 15h2" />
+    <path d="M2 9h2" />
+    <path d="M20 15h2" />
+    <path d="M20 9h2" />
+    <path d="M9 2v2" />
+    <path d="M9 20v2" />
+  </svg>
+);
+
+export const ChipPillIcon: React.FC<{ className?: string }> = ({ className = 'h-4 w-4' }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <rect width="16" height="16" x="4" y="4" rx="3" stroke="currentColor" />
+    <rect width="8" height="8" x="8" y="8" rx="1.8" fill="currentColor" stroke="none" />
+    <path d="M9 1.5v2.5" stroke="currentColor" />
+    <path d="M15 1.5v2.5" stroke="currentColor" />
+    <path d="M9 20v2.5" stroke="currentColor" />
+    <path d="M15 20v2.5" stroke="currentColor" />
+    <path d="M1.5 9h2.5" stroke="currentColor" />
+    <path d="M1.5 15h2.5" stroke="currentColor" />
+    <path d="M20 9h2.5" stroke="currentColor" />
+    <path d="M20 15h2.5" stroke="currentColor" />
+  </svg>
+);
+
+
 export const AxonixLogo: React.FC<{ className?: string; textClassName?: string }> = ({
   className = 'w-6 h-6',
   textClassName = 'text-xl font-bold tracking-tight text-neutral-950',
