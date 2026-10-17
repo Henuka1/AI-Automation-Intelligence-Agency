@@ -3,17 +3,16 @@ import { Navbar } from '../components/Navbar';
 import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
+import { FAQSection } from '../components/FAQSection';
 import { images } from '../assets/images';
 import blogBackground from '../assets/images/blog_bg.png';
-import { FeatureBadgeIcon, LogoipsumMark } from '../components/BrandLogos';
+import { CaseStudyBadgeIcon, FeatureBadgeIcon, LogoipsumMark, ChipPillIcon } from '../components/BrandLogos';
 import {
-  ChevronDown,
   Sparkles,
   Zap,
   Cpu,
   Globe,
   MessageSquare,
-  HelpCircle,
   X,
   CheckCircle2,
   TrendingUp,
@@ -45,7 +44,6 @@ interface CaseStudyDetail {
 export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedInterest, setSelectedInterest] = useState<string | undefined>(undefined);
-  const [openFaq, setOpenFaq] = useState<number | null>(0); // First FAQ open by default as in screenshot
   const [activeDossier, setActiveDossier] = useState<CaseStudyDetail | null>(null);
 
   const handleOpenModal = (interest?: string) => {
@@ -156,42 +154,18 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
     },
   ];
 
-  // Marquee capabilities matching the screenshot strip
-  const marqueeItems = [
-    { title: 'CUSTOM AI DEVELOPMENT', icon: Sparkles },
-    { title: 'MACHINE LEARNING MODELS', icon: Cpu },
-    { title: 'AUTOMATION & RPA', icon: Zap },
-    { title: 'NATURAL LANGUAGE PROCESSING (NLP)', icon: Globe },
-    { title: 'AI STRATEGY & CONSULTING', icon: MessageSquare },
+  const marqueeTags = [
+    'CUSTOM AI DEVELOPMENT',
+    'MACHINE LEARNING MODELS',
+    'AUTOMATION & RPA',
+    'NATURAL LANGUAGE PROCESSING (NLP)',
+    'AI STRATEGY & CONSULTING',
+    'CUSTOM AI DEVELOPMENT',
+    'MACHINE LEARNING MODELS',
+    'AUTOMATION & RPA',
   ];
 
-  // 6 FAQ Items matching the screenshot
-  const faqs = [
-    {
-      q: 'Why is a strong brand identity or website important?',
-      a: "A robust brand identity and website serve as the face of your business, shaping how it is perceived by potential customers. They not only convey professionalism but also establish trust and credibility, vital factors in today's competitive market.",
-    },
-    {
-      q: 'What service do you offer?',
-      a: 'We offer end-to-end artificial intelligence solutions including workflow automation, custom LLM fine-tuning, predictive modeling, API integration, and ongoing performance optimization tailored for your business.',
-    },
-    {
-      q: 'Can I cancel anytime?',
-      a: 'Yes, our flexible partnership tiers allow you to scale up, pause, or cancel at any time with no long-term lock-in or hidden termination fees.',
-    },
-    {
-      q: 'Do you work with international clients?',
-      a: 'Yes, we partner with visionary teams across North America, Europe, Asia, and globally, maintaining 24/7 asynchronous collaboration and real-time support.',
-    },
-    {
-      q: 'How long before I see results?',
-      a: 'Most clients see tangible productivity improvements and operational cost reductions within 2 to 4 weeks of initial deployment.',
-    },
-    {
-      q: 'What industries do you specialize in?',
-      a: 'We specialize in finance, e-commerce, healthcare, legal tech, enterprise SaaS, and supply chain logistics.',
-    },
-  ];
+  const marqueeIcons = [ChipPillIcon, ChipPillIcon, Zap, Globe, Sparkles, ChipPillIcon, ChipPillIcon, Zap];
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
@@ -204,34 +178,37 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
 
       <main className="flex-1">
         {/* 2. HERO SECTION */}
-        <section className="relative pt-36 sm:pt-44 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
-          {/* Subtle wavy background overlay matching screenshot */}
-          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-60" aria-hidden="true">
+        <section className="relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
+          {/* Fully responsive background topographic wavy texture matching screenshot */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            aria-hidden="true"
+          >
             <img
               src={blogBackground}
               alt=""
-              className="absolute -top-12 h-[calc(100%+32px)] w-full object-cover object-center"
+              className="w-full h-full object-cover object-top opacity-85"
             />
           </div>
 
           <div className="max-w-4xl mx-auto relative z-10">
-            {/* Eyebrow Pill Badge: Icon + CASE STUDY */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-7 select-none">
-              <div className="w-5 h-5 rounded-full bg-neutral-900 flex items-center justify-center">
-                <FeatureBadgeIcon className="h-3 w-3 text-white" />
+            {/* Eyebrow Pill Badge: Icon + CASE STUDY with soft shadow */}
+            <div className="case-study-hero__badge inline-flex items-center gap-2.5 rounded-full select-none mb-6 sm:mb-7 transition-transform hover:scale-102 duration-300">
+              <div className="case-study-hero__badge-icon rounded-full bg-[#121214] flex items-center justify-center shrink-0">
+                <CaseStudyBadgeIcon className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="text-[11.5px] font-bold tracking-[0.14em] uppercase text-neutral-800">
+              <span className="case-study-hero__badge-label uppercase pr-1">
                 CASE STUDY
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-[#111113] leading-[1.12]">
+            <h1 className="case-study-hero__title">
               Proven Results, Real Impact
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-5 text-sm sm:text-[15.5px] text-neutral-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="case-study-hero__description mt-3.5 sm:mt-4 mx-auto whitespace-normal sm:whitespace-nowrap">
               We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
             </p>
           </div>
@@ -243,174 +220,107 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
             {caseStudies.map((study) => (
               <div
                 key={study.id}
-                className="case-study-card bg-[#F8F8FA] rounded-3xl sm:rounded-[36px] border border-neutral-200/80 p-6 sm:p-10 lg:p-12 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all hover:border-neutral-300"
+                tabIndex={0}
+                className="case-study-card-wrapper rounded-3xl sm:rounded-[36px]"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                  {/* Left Column: Image with rounded corners */}
-                  <div className="lg:col-span-5">
-                    <div className="case-study-card__image rounded-2xl overflow-hidden border border-neutral-200/80 aspect-[4/3] bg-neutral-100 shadow-xs group">
-                      <img
-                        src={study.image}
-                        alt={`${study.client} case study`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Right Column: Logo, Title, Copy, Button, Metrics */}
-                  <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-6">
-                    <div>
-                      {/* Logoipsum Mark */}
-                      <LogoipsumMark className="case-study-card__logo h-8" />
-
-                      {/* Client Title */}
-                      <h2 className="case-study-card__heading text-2xl sm:text-3xl font-semibold mt-4 text-[#111113]">
-                        {study.client}
-                      </h2>
-
-                      {/* Description */}
-                      <p className="case-study-card__copy text-xs sm:text-[13.5px] text-neutral-600 mt-2.5 leading-relaxed max-w-lg">
-                        {study.summary}
-                      </p>
-
-                      {/* See Case Study Button */}
-                      <div className="pt-4">
-                        <button
-                          onClick={() => setActiveDossier(study)}
-                          className="case-study-card__button bg-[#111113] hover:bg-neutral-800 text-white rounded-full px-7 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium transition-all shadow-xs hover:shadow active:scale-98 cursor-pointer"
-                        >
-                          See Case Study
-                        </button>
+                <div className="case-study-card-inner case-study-card bg-[#F8F8FA] rounded-3xl sm:rounded-[36px] border border-white p-6 sm:p-10 lg:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff]">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    {/* Left Column: Image with rounded corners */}
+                    <div className="lg:col-span-5">
+                      <div className="case-study-card__image rounded-2xl overflow-hidden border border-white aspect-[4/3] bg-neutral-100 shadow-xs group">
+                        <img
+                          src={study.image}
+                          alt={`${study.client} case study`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          referrerPolicy="no-referrer"
+                        />
                       </div>
                     </div>
 
-                    {/* Metrics Row: Two White Cards */}
-                    <div className="pt-8 border-t border-neutral-200/60 grid grid-cols-2 gap-4 sm:gap-6">
-                      <div className="bg-white rounded-2xl border border-neutral-200/60 p-5 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                        <div className="case-study-metric__value text-3xl sm:text-4xl font-bold tracking-tight tabular-nums text-neutral-900">
-                          {study.metric1.value}
-                        </div>
-                        <p className="case-study-metric__label text-xs sm:text-[12.5px] mt-1 font-medium text-neutral-500">
-                          {study.metric1.label}
+                    {/* Right Column: Logo, Title, Copy, Button, Metrics */}
+                    <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-6">
+                      <div>
+                        {/* Logoipsum Mark */}
+                        <LogoipsumMark className="case-study-card__logo h-8" />
+
+                        {/* Client Title */}
+                        <h2 className="case-study-card__heading text-2xl sm:text-3xl font-semibold mt-4 text-[#111113]">
+                          {study.client}
+                        </h2>
+
+                        {/* Description */}
+                        <p className="case-study-card__copy text-xs sm:text-[13.5px] text-neutral-600 mt-2.5 leading-relaxed max-w-lg">
+                          {study.summary}
                         </p>
+
+                        {/* See Case Study Button */}
+                        <div className="pt-4">
+                          <button
+                            onClick={() => setActiveDossier(study)}
+                            className="case-study-card__button bg-[#111113] hover:bg-neutral-800 text-white rounded-full px-7 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium transition-all shadow-xs hover:shadow active:scale-98 cursor-pointer"
+                          >
+                            See Case Study
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="bg-white rounded-2xl border border-neutral-200/60 p-5 sm:p-6 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                        <div className="case-study-metric__value text-3xl sm:text-4xl font-bold tracking-tight tabular-nums text-neutral-900">
-                          {study.metric2.value}
+                      {/* Metrics Row: Two White Cards */}
+                      <div className="pt-8 border-t border-neutral-200/60 grid grid-cols-2 gap-4 sm:gap-6">
+                        <div className="bg-white rounded-2xl border border-white p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff]">
+                          <div className="case-study-metric__value text-3xl sm:text-4xl font-bold tracking-tight tabular-nums text-neutral-900">
+                            {study.metric1.value}
+                          </div>
+                          <p className="case-study-metric__label text-xs sm:text-[12.5px] mt-1 font-medium text-neutral-500">
+                            {study.metric1.label}
+                          </p>
                         </div>
-                        <p className="case-study-metric__label text-xs sm:text-[12.5px] mt-1 font-medium text-neutral-500">
-                          {study.metric2.label}
-                        </p>
+
+                        <div className="bg-white rounded-2xl border border-white p-5 sm:p-6 shadow-[0_4px_16px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff]">
+                          <div className="case-study-metric__value text-3xl sm:text-4xl font-bold tracking-tight tabular-nums text-neutral-900">
+                            {study.metric2.value}
+                          </div>
+                          <p className="case-study-metric__label text-xs sm:text-[12.5px] mt-1 font-medium text-neutral-500">
+                            {study.metric2.label}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-        </section>
 
-        {/* 4. CAPABILITIES HORIZONTAL STRIP (Marquee exactly matching screenshot) */}
-        <section className="border-y border-neutral-100/90 bg-neutral-50/50 py-3.5 overflow-hidden my-8 sm:my-14">
-          <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-8 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 whitespace-nowrap overflow-x-auto scrollbar-none">
-            {marqueeItems.concat(marqueeItems).map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <React.Fragment key={idx}>
-                  <span className="flex items-center gap-2 shrink-0">
-                    <Icon className="w-3.5 h-3.5 text-neutral-800 shrink-0" />
-                    <span>{item.title}</span>
-                  </span>
-                  <span className="text-neutral-300">✦</span>
-                </React.Fragment>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* 5. FREQUENTLY ASKED QUESTIONS SECTION */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              {/* Left Column: Eyebrow, Heading, Description, Contact Us Button */}
-              <div className="lg:col-span-5 space-y-6">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200 shadow-2xs">
-                    <HelpCircle className="w-3.5 h-3.5 text-neutral-700" />
-                    <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
-                      FREQUENTLY ASKED QUESTIONS
-                    </span>
-                  </div>
-                </div>
-
-                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-tight text-[#111113] leading-[1.15]">
-                  Questions? We&apos;re
-                  <br />
-                  here to assist!
-                </h2>
-
-                <p className="text-xs sm:text-[14px] text-neutral-500 leading-relaxed max-w-sm">
-                  Position your brand at the forefront, leading trends, captivating audiences, and creating lasting market impressions.
-                </p>
-
-                <div className="pt-2">
-                  <button
-                    onClick={handleContactClick}
-                    className="bg-[#111113] hover:bg-neutral-800 text-white rounded-full px-7 py-3 text-xs sm:text-[13px] font-medium transition-all shadow-xs hover:shadow active:scale-98 cursor-pointer"
+            {/* Scrolling Pill Tags Marquee matching About Us */}
+            <div className="mt-8 sm:mt-12 overflow-hidden mask-marquee-edges select-none">
+              <div className="animate-marquee-left flex items-center gap-4 py-2">
+                {marqueeTags.concat(marqueeTags).map((tag, idx) => (
+                  <div
+                    key={`${tag}-${idx}`}
+                    className="about-marquee-pill inline-flex h-12 items-center gap-2.5 rounded-full border border-white bg-gradient-to-b from-white to-[#f1f1f1] px-5 text-[11px] font-semibold tracking-[0.08em] text-neutral-800 uppercase shrink-0 sm:text-xs"
                   >
-                    Contact Us
-                  </button>
-                </div>
-              </div>
-
-              {/* Right Column: 6 FAQ Accordion items */}
-              <div className="lg:col-span-7 space-y-3.5">
-                {faqs.map((faq, idx) => {
-                  const isOpen = openFaq === idx;
-                  return (
-                    <div
-                      key={idx}
-                      className={`rounded-2xl transition-all duration-200 overflow-hidden ${
-                        isOpen
-                          ? 'bg-[#141414] text-white shadow-xs'
-                          : 'bg-[#F5F5F7] hover:bg-[#efeff2] text-neutral-900'
-                      }`}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer"
-                      >
-                        <span
-                          className={`text-sm sm:text-[15.5px] font-medium ${
-                            isOpen ? 'text-white' : 'text-neutral-900'
-                          }`}
-                        >
-                          {faq.q}
-                        </span>
-                        <ChevronDown
-                          className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
-                            isOpen ? 'rotate-180 text-white' : 'text-neutral-500'
-                          }`}
-                        />
-                      </button>
-
-                      {isOpen && (
-                        <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-0">
-                          <p className="text-xs sm:text-[13.5px] text-neutral-300 leading-relaxed border-t border-neutral-800 pt-4">
-                            {faq.a}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                    {(() => {
+                      const Icon = marqueeIcons[idx % marqueeIcons.length];
+                      if (tag === 'AUTOMATION & RPA') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (tag === 'AI STRATEGY & CONSULTING') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (Icon === ChipPillIcon) {
+                        return <Icon className="h-4 w-4 shrink-0 text-black" />;
+                      }
+                      return <Icon className="h-4.5 w-4.5 shrink-0 text-black" strokeWidth={2.2} aria-hidden="true" />;
+                    })()}
+                    {tag}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
+
+        {/* 5. FREQUENTLY ASKED QUESTIONS SECTION */}
+        <FAQSection variant="pricing" onContactClick={handleContactClick} />
 
         {/* 6. PRE-FOOTER CTA SECTION (Let's Build the Future, Together) */}
         <FinalCTA onConsultationClick={() => handleOpenModal('Case Study Consultation')} />

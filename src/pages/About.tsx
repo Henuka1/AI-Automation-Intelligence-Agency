@@ -9,7 +9,7 @@ import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 import blogBackground from '../assets/images/blog_bg.png';
 import { Users, Zap, Globe, Sparkles, Cpu } from 'lucide-react';
-import { FeatureBadgeIcon } from '../components/BrandLogos';
+import { FeatureBadgeIcon, ChipPillIcon } from '../components/BrandLogos';
 
 interface AboutProps {
   onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
@@ -85,7 +85,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
     'AUTOMATION & RPA',
   ];
 
-  const marqueeIcons = [Cpu, Cpu, Zap, Globe, Sparkles, Cpu, Cpu, Zap];
+  const marqueeIcons = [ChipPillIcon, ChipPillIcon, Zap, Globe, Sparkles, ChipPillIcon, ChipPillIcon, Zap];
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
@@ -255,7 +255,16 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
                   >
                     {(() => {
                       const Icon = marqueeIcons[idx % marqueeIcons.length];
-                      return <Icon className="h-5 w-5 shrink-0 text-[#111111]" strokeWidth={2} aria-hidden="true" />;
+                      if (tag === 'AUTOMATION & RPA') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (tag === 'AI STRATEGY & CONSULTING') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (Icon === ChipPillIcon) {
+                        return <Icon className="h-4 w-4 shrink-0 text-black" />;
+                      }
+                      return <Icon className="h-4.5 w-4.5 shrink-0 text-black" strokeWidth={2.2} aria-hidden="true" />;
                     })()}
                     {tag}
                   </div>
