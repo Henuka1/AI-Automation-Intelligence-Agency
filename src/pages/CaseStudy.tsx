@@ -191,19 +191,21 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
             />
           </div>
 
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center">
             {/* Eyebrow Pill Badge: Icon + CASE STUDY with soft shadow */}
-            <div className="case-study-hero__badge inline-flex items-center gap-2.5 rounded-full select-none mb-6 sm:mb-7 transition-transform hover:scale-102 duration-300">
-              <div className="case-study-hero__badge-icon rounded-full bg-[#121214] flex items-center justify-center shrink-0">
-                <CaseStudyBadgeIcon className="w-3.5 h-3.5 text-white" />
+            <div className="w-full flex justify-center mb-6 sm:mb-7">
+              <div className="case-study-hero__badge inline-flex items-center gap-2.5 rounded-full select-none transition-transform hover:scale-102 duration-300">
+                <div className="case-study-hero__badge-icon rounded-full bg-[#121214] flex items-center justify-center shrink-0">
+                  <CaseStudyBadgeIcon className="w-3.5 h-3.5 text-white" />
+                </div>
+                <span className="case-study-hero__badge-label uppercase pr-1">
+                  CASE STUDY
+                </span>
               </div>
-              <span className="case-study-hero__badge-label uppercase pr-1">
-                CASE STUDY
-              </span>
             </div>
 
             {/* Headline */}
-            <h1 className="case-study-hero__title">
+            <h1 className="case-study-hero__title block w-full text-center">
               Proven Results, Real Impact
             </h1>
 
