@@ -13,9 +13,10 @@ import { Contact } from './pages/Contact';
 import { Terms } from './pages/Terms';
 import { CaseStudy } from './pages/CaseStudy';
 import { Privacy } from './pages/Privacy';
+import { NotFound } from './pages/NotFound';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy'>(() => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404'>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
@@ -43,6 +44,9 @@ export default function App() {
       if (path.includes('privacy') || hash === '#privacy' || hash === '#privacy-policy') {
         return 'privacy';
       }
+      if (path.includes('404') || hash === '#404' || hash === '#not-found') {
+        return '404';
+      }
     }
     return 'home';
   });
@@ -67,6 +71,8 @@ export default function App() {
         setCurrentPage('case-study');
       } else if (path.includes('privacy') || hash === '#privacy' || hash === '#privacy-policy') {
         setCurrentPage('privacy');
+      } else if (path.includes('404') || hash === '#404' || hash === '#not-found') {
+        setCurrentPage('404');
       } else {
         setCurrentPage('home');
       }
@@ -80,7 +86,7 @@ export default function App() {
     };
   }, []);
 
-  const navigate = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => {
+  const navigate = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404') => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (page === 'pricing') {
@@ -99,6 +105,8 @@ export default function App() {
       window.history.pushState({}, '', '/case-study');
     } else if (page === 'privacy') {
       window.history.pushState({}, '', '/privacy');
+    } else if (page === '404') {
+      window.history.pushState({}, '', '/404');
     } else {
       window.history.pushState({}, '', '/');
     }
@@ -127,6 +135,9 @@ export default function App() {
   }
   if (currentPage === 'privacy') {
     return <Privacy onNavigate={navigate} />;
+  }
+  if (currentPage === '404') {
+    return <NotFound onNavigate={navigate} />;
   }
   return <Home onNavigate={navigate} />;
 }
