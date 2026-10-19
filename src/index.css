@@ -521,6 +521,8 @@
   background: #ffffff;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .case-study-hero__badge:hover {
@@ -538,6 +540,7 @@
   justify-content: center;
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
 }
 
 .case-study-hero__badge-label {
@@ -546,6 +549,7 @@
   letter-spacing: 0.11em;
   color: #1a1a1c;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .case-study-hero__title {
@@ -558,7 +562,10 @@
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
-  display: inline-block;
+  display: block;
+  width: 100%;
+  margin-inline: auto;
+  text-align: center;
   padding-bottom: 0.04em;
 }
 

@@ -187,7 +187,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-[#111111] antialiased selection:bg-neutral-900 selection:text-white font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
       {/* Top Navigation Bar */}
       <Navbar
         currentPage="blog"
@@ -196,41 +196,49 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
       />
 
       {/* Main Content Container */}
-      <main className="relative z-10 pt-28 sm:pt-32 pb-20 sm:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="relative left-1/2 isolate min-h-[390px] w-screen -translate-x-1/2 overflow-hidden px-4 pb-8 sm:min-h-[400px] sm:px-6 sm:pb-10 lg:px-8">
-          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <main className="flex-1">
+        {/* HERO SECTION */}
+        <section className="relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
+          {/* Fully responsive background topographic wavy texture matching Case Study */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            aria-hidden="true"
+          >
             <img
               src={blogBackground}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover object-center sm:-top-6 sm:h-[calc(100%+24px)]"
+              className="w-full h-full object-cover object-top opacity-85"
             />
           </div>
 
-          {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
-          <div className="relative z-10 mb-7 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white bg-gradient-to-b from-white to-[#f0f0f0] px-4 py-2 font-['Inter'] text-[13px] font-semibold tracking-[-0.02em] text-[#1a1a1a] shadow-[inset_0_1px_0_#fff,0_1px_2px_rgba(0,0,0,0.06),0_6px_14px_rgba(0,0,0,0.08),0_14px_26px_rgba(0,0,0,0.05)]">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111113] text-white shadow-[0_2px_5px_rgba(0,0,0,0.22)]">
-                <Cpu className="h-3.5 w-3.5" strokeWidth={2.1} />
-              </span>
-              <span>BLOG &amp; INSIGHT</span>
-            </div>
-          </div>
-
-          {/* Hero Title & Subtitle */}
           <div className="relative z-10 mx-auto max-w-4xl text-center">
+            {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
+            <div className="mb-6 sm:mb-7 flex justify-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white bg-white px-4 py-2 font-['Inter'] text-[13px] font-semibold tracking-[-0.02em] text-[#1a1a1a] shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition-transform hover:scale-105">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111113] text-white shadow-[0_2px_5px_rgba(0,0,0,0.22)]">
+                  <Cpu className="h-3.5 w-3.5" strokeWidth={2.1} />
+                </span>
+                <span>BLOG &amp; INSIGHT</span>
+              </div>
+            </div>
+
+            {/* Hero Title & Subtitle */}
             <h1 className="blog-hero-title font-['Inter'] text-[40px] font-semibold leading-[1.12] tracking-[-0.055em] sm:text-[52px] lg:text-[64px]">
               <span className="hero-gradient-headline">Insights on AI,</span>
               <br />
               <span className="hero-gradient-headline">Automation &amp; Innovation</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
+            <p className="mx-auto mt-4 sm:mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
               We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
             </p>
           </div>
         </section>
 
-        {/* Featured cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+        {/* Blog Posts Grid Section */}
+        <section className="py-12 sm:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Featured cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
           {blogPosts.slice(0, 3).map((post) => (
             <article
               key={post.id}
@@ -321,6 +329,8 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
             </article>
           ))}
         </div>
+          </div>
+        </section>
       </main>
 
       {/* Pre-Footer Final CTA Card: "Let's Build the Future, Together" */}

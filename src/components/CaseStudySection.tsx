@@ -37,7 +37,7 @@ export const CaseStudySection: React.FC<CaseStudySectionProps> = ({ onSeeCaseStu
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Eyebrow Pill Badge: Circular Icon + CASE STUDY with soft drop shadow */}
-        <div className="text-center mb-6 sm:mb-7">
+        <div className="w-full flex justify-center mb-6 sm:mb-7">
           <div className="case-study-hero__badge inline-flex items-center gap-2.5 rounded-full select-none transition-transform hover:scale-102 duration-300">
             <div className="case-study-hero__badge-icon rounded-full bg-[#121214] flex items-center justify-center shrink-0">
               <CaseStudyBadgeIcon className="w-3.5 h-3.5 text-white" />
