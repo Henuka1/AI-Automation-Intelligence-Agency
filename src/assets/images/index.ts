@@ -16,6 +16,7 @@ import featuresLaptopAi from './features_laptop_ai_1791832801184.jpg';
 import securedShieldAi from './secured_shield_ai_1791832849225.jpg';
 import kondamSwirlFabric from './kondam_swirl_fabric_1792168261826.jpg';
 import lokosArchitecture from './lokos_architecture_1792168287028.jpg';
+import collabHandsMesh from './collab_hands_mesh.png';
 
 export const images = {
   heroHands,
@@ -23,6 +24,7 @@ export const images = {
   cube,
   whiteCubeMatrix: cubeMatrix,
   collabHands,
+  collabHandsMesh,
   caseStudyFabric,
   insightWaves,
   insightParticles,

@@ -9,10 +9,10 @@ import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 import blogBackground from '../assets/images/blog_bg.png';
 import { Users, Zap, Globe, Sparkles, Cpu } from 'lucide-react';
-import { FeatureBadgeIcon } from '../components/BrandLogos';
+import { FeatureBadgeIcon, ChipPillIcon } from '../components/BrandLogos';
 
 interface AboutProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404') => void;
 }
 
 export const About: React.FC<AboutProps> = ({ onNavigate }) => {
@@ -85,7 +85,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
     'AUTOMATION & RPA',
   ];
 
-  const marqueeIcons = [Cpu, Cpu, Zap, Globe, Sparkles, Cpu, Cpu, Zap];
+  const marqueeIcons = [ChipPillIcon, ChipPillIcon, Zap, Globe, Sparkles, ChipPillIcon, ChipPillIcon, Zap];
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
@@ -96,17 +96,20 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         onBookDemo={() => handleOpenModal('About Demo')}
       />
 
-      <main className="flex-1 pt-24 sm:pt-28">
+      <main className="flex-1">
         {/* 2. HERO SECTION */}
         <section
-          className="about-hero-feature relative h-[432px] overflow-hidden bg-white pt-20 pb-0 text-center sm:h-[432px]"
+          className="about-hero-feature relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden"
         >
-          {/* Responsive background artwork matching the About hero design */}
-          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+          {/* Fully responsive background topographic wavy texture matching Case Study hero */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            aria-hidden="true"
+          >
             <img
               src={blogBackground}
               alt=""
-              className="absolute -top-4 h-[calc(100%+16px)] w-full object-cover object-center sm:-top-6 sm:h-[calc(100%+24px)]"
+              className="w-full h-full object-cover object-top opacity-85"
             />
           </div>
 
@@ -255,7 +258,16 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
                   >
                     {(() => {
                       const Icon = marqueeIcons[idx % marqueeIcons.length];
-                      return <Icon className="h-5 w-5 shrink-0 text-[#111111]" strokeWidth={2} aria-hidden="true" />;
+                      if (tag === 'AUTOMATION & RPA') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (tag === 'AI STRATEGY & CONSULTING') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (Icon === ChipPillIcon) {
+                        return <Icon className="h-4 w-4 shrink-0 text-black" />;
+                      }
+                      return <Icon className="h-4.5 w-4.5 shrink-0 text-black" strokeWidth={2.2} aria-hidden="true" />;
                     })()}
                     {tag}
                   </div>

@@ -17,7 +17,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 
 interface HomeProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
 }
 
 export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
@@ -88,7 +88,10 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <PricingSection onSelectPlan={(planId) => handleOpenModal(`Pricing Plan: ${planId}`)} />
 
         {/* SECTION 12 — AI INSIGHTS / BLOG */}
-        <InsightsSection onReadArticle={(id) => handleOpenModal(`Article #${id} Deep Dive`)} />
+        <InsightsSection
+          onReadArticle={(id) => handleOpenModal(`Article #${id} Deep Dive`)}
+          onNavigate={onNavigate}
+        />
 
         {/* SECTION 13 — FAQ */}
         <FAQSection onContactClick={() => handleOpenModal('Inquiry')} />

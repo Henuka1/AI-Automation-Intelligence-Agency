@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 
 interface PricingProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
 }
 
 const darkButtonStyle =
@@ -90,7 +90,7 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
 
       <main className="flex-1 pt-24 sm:pt-28">
         {/* 2. HERO & PRICING PLANS SECTION */}
-        <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#f8f8f8] via-[#fbfbfb] to-white pt-12 sm:pt-16 pb-16 sm:pb-24">
+        <section className="relative isolate overflow-hidden bg-white pt-12 sm:pt-16 pb-16 sm:pb-24">
           <svg
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 top-0 h-[680px] w-full opacity-70"
@@ -173,19 +173,19 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
             </div>
 
             {/* 3 Pricing Cards Grid matching screenshot */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 mt-12 sm:mt-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 items-stretch gap-5 sm:gap-6 mt-12 sm:mt-16">
               {plans.map((plan) => (
                 <article
                   key={plan.id}
                   tabIndex={0}
-                  className={`feature-hover-card pricing-plan-card rounded-[22px] border border-white bg-[#f1f1f1] p-2 ${
+                  className={`feature-hover-card pricing-plan-card min-h-[330px] rounded-[18px] border border-white bg-[#f1f1f1] p-2 shadow-[0_0_0_1px_rgba(0,0,0,0.035),0_8px_20px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_14px_28px_rgba(0,0,0,0.1)] ${
                     plan.isPopular
                       ? 'ring-1 ring-neutral-300/80'
                       : ''
                   }`}
                 >
-                  <div className="feature-hover-card-inner flex h-full flex-col rounded-[16px] bg-[#f1f1f1] p-1.5">
-                    <div className="rounded-[13px] border border-white/90 bg-gradient-to-b from-[#fafafa] to-[#f1f1f1] p-3.5 shadow-[inset_0_1px_0_#fff,0_2px_7px_rgba(0,0,0,0.08)] sm:p-4">
+                  <div className="feature-hover-card-inner flex h-full flex-col rounded-[13px] bg-[#f1f1f1] p-1">
+                    <div className="min-h-[138px] rounded-[13px] border border-white/90 bg-gradient-to-b from-[#fafafa] to-[#f1f1f1] p-3.5 shadow-[inset_0_1px_0_#fff,0_2px_7px_rgba(0,0,0,0.08)] sm:p-4">
                       {/* Header Row */}
                       <div className="flex items-center justify-between min-h-[26px]">
                         <h3 className="text-[13px] font-semibold text-[#111113]">{plan.name}</h3>
@@ -197,8 +197,8 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
                       </div>
 
                       {/* Price Display */}
-                      <div className="mt-4 flex items-baseline tracking-tight">
-                        <span className="text-3xl sm:text-4xl font-bold text-[#111113] tabular-nums">
+                      <div className="mt-3 flex items-baseline tracking-tight">
+                        <span className="text-[34px] sm:text-[38px] font-bold leading-none text-[#111113] tabular-nums">
                           {plan.price}
                         </span>
                         <span className="text-sm font-normal text-neutral-500 ml-1">
@@ -213,11 +213,11 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
                     </div>
 
                     {/* Features List */}
-                    <ul className="flex-1 space-y-2.5 px-2.5 py-4">
+                    <ul className="flex-1 space-y-2.5 px-2.5 py-4.5">
                       {plan.features.map((feature, idx) => (
                         <li
                           key={idx}
-                          className="flex items-center gap-2 text-[11px] sm:text-xs text-neutral-700 font-medium"
+                          className="flex items-center gap-2 text-[11px] sm:text-xs text-neutral-700 font-normal"
                         >
                           <svg
                             className="w-3.5 h-3.5 text-[#111113] shrink-0"

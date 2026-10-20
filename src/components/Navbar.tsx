@@ -3,8 +3,8 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { AxonixLogo } from './BrandLogos';
 
 interface NavbarProps {
-  currentPage?: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study';
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study') => void;
+  currentPage?: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404';
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404') => void;
   onBookDemo?: () => void;
 }
 
@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
   };
 
-  const handleNavClick = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study', anchorId?: string) => {
+  const handleNavClick = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404', anchorId?: string) => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -114,6 +114,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         window.location.href = '/terms';
       } else if (page === 'case-study') {
         window.location.href = '/case-study';
+      } else if (page === 'privacy') {
+        window.location.href = '/privacy';
+      } else if (page === '404') {
+        window.location.href = '/404';
       } else if (anchorId) {
         const el = document.getElementById(anchorId);
         el?.scrollIntoView({ behavior: 'smooth' });
@@ -257,7 +261,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 toggleDropdown('pages');
               }}
               className={`flex items-center gap-1 transition-colors py-2 cursor-pointer ${
-                currentPage === 'features' || currentPage === 'terms' || currentPage === 'case-study' ? 'text-neutral-950 font-semibold' : 'hover:text-neutral-950'
+                currentPage === 'features' || currentPage === 'terms' || currentPage === 'case-study' || currentPage === 'privacy' || currentPage === '404' ? 'text-neutral-950 font-semibold' : 'hover:text-neutral-950'
               }`}
             >
               <span>Pages</span>
@@ -350,7 +354,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                           e.stopPropagation();
                           handleNavClick('case-study');
                         }}
-                        className="text-left text-[14.5px] font-normal text-neutral-900 hover:text-black py-1 transition-colors cursor-pointer whitespace-nowrap w-full block"
+                        className={`text-left text-[14.5px] font-normal py-1 transition-colors cursor-pointer whitespace-nowrap w-full block ${
+                          currentPage === 'case-study' ? 'text-black font-semibold' : 'text-neutral-900 hover:text-black'
+                        }`}
                       >
                         Case Study Details
                       </button>
@@ -370,9 +376,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleNavClick('home', 'faq');
+                          handleNavClick('privacy');
                         }}
-                        className="text-left text-[14.5px] font-normal text-neutral-900 hover:text-black py-1 transition-colors cursor-pointer whitespace-nowrap w-full block"
+                        className={`text-left text-[14.5px] font-normal py-1 transition-colors cursor-pointer whitespace-nowrap w-full block ${
+                          currentPage === 'privacy' ? 'text-black font-semibold' : 'text-neutral-900 hover:text-black'
+                        }`}
                       >
                         Privacy Policy
                       </button>
@@ -380,9 +388,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleNavClick('home');
+                          handleNavClick('404');
                         }}
-                        className="text-left text-[14.5px] font-normal text-neutral-900 hover:text-black py-1 transition-colors cursor-pointer w-full block"
+                        className={`text-left text-[14.5px] font-normal py-1 transition-colors cursor-pointer w-full block ${
+                          currentPage === '404' ? 'text-black font-semibold' : 'text-neutral-900 hover:text-black'
+                        }`}
                       >
                         404
                       </button>
@@ -488,6 +498,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Terms & Conditions
+          </button>
+          <button
+            onClick={() => handleNavClick('privacy')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === 'privacy' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
+          >
+            Privacy Policy
+          </button>
+          <button
+            onClick={() => handleNavClick('404')}
+            className={`block w-full text-left py-2 text-sm font-medium ${
+              currentPage === '404' ? 'text-black font-semibold' : 'text-neutral-800 hover:text-black'
+            }`}
+          >
+            404
           </button>
           <div className="pt-2">
             <button
