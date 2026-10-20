@@ -22,7 +22,7 @@ import {
 
 interface CaseStudyProps {
   onNavigate?: (
-    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404'
+    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'case-study-details' | 'privacy' | '404'
   ) => void;
 }
 
@@ -258,7 +258,14 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
                         {/* See Case Study Button */}
                         <div className="pt-4">
                           <button
-                            onClick={() => setActiveDossier(study)}
+                            onClick={() => {
+                              if (onNavigate) {
+                                onNavigate('case-study-details');
+                                window.history.pushState({}, '', `/case-study-details?id=${study.id}`);
+                              } else {
+                                window.location.href = `/case-study-details?id=${study.id}`;
+                              }
+                            }}
                             className="case-study-card__button bg-[#111113] hover:bg-neutral-800 text-white rounded-full px-7 py-2.5 sm:py-3 text-xs sm:text-[13px] font-medium transition-all shadow-xs hover:shadow active:scale-98 cursor-pointer"
                           >
                             See Case Study
