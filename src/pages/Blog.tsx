@@ -5,7 +5,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 import blogBackground from '../assets/images/blog_bg.png';
-import { X, ArrowRight, Clock, Calendar } from 'lucide-react';
+import { X, ArrowRight, Clock, Calendar, Cpu } from 'lucide-react';
 
 interface BlogProps {
   onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'blog-details' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
