@@ -4,7 +4,8 @@ import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { caseStudiesData, CaseStudyItem } from '../data/caseStudies';
-import { LogoipsumMark } from '../components/BrandLogos';
+import { LogoipsumMark, ChipPillIcon } from '../components/BrandLogos';
+import { FAQSection } from '../components/FAQSection';
 import { images } from '../assets/images';
 import blogBackground from '../assets/images/blog_bg.png';
 import {
@@ -86,14 +87,18 @@ export const CaseStudyDetails: React.FC<CaseStudyDetailsProps> = ({
     },
   ];
 
-  const marqueeItems = [
+  const marqueeTags = [
     'CUSTOM AI DEVELOPMENT',
     'MACHINE LEARNING MODELS',
     'AUTOMATION & RPA',
     'NATURAL LANGUAGE PROCESSING (NLP)',
     'AI STRATEGY & CONSULTING',
-    'PREDICTIVE ANALYTICS',
+    'CUSTOM AI DEVELOPMENT',
+    'MACHINE LEARNING MODELS',
+    'AUTOMATION & RPA',
   ];
+
+  const marqueeIcons = [ChipPillIcon, ChipPillIcon, Zap, Globe, Sparkles, ChipPillIcon, ChipPillIcon, Zap];
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
@@ -202,204 +207,167 @@ export const CaseStudyDetails: React.FC<CaseStudyDetailsProps> = ({
           </div>
         </section>
 
-        {/* 4. FEATURED BIG IMAGE & CHALLENGE SECTION */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        {/* 4. FEATURED BIG IMAGE & CHALLENGE SECTION (Matching reference image) */}
+        <section className="pt-10 sm:pt-14 pb-0 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-5xl mx-auto">
-            {/* Main Featured Image */}
-            <div className="rounded-[28px] overflow-hidden border border-neutral-200/90 shadow-[0_12px_40px_rgba(0,0,0,0.08)] bg-neutral-100 mb-10">
-              <img
-                src={currentStudy.image}
-                alt={currentStudy.client}
-                className="w-full h-[380px] sm:h-[480px] md:h-[540px] object-cover object-center"
-              />
-            </div>
-
-            {/* Challenge & Metric Cards Container */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              {/* Challenge Box */}
-              <div className="lg:col-span-6 bg-[#fafafa] rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-                <div>
-                  <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
-                    Challenge
-                  </h2>
-                  <p className="text-[15px] sm:text-[16px] text-neutral-600 leading-relaxed font-normal">
-                    {currentStudy.challenge}
-                  </p>
+            {/* Outer Featured Bento Card */}
+            <div className="rounded-[30px] sm:rounded-[36px] p-[1.5px] bg-gradient-to-b from-white via-white/80 to-white/40 shadow-[0_12px_40px_rgba(0,0,0,0.06),0_2px_6px_rgba(0,0,0,0.03)] font-['Inter_Tight',sans-serif]">
+              <div className="bg-[#f7f7f8]/95 backdrop-blur-md rounded-[28px] sm:rounded-[34px] border border-white p-5 sm:p-7 overflow-hidden">
+                {/* Main Big Image Container inside card */}
+                <div className="rounded-[22px] sm:rounded-[26px] overflow-hidden border border-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] bg-neutral-100">
+                  <img
+                    src={currentStudy.image}
+                    alt={currentStudy.client}
+                    className="w-full h-[320px] sm:h-[440px] md:h-[500px] object-cover object-center"
+                  />
                 </div>
-              </div>
 
-              {/* Metric Card 1 */}
-              <div className="lg:col-span-3 bg-[#fafafa] rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-                <div>
-                  <div className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111113] mb-3">
-                    {currentStudy.metric1.value}
+                {/* Bottom Row: Challenge description + 2 White Metric Cards */}
+                <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+                  {/* Challenge Text Area */}
+                  <div className="lg:col-span-6 flex flex-col justify-center px-2 py-1 text-left">
+                    <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-2.5 font-['Inter_Tight',sans-serif]">
+                      Challenge
+                    </h2>
+                    <p className="text-[14px] sm:text-[15px] text-[#666670] leading-relaxed font-normal max-w-md font-['Inter_Tight',sans-serif]">
+                      {currentStudy.challenge}
+                    </p>
                   </div>
-                  <p className="text-[14.5px] text-neutral-600 font-medium leading-snug">
-                    {currentStudy.metric1.label}
-                  </p>
-                </div>
-              </div>
 
-              {/* Metric Card 2 */}
-              <div className="lg:col-span-3 bg-[#fafafa] rounded-3xl p-8 sm:p-10 border border-neutral-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-                <div>
-                  <div className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111113] mb-3">
-                    {currentStudy.metric2.value}
+                  {/* Metric Card 1 */}
+                  <div className="lg:col-span-3 rounded-[22px] p-[1.5px] bg-gradient-to-b from-white via-white/90 to-white/50 shadow-[0_4px_18px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.18)] hover:-translate-y-1.5 transition-all duration-300 ease-out cursor-pointer group">
+                    <div className="h-full bg-white rounded-[20px] border border-white group-hover:border-neutral-200/60 p-6 sm:p-7 flex flex-col justify-between text-left transition-colors duration-300">
+                      <div className="text-4xl sm:text-[44px] font-semibold tracking-tight text-[#111113] font-['Inter_Tight',sans-serif] leading-none mb-3">
+                        {currentStudy.metric1.value}
+                      </div>
+                      <p className="text-[13px] sm:text-[13.5px] text-[#666670] font-normal leading-snug font-['Inter_Tight',sans-serif]">
+                        {currentStudy.metric1.label}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-[14.5px] text-neutral-600 font-medium leading-snug">
-                    {currentStudy.metric2.label}
-                  </p>
+
+                  {/* Metric Card 2 */}
+                  <div className="lg:col-span-3 rounded-[22px] p-[1.5px] bg-gradient-to-b from-white via-white/90 to-white/50 shadow-[0_4px_18px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.18)] hover:-translate-y-1.5 transition-all duration-300 ease-out cursor-pointer group">
+                    <div className="h-full bg-white rounded-[20px] border border-white group-hover:border-neutral-200/60 p-6 sm:p-7 flex flex-col justify-between text-left transition-colors duration-300">
+                      <div className="text-4xl sm:text-[44px] font-semibold tracking-tight text-[#111113] font-['Inter_Tight',sans-serif] leading-none mb-3">
+                        {currentStudy.metric2.value}
+                      </div>
+                      <p className="text-[13px] sm:text-[13.5px] text-[#666670] font-normal leading-snug font-['Inter_Tight',sans-serif]">
+                        {currentStudy.metric2.label}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 5. WHAT WE DID SECTION */}
-        <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-[#111113] tracking-tight mb-4">
-                What we did?
-              </h2>
-              <p className="text-[15px] sm:text-[16px] text-neutral-600 leading-relaxed font-normal">
-                Start with an outline or storyboard to structure your content logically, ensuring it covers the key points. Write the article, record the video, or design the infographic, focusing on quality and relevance. Keep the audience in mind, using an appropriate tone and language. Optimize content with keywords, meta descriptions, alt tags, and other SEO techniques to increase its visibility online. Check for grammatical errors, consistency in tone, and overall flow. Make sure the content delivers the intended message effectively.
-              </p>
-            </div>
-
-            {/* Checklist items matching screenshot */}
-            <div className="space-y-4 pt-2">
-              {currentStudy.solution.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-3.5">
-                  <div className="w-6 h-6 rounded-full bg-[#111113] flex items-center justify-center shrink-0 text-white shadow-xs">
-                    <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-[15.5px] font-medium text-neutral-800">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 6. IDENTIFY RELEVANT TOPICS SECTION */}
-        <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-5xl mx-auto space-y-10">
-            <div className="max-w-4xl">
-              <h2 className="text-3xl sm:text-4xl font-semibold text-[#111113] tracking-tight mb-4">
-                Identify relevant topics by researching industry trends
-              </h2>
-              <p className="text-[15px] sm:text-[16px] text-neutral-600 leading-relaxed font-normal">
-                Data analytics is revolutionizing the way marketers understand consumer behavior in today&apos;s digital age. By harnessing the power of data collected from diverse sources such as social media, website interactions, and purchasing patterns, marketers can unlock valuable insights into their target audience. Identify relevant topics by researching industry trends, competitor content, and audience pain points. Use tools like Google Trends, AnswerThePublic, or SEMrush to discover what your audience is searching for.
-              </p>
-            </div>
-
-            {/* Two Side-by-Side Images matching reference screenshot */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-[24px] overflow-hidden border border-neutral-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.06)] bg-neutral-100 aspect-[4/3]">
-                <img
-                  src={currentStudy.chairImages?.[0] || images.lokosArchitecture}
-                  alt="Chair design 1"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div className="rounded-[24px] overflow-hidden border border-neutral-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.06)] bg-neutral-100 aspect-[4/3]">
-                <img
-                  src={currentStudy.chairImages?.[1] || images.featuresLaptopAi}
-                  alt="Chair design 2"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. CAPABILITIES MARQUEE STRIP */}
-        <div className="py-10 bg-white border-y border-neutral-100 overflow-hidden">
-          <div className="flex items-center gap-6 whitespace-nowrap animate-marquee">
-            {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-6">
-                <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#fafafa] border border-neutral-200 text-xs font-bold tracking-[0.12em] uppercase text-neutral-700 shadow-2xs">
-                  <div className="w-2 h-2 rounded-full bg-[#111113]" />
-                  <span>{item}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 8. FAQ SECTION */}
-        <section className="py-16 sm:py-24 bg-white px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Header & Contact */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] select-none">
-                <div className="w-5 h-5 rounded-full bg-[#111113] flex items-center justify-center text-white">
-                  <HelpCircle className="w-3 h-3 text-white" strokeWidth={2.5} />
-                </div>
-                <span className="text-[11.5px] font-bold tracking-[0.14em] uppercase text-neutral-800">
-                  FREQUENTLY ASKED QUESTIONS
-                </span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-tight text-[#111113] leading-[1.15]">
-                Questions? We&apos;re
-                <br />
-                here to assist!
-              </h2>
-
-              <p className="text-[15px] text-neutral-600 leading-relaxed max-w-md">
-                Position your brand at the forefront, leading trends, captivating audiences, and creating lasting market impressions.
-              </p>
-
+        {/* 5. WHAT WE DID & IDENTIFY RELEVANT TOPICS SECTION (Aligned width & tighter gap matching image) */}
+        <section className="pt-10 sm:pt-14 pb-0 px-4 sm:px-6 lg:px-8 bg-white font-['Inter_Tight',sans-serif]">
+          <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12 text-left">
+            {/* What we did block */}
+            <div className="space-y-5">
               <div>
-                <button
-                  type="button"
-                  onClick={handleContactClick}
-                  className="inline-flex items-center justify-center rounded-[14px] bg-[#111113] hover:bg-neutral-800 text-white px-7 py-3.5 text-[14.5px] font-medium transition-all shadow-[0_8px_20px_rgba(0,0,0,0.2)] cursor-pointer"
-                >
-                  Contact Us
-                </button>
+                <h2 className="text-3xl sm:text-[38px] font-semibold text-[#111113] tracking-[-0.03em] leading-tight mb-3.5 font-['Inter_Tight',sans-serif]">
+                  What we did?
+                </h2>
+                <p className="text-[14px] sm:text-[15px] text-[#666670] leading-[1.65] font-normal font-['Inter_Tight',sans-serif] w-full">
+                  Start with an outline or storyboard to structure your content logically, ensuring it covers the key points. Write the article, record the video, or design the infographic, focusing on quality and relevance. Keep the audience in mind, using an appropriate tone and language. Optimize content with keywords, meta descriptions, alt tags, and other SEO techniques to increase its visibility online. Check for grammatical errors, consistency in tone, and overall flow. Make sure the content delivers the intended message effectively.
+                </p>
+              </div>
+
+              {/* Checklist items matching screenshot */}
+              <div className="space-y-3.5 pt-1">
+                {currentStudy.solution.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-[22px] h-[22px] rounded-full bg-[#111113] flex items-center justify-center shrink-0 text-white shadow-xs">
+                      <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                    </div>
+                    <span className="text-[15px] sm:text-[16px] font-medium text-[#111113] tracking-[-0.015em] font-['Inter_Tight',sans-serif]">
+                      {item}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Right Accordion */}
-            <div className="lg:col-span-7 space-y-4">
-              {faqs.map((faq, idx) => {
-                const isOpen = openFaq === idx;
-                return (
-                  <div
-                    key={idx}
-                    className="bg-[#fafafa] rounded-2xl border border-neutral-200/80 overflow-hidden transition-all duration-200"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full flex items-center justify-between p-6 text-left cursor-pointer"
-                    >
-                      <span className="text-base sm:text-lg font-semibold text-[#111113] pr-4">
-                        {faq.q}
-                      </span>
-                      <div className="w-8 h-8 rounded-full bg-white border border-neutral-200 flex items-center justify-center shrink-0 shadow-2xs transition-transform duration-200">
-                        <ChevronDown
-                          className={`w-4 h-4 text-neutral-700 transition-transform duration-200 ${
-                            isOpen ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </div>
-                    </button>
-                    {isOpen && (
-                      <div className="px-6 pb-6 pt-0 text-neutral-600 text-[15px] leading-relaxed">
-                        {faq.a}
-                      </div>
-                    )}
+            {/* Identify relevant topics block */}
+            <div className="space-y-5 pt-2">
+              <div>
+                <h2 className="text-3xl sm:text-[38px] font-semibold text-[#111113] tracking-[-0.03em] leading-tight mb-3.5 font-['Inter_Tight',sans-serif]">
+                  Identify relevant topics by researching industry trends
+                </h2>
+                <p className="text-[14px] sm:text-[15px] text-[#666670] leading-[1.65] font-normal font-['Inter_Tight',sans-serif] w-full">
+                  Data analytics is revolutionizing the way marketers understand consumer behavior in today&apos;s digital age. By harnessing the power of data collected from diverse sources such as social media, website interactions, and purchasing patterns, marketers can unlock valuable insights into their target audience. Identify relevant topics by researching industry trends, competitor content, and audience pain points. Use tools like Google Trends, AnswerThePublic, or SEMrush to discover what your audience is searching for.
+                </p>
+              </div>
+
+              {/* Two Side-by-Side Images matching on-feature card styling and exact left/right line */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 pt-3">
+                {/* Chair Card 1 */}
+                <div className="rounded-[28px] sm:rounded-[32px] p-[1.5px] bg-gradient-to-b from-white via-white/80 to-white/40 shadow-[0_10px_32px_rgba(0,0,0,0.06),0_2px_5px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] transition-all duration-300">
+                  <div className="bg-[#f7f7f8]/95 backdrop-blur-md rounded-[26px] sm:rounded-[30px] border border-white p-3.5 sm:p-4 overflow-hidden">
+                    <div className="rounded-[20px] sm:rounded-[24px] overflow-hidden border border-white shadow-[0_3px_12px_rgba(0,0,0,0.04)] bg-neutral-100 aspect-[4/3] sm:aspect-[1/1] md:aspect-[4/3]">
+                      <img
+                        src={currentStudy.chairImages?.[0] || images.freshCareChair1}
+                        alt="Chair design 1"
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+
+                {/* Chair Card 2 */}
+                <div className="rounded-[28px] sm:rounded-[32px] p-[1.5px] bg-gradient-to-b from-white via-white/80 to-white/40 shadow-[0_10px_32px_rgba(0,0,0,0.06),0_2px_5px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] transition-all duration-300">
+                  <div className="bg-[#f7f7f8]/95 backdrop-blur-md rounded-[26px] sm:rounded-[30px] border border-white p-3.5 sm:p-4 overflow-hidden">
+                    <div className="rounded-[20px] sm:rounded-[24px] overflow-hidden border border-white shadow-[0_3px_12px_rgba(0,0,0,0.04)] bg-neutral-100 aspect-[4/3] sm:aspect-[1/1] md:aspect-[4/3]">
+                      <img
+                        src={currentStudy.chairImages?.[1] || images.freshCareChair2}
+                        alt="Chair design 2"
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* 7. CAPABILITIES SCROLLING MARQUEE (Tight gap matching reference image, no border line) */}
+        <section className="pt-4 sm:pt-6 pb-6 sm:pb-8 bg-white overflow-hidden">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="overflow-hidden mask-marquee-edges select-none">
+              <div className="animate-marquee-left flex items-center gap-4 py-1">
+                {marqueeTags.concat(marqueeTags).map((tag, idx) => (
+                  <div
+                    key={`${tag}-${idx}`}
+                    className="about-marquee-pill inline-flex h-12 items-center gap-2.5 rounded-full border border-white bg-gradient-to-b from-white to-[#f1f1f1] px-5 text-[11px] font-semibold tracking-[0.08em] text-neutral-800 uppercase shrink-0 sm:text-xs"
+                  >
+                    {(() => {
+                      const Icon = marqueeIcons[idx % marqueeIcons.length];
+                      if (tag === 'AUTOMATION & RPA') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (tag === 'AI STRATEGY & CONSULTING') {
+                        return <Icon className="h-4 w-4 shrink-0 text-black fill-black" strokeWidth={1.5} aria-hidden="true" />;
+                      }
+                      if (Icon === ChipPillIcon) {
+                        return <Icon className="h-4 w-4 shrink-0 text-black" />;
+                      }
+                      return <Icon className="h-4.5 w-4.5 shrink-0 text-black" strokeWidth={2.2} aria-hidden="true" />;
+                    })()}
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. FREQUENTLY ASKED QUESTIONS SECTION (Matching Case Study page) */}
+        <FAQSection variant="pricing" onContactClick={handleContactClick} />
 
         {/* 9. FINAL CTA BANNER */}
         <FinalCTA onConsultationClick={() => handleOpenModal('Free Consultation')} />

@@ -47,7 +47,7 @@ export const caseStudiesData: CaseStudyItem[] = [
       '43% improvement in team merchandising output',
       '3x increase in repeat customer engagement within 6 months',
     ],
-    chairImages: [images.lokosArchitecture, images.featuresLaptopAi],
+    chairImages: [images.freshCareChair1, images.freshCareChair2],
   },
   {
     id: 'kondam-loius',
