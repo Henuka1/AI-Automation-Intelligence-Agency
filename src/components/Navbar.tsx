@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
   };
 
-  const handleNavClick = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404', anchorId?: string) => {
+  const handleNavClick = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404', anchorId?: string) => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -354,7 +354,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                           e.stopPropagation();
                           handleNavClick('case-study');
                         }}
-                        className="text-left text-[14.5px] font-normal text-neutral-900 hover:text-black py-1 transition-colors cursor-pointer whitespace-nowrap w-full block"
+                        className={`text-left text-[14.5px] font-normal py-1 transition-colors cursor-pointer whitespace-nowrap w-full block ${
+                          currentPage === 'case-study' ? 'text-black font-semibold' : 'text-neutral-900 hover:text-black'
+                        }`}
                       >
                         Case Study Details
                       </button>

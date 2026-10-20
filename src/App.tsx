@@ -12,6 +12,8 @@ import { Blog } from './pages/Blog';
 import { Contact } from './pages/Contact';
 import { Terms } from './pages/Terms';
 import { CaseStudy } from './pages/CaseStudy';
+import { CaseStudyDetails } from './pages/CaseStudyDetails';
+import { BlogDetails } from './pages/BlogDetails';
 import { Privacy } from './pages/Privacy';
 import { NotFound } from './pages/NotFound';
 
