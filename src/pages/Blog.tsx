@@ -8,7 +8,7 @@ import blogBackground from '../assets/images/blog_bg.png';
 import { X, ArrowRight, Clock, Calendar, Cpu } from 'lucide-react';
 
 interface BlogProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' |  'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'blog-details' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
 }
 
 interface BlogPost {
@@ -260,10 +260,10 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
                 <button
                   onClick={() => {
                     if (onNavigate) {
-                      onNavigate('blog');
-                      window.history.pushState({}, '', `/blog?id=${post.id}`);
+                      onNavigate('blog-details');
+                      window.history.pushState({}, '', `/blog-details?id=${post.id}`);
                     } else {
-                      window.location.href = `/blog?id=${post.id}`;
+                      window.location.href = `/blog-details?id=${post.id}`;
                     }
                   }}
                   className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99]"
@@ -296,7 +296,14 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
                 </h3>
 
                 <button
-                  onClick={() => setActivePost(post)}
+                  onClick={() => {
+                    if (onNavigate) {
+                      onNavigate('blog-details');
+                      window.history.pushState({}, '', `/blog-details?id=${post.id}`);
+                    } else {
+                      window.location.href = `/blog-details?id=${post.id}`;
+                    }
+                  }}
                   className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99]"
                 >
                   Read Blog
@@ -327,7 +334,14 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
                 </h3>
 
                 <button
-                  onClick={() => setActivePost(post)}
+                  onClick={() => {
+                    if (onNavigate) {
+                      onNavigate('blog-details');
+                      window.history.pushState({}, '', `/blog-details?id=${post.id}`);
+                    } else {
+                      window.location.href = `/blog-details?id=${post.id}`;
+                    }
+                  }}
                   className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99]"
                 >
                   Read Blog
