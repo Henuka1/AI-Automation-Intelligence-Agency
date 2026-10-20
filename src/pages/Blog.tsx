@@ -5,7 +5,7 @@ import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 import blogBackground from '../assets/images/blog_bg.png';
-import { X, ArrowRight, Clock, Calendar, Cpu } from 'lucide-react';
+import { X, ArrowRight, Clock, Calendar } from 'lucide-react';
 
 interface BlogProps {
   onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
@@ -206,14 +206,45 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
             />
           </div>
 
-          {/* Eyebrow Pill Badge: "BLOG & INSIGHT" with icon */}
+          {/* Eyebrow Pill Badge: "BLOG & INSIGHT" matching OUR FEATURES badge */}
           <div className="mb-7 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white bg-gradient-to-b from-white to-[#f0f0f0] px-4 py-2 font-['Inter'] text-[13px] font-semibold tracking-[-0.02em] text-[#1a1a1a] shadow-[inset_0_1px_0_#fff,0_1px_2px_rgba(0,0,0,0.06),0_6px_14px_rgba(0,0,0,0.08),0_14px_26px_rgba(0,0,0,0.05)]">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111113] text-white shadow-[0_2px_5px_rgba(0,0,0,0.22)]">
-                <Cpu className="h-3.5 w-3.5" strokeWidth={2.1} />
-              </span>
-              <span>BLOG &amp; INSIGHT</span>
-            </div>
+            <span
+              className="inline-flex items-center select-none"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '12px 22px',
+                fontFamily: '"Inter Tight", "Inter", system-ui, sans-serif',
+                fontSize: '13px',
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+                color: '#1a1a1a',
+                borderRadius: '999px',
+                border: '1px solid rgba(255, 255, 255, 0.95)',
+                background: 'linear-gradient(180deg, #ffffff 0%, #f8f8f8 55%, #f0f0f0 100%)',
+                boxShadow:
+                  'inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,.06), 0 6px 14px rgba(0,0,0,.08), 0 14px 26px rgba(0,0,0,.05)',
+              }}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#111"
+                strokeWidth="1.8"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              >
+                <circle cx="15" cy="15" r="6" />
+                <path
+                  d="M8.2 3.8 L13.4 12.6 Q13.9 13.4 13 13.4 L3.4 13.4 Q2.5 13.4 3 12.6 L7.2 3.8 Q7.7 3 8.2 3.8 Z"
+                  fill="#fff"
+                />
+              </svg>
+              BLOG &amp; INSIGHT
+            </span>
           </div>
 
           {/* Hero Title & Subtitle */}
