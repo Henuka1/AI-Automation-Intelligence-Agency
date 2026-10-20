@@ -179,15 +179,15 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
       <main className="flex-1">
         {/* 2. HERO SECTION */}
         <section className="relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
-          {/* Fully responsive background topographic wavy texture matching screenshot */}
+          {/* Fully responsive background topographic wavy texture */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
             aria-hidden="true"
           >
             <img
               src={blogBackground}
               alt=""
-              className="w-full h-full object-cover object-top opacity-85"
+              className="w-full h-full object-cover object-top opacity-85 min-w-[750px] sm:min-w-full"
             />
           </div>
 

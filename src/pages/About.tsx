@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import { LogoStrip } from '../components/LogoStrip';
 import { CaseStudySection } from '../components/CaseStudySection';
@@ -27,6 +27,26 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  // Scroll-triggered fade-in for statement paragraphs
+  const para1Ref = useRef<HTMLParagraphElement>(null);
+  const para2Ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('about-story-para--visible');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    if (para1Ref.current) observer.observe(para1Ref.current);
+    if (para2Ref.current) observer.observe(para2Ref.current);
+    return () => observer.disconnect();
+  }, []);
 
   // 6 team member portrait data matching reference screenshot
   const teamMembers = [
@@ -101,15 +121,15 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         <section
           className="about-hero-feature relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden"
         >
-          {/* Fully responsive background topographic wavy texture matching Case Study hero */}
+          {/* Fully responsive background topographic wavy texture */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
             aria-hidden="true"
           >
             <img
               src={blogBackground}
               alt=""
-              className="w-full h-full object-cover object-top opacity-85"
+              className="w-full h-full object-cover object-top opacity-85 min-w-[750px] sm:min-w-full"
             />
           </div>
 
@@ -150,7 +170,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <div className="mx-auto max-w-[1500px] px-4 sm:px-8">
             {/* Main Statement */}
             <div className="about-story-feature__text mx-auto text-center font-medium">
-              <p className="about-story-feature__lead text-[#0D0E11]">
+              <p ref={para1Ref} className="about-story-para about-story-para--1 about-story-feature__lead text-[#0D0E11]">
                 <span className="about-story-feature__line block">
                   Since our founding, we&apos;ve helped startups, enterprises, and global brands
                 </span>
@@ -158,15 +178,14 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
                   unlock the power of intelligent automation and machine learning.
                 </span>
               </p>
-              <p className="mt-8 text-[#0D0E11] sm:mt-10">
+              <p ref={para2Ref} className="about-story-para about-story-para--2 mt-8 text-[#0D0E11] sm:mt-10">
                 <span className="about-story-feature__line block">
                   Whether it&apos;s building custom AI tools, automating operations, or
                 </span>
                 <span className="about-story-feature__line block">
-                  enhancing customer experiences, we partner closely with clients{' '}
-                  <span className="about-story-feature__muted font-normal">to turn</span>
+                  enhancing customer experiences, we partner closely with clients to turn
                 </span>
-                <span className="about-story-feature__line about-story-feature__muted block font-normal">
+                <span className="about-story-feature__line block">
                   ambitious ideas into real-world impact.
                 </span>
               </p>
