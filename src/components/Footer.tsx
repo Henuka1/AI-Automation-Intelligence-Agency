@@ -2,11 +2,11 @@ import React from 'react';
 import { images } from '../assets/images';
 
 interface FooterProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms', anchorId?: string) => {
+  const handleNav = (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404', anchorId?: string) => {
     if (onNavigate) {
       onNavigate(page);
       if (anchorId) {
@@ -27,6 +27,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         window.location.href = '/contact';
       } else if (page === 'terms') {
         window.location.href = '/terms';
+      } else if (page === 'case-study') {
+        window.location.href = '/case-study';
+      } else if (page === 'privacy') {
+        window.location.href = '/privacy';
+      } else if (page === '404') {
+        window.location.href = '/404';
       } else if (anchorId) {
         document.getElementById(anchorId)?.scrollIntoView({ behavior: 'smooth' });
       }
@@ -103,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => handleNav('home', 'case-study')}
+                  onClick={() => handleNav('case-study')}
                   className="hover:text-black transition-colors cursor-pointer text-left"
                 >
                   Case Study
@@ -182,9 +188,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-neutral-200 pt-5 text-[13px] font-medium tracking-[-0.01em] text-neutral-600 sm:flex-row">
           <p>© 2025 Axonix. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#privacy" className="hover:text-neutral-800 transition-colors">
+            <button
+              onClick={() => handleNav('privacy')}
+              className="hover:text-neutral-800 transition-colors cursor-pointer"
+            >
               Privacy Policy
-            </a>
+            </button>
             <button
               onClick={() => handleNav('terms')}
               className="hover:text-neutral-800 transition-colors cursor-pointer"

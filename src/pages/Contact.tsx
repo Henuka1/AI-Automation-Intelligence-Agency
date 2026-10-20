@@ -6,7 +6,7 @@ import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 
 interface ContactProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
 }
 
 const faqs = [
