@@ -1,399 +1,236 @@
 import React, { useState } from 'react';
+import { ChevronDown, ChevronUp, Clock3, Mail, MapPin, Phone, Sparkles } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
-import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
 import { images } from '../assets/images';
 
 interface ContactProps {
-  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy') => void;
+  onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
 }
+
+const faqs = [
+  {
+    question: 'Why is a strong brand identity or website important?',
+    answer: 'A robust brand identity and website serve as the face of your business, shaping how it is perceived by potential customers. They not only convey professionalism but also establish trust and credibility.',
+  },
+  {
+    question: 'What service do you offer?',
+    answer: 'We design intelligent AI automation systems, workflow integrations, custom agents, and digital experiences that help teams work more efficiently.',
+  },
+  {
+    question: 'Can I cancel anytime?',
+    answer: 'Yes. Our engagements are structured around your needs, and we will always discuss timelines and cancellation terms clearly before work begins.',
+  },
+  {
+    question: 'Do you work with international clients?',
+    answer: 'Yes. Axonix works with teams globally and can collaborate across time zones using remote-first workflows.',
+  },
+  {
+    question: 'How long before I see results?',
+    answer: 'Most projects show measurable improvements during the first delivery phase. The exact timeline depends on the scope and the systems we are integrating.',
+  },
+  {
+    question: 'What industries do you specialize in?',
+    answer: 'We support businesses across e-commerce, professional services, operations, healthcare, and technology with adaptable automation solutions.',
+  },
+];
+
+const inputClassName =
+  'mt-1.5 h-8 w-full rounded-md border border-neutral-200/80 bg-[#fbfbfb] px-2.5 text-[10px] text-neutral-900 outline-none transition placeholder:text-[9px] placeholder:text-neutral-300 focus:border-neutral-500 focus:bg-white focus:ring-2 focus:ring-neutral-900/10';
 
 export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-
-  // Form State
+  const [openFaq, setOpenFaq] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
-    service: '',
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  // FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 700);
+  const updateField = (field: keyof typeof formData, value: string) => {
+    setFormData((current) => ({ ...current, [field]: value }));
   };
 
-  const faqs = [
-    {
-      question: 'How quickly can we expect a response after reaching out?',
-      answer:
-        'We typically respond within 24 business hours. If you submit a project inquiry, one of our technical partners will review your requirements and reach out with tailored next steps and available discovery call slots.',
-    },
-    {
-      question: 'What information should I have ready before our consultation?',
-      answer:
-        'A high-level understanding of your current bottlenecks, target workflows, tech stack (ERP, CRM, custom APIs), and approximate timeline or budget is very helpful. However, if you are just exploring what is possible with AI automation, our team will guide you through the assessment.',
-    },
-    {
-      question: 'Do you offer non-disclosure agreements (NDAs) prior to discussing IP?',
-      answer:
-        'Yes, absolutely. We respect enterprise confidentiality and intellectual property. We are happy to execute standard mutual NDAs before reviewing proprietary data or technical architectures.',
-    },
-    {
-      question: 'Can Axonix integrate with legacy databases and on-premise infrastructure?',
-      answer:
-        'Yes. We build custom API connectors, hybrid cloud adapters, and on-premise containerized microservices compliant with strict SOC2 and ISO27001 data residency protocols.',
-    },
-  ];
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitted(true);
+  };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-[#111111] antialiased selection:bg-neutral-900 selection:text-white font-sans">
-      {/* Top Navbar */}
+    <div className="min-h-screen overflow-hidden bg-white font-sans text-[#111113] selection:bg-neutral-900 selection:text-white">
       <Navbar
         currentPage="contact"
         onNavigate={onNavigate}
         onBookDemo={() => setIsDemoModalOpen(true)}
       />
 
-      {/* Main Hero & Form Section */}
-      <main className="pt-28 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Eyebrow Badge */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neutral-300 bg-white/80 backdrop-blur-sm text-xs font-medium text-neutral-800 shadow-[0_1px_2px_rgba(0,0,0,0.04)] tracking-wide">
-            <span className="w-1.5 h-1.5 rounded-full bg-neutral-900 animate-pulse"></span>
-            CONTACT US
-          </div>
-        </div>
-
-        {/* Title & Subtitle */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-neutral-950 leading-[1.12]">
-            Get In Touch With Our Team
-          </h1>
-          <p className="mt-5 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-            Have questions about integrating AI into your enterprise or ready to kickstart your next automation initiative? We're here to assist.
-          </p>
-        </div>
-
-        {/* Split Grid: Left Form Card & Right Info/Visual Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-24">
-          {/* Left Column: Contact Form (7 cols) */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 lg:p-12 border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-            <h2 className="text-2xl sm:text-3xl font-medium text-neutral-950 tracking-tight mb-2">
-              Send us a message
-            </h2>
-            <p className="text-sm text-neutral-500 mb-8">
-              Fill in your details below and our team will get back to you within 24 hours.
-            </p>
-
-            {submitted ? (
-              <div className="bg-neutral-50 border border-neutral-200 rounded-2xl p-8 text-center my-6 animate-fadeIn">
-                <div className="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-900 mb-2">Thank you for reaching out!</h3>
-                <p className="text-sm text-neutral-600 max-w-md mx-auto mb-6">
-                  Your message has been safely received. An Axonix solutions architect will review your project and contact you shortly.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', email: '', company: '', service: '', message: '' });
-                  }}
-                  className="px-6 py-2.5 rounded-full text-xs font-medium bg-neutral-950 text-white hover:bg-neutral-800 transition-colors"
-                >
-                  Send another message
-                </button>
+      <main>
+        <section className="relative isolate overflow-hidden bg-[#fafafa] pb-10 pt-28 sm:pb-14 sm:pt-32">
+          <div
+            className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-top opacity-40"
+            style={{ backgroundImage: `url(${images.abstractWaves})` }}
+            aria-hidden="true"
+          />
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-neutral-800 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#111113] text-white">
+                  <Sparkles className="h-3 w-3" />
+                </span>
+                Contact us
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                      Full Name <span className="text-neutral-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. John Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50/80 rounded-xl border border-neutral-200 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-950/20 focus:border-neutral-950 transition-all"
-                    />
-                  </div>
+              <h1 className="mx-auto mt-5 max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.055em] text-[#515155] sm:text-5xl lg:text-[52px]">
+                Let&apos;s Build Something Intelligent, Together
+              </h1>
+              <p className="mx-auto mt-4 max-w-xl text-[12px] leading-relaxed text-neutral-500 sm:text-[13px]">
+                Have a project in mind? Curious about how AI can solve your business challenges?
+                <br className="hidden sm:block" /> We&apos;re here to help. Reach out to our team—we&apos;d love to hear from you.
+              </p>
+            </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                      Work Email <span className="text-neutral-400">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="john@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50/80 rounded-xl border border-neutral-200 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-950/20 focus:border-neutral-950 transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Acme Corp"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50/80 rounded-xl border border-neutral-200 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-950/20 focus:border-neutral-950 transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                      Area of Interest
-                    </label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3.5 bg-neutral-50/80 rounded-xl border border-neutral-200 text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-950/20 focus:border-neutral-950 transition-all cursor-pointer"
-                    >
-                      <option value="">Select a topic</option>
-                      <option value="enterprise-ai">Enterprise AI Automation</option>
-                      <option value="custom-llm">Custom LLM Fine-tuning & RAG</option>
-                      <option value="agent-architecture">Autonomous Agent Architecture</option>
-                      <option value="data-integration">Legacy System & API Integration</option>
-                      <option value="consultation">General Strategy Consultation</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                    How can we help? <span className="text-neutral-400">*</span>
-                  </label>
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder="Tell us about your project goals, challenges, and timeline..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3.5 bg-neutral-50/80 rounded-xl border border-neutral-200 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-950/20 focus:border-neutral-950 transition-all resize-y"
-                  ></textarea>
-                </div>
-
-                <div className="flex items-center gap-2 pt-1 text-xs text-neutral-500">
-                  <svg className="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <span>We treat your enterprise data with absolute privacy under standard NDA.</span>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full py-4 px-8 rounded-full bg-neutral-950 text-white font-medium text-sm hover:bg-neutral-800 active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-70"
-                >
-                  {submitting ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Transmitting...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
-          </div>
-
-          {/* Right Column: Visual Showcase + Direct Contact Details (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Robot Hand / AI Visual Feature Box */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group">
-              <div className="relative h-64 sm:h-72 overflow-hidden bg-neutral-100">
-                <img
-                  src={images.contactRobotHandAi || images.heroHands}
-                  alt="Axonix AI Technology"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-6 right-6 text-white">
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-semibold tracking-wider uppercase mb-1">
-                    Direct Channel
-                  </div>
-                  <h4 className="text-lg font-medium text-white leading-snug">
-                    Autonomous Intelligence for Scalable Teams
-                  </h4>
-                </div>
-              </div>
-
-              <div className="p-6 sm:p-8 space-y-5">
-                {/* Email Item */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-900 shrink-0 border border-neutral-200">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Email Us</p>
-                    <a
-                      href="mailto:contact@axonix.ai"
-                      className="text-sm font-medium text-neutral-900 hover:text-black hover:underline"
-                    >
-                      contact@axonix.ai
-                    </a>
-                    <p className="text-xs text-neutral-500 mt-0.5">Direct response within 24 hours</p>
-                  </div>
-                </div>
-
-                {/* Office Location Item */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-900 shrink-0 border border-neutral-200">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Headquarters</p>
-                    <p className="text-sm font-medium text-neutral-900">
-                      548 Market St, Suite 48201
+            <div className="mt-12 grid gap-4 lg:grid-cols-2">
+              <div className="rounded-2xl border border-white bg-[#f8f8f8] p-3 shadow-[0_8px_22px_rgba(0,0,0,0.09)] sm:p-3.5">
+                {submitted ? (
+                  <div className="flex min-h-[330px] flex-col items-center justify-center px-6 text-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-xl text-white">✓</div>
+                    <h2 className="mt-4 text-xl font-medium">Thanks for reaching out!</h2>
+                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-neutral-500">
+                      Your message has been received. Our team will get back to you within 24 business hours.
                     </p>
-                    <p className="text-xs text-neutral-500 mt-0.5">San Francisco, CA 94104</p>
-                  </div>
-                </div>
-
-                {/* Direct Demo Item */}
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-900 shrink-0 border border-neutral-200">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Fast Track</p>
                     <button
-                      onClick={() => setIsDemoModalOpen(true)}
-                      className="text-sm font-medium text-neutral-950 hover:underline flex items-center gap-1 cursor-pointer"
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="mt-6 rounded-lg bg-neutral-900 px-5 py-2.5 text-xs font-medium text-white transition hover:bg-neutral-700"
                     >
-                      Book 30-min discovery call &rarr;
+                      Send another message
                     </button>
-                    <p className="text-xs text-neutral-500 mt-0.5">Instant calendar scheduling</p>
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-1.5">
+                    <label className="block text-[12px] font-medium leading-4">
+                      Name
+                      <input required value={formData.name} onChange={(event) => updateField('name', event.target.value)} className={inputClassName} placeholder="Enter your Name" />
+                    </label>
+                    <label className="block text-[12px] font-medium leading-4">
+                      Email
+                      <input required type="email" value={formData.email} onChange={(event) => updateField('email', event.target.value)} className={inputClassName} placeholder="Enter your email" />
+                    </label>
+                    <label className="block text-[12px] font-medium leading-4">
+                      Phone
+                      <input value={formData.phone} onChange={(event) => updateField('phone', event.target.value)} className={inputClassName} placeholder="(+123)" />
+                    </label>
+                    <label className="block text-[12px] font-medium leading-4">
+                      Company Name
+                      <input value={formData.company} onChange={(event) => updateField('company', event.target.value)} className={inputClassName} placeholder="Enter your company name" />
+                    </label>
+                    <label className="block text-[12px] font-medium leading-4">
+                      Is there any other information you&apos;d like to share with us?
+                      <textarea required rows={3} value={formData.message} onChange={(event) => updateField('message', event.target.value)} className={`${inputClassName} h-[68px] resize-none py-2`} placeholder="Message here" />
+                    </label>
+                    <button type="submit" className="mt-1 h-8 min-w-[106px] rounded-md bg-gradient-to-b from-[#303030] to-[#080808] px-8 text-[10px] font-medium text-white shadow-[0_5px_10px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5">
+                      Submit
+                    </button>
+                  </form>
+                )}
+              </div>
+
+              <div className="rounded-2xl border border-neutral-200 bg-white p-2.5 shadow-[0_8px_22px_rgba(0,0,0,0.08)]">
+                <div className="relative h-full min-h-[350px] overflow-hidden rounded-xl bg-[#c9c9c9]">
+                  <img
+                    src={images.contactRobotHandAi}
+                    alt="AI robot hand holding an artificial intelligence chip"
+                    className="h-full w-full object-cover object-center grayscale"
+                  />
                 </div>
               </div>
             </div>
 
-            {/* Quick Status / SLA Card */}
-            <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 text-white rounded-3xl p-6 sm:p-8 border border-neutral-800 shadow-lg">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Service Level</span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                  99.9% Uptime SLA
-                </span>
+            <div className="mx-auto mt-7 grid max-w-[1000px] divide-y divide-neutral-200/90 rounded-[20px] border border-white bg-gradient-to-b from-white to-[#fafafa] px-5 py-4 shadow-[0_8px_20px_rgba(0,0,0,0.1)] sm:grid-cols-2 sm:px-6 sm:py-5 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:px-2 lg:py-6">
+              {[
+                { label: 'Our Email', value: 'hello@Axonix.com', icon: Mail, href: 'mailto:hello@Axonix.com' },
+                { label: 'Location', value: 'San Francisco, CA', icon: MapPin },
+                { label: 'Our Phone', value: '+117 2345 6948', icon: Phone, href: 'tel:+11723456948' },
+                { label: 'Working Hours', value: '9:00 AM – 6:00 PM', icon: Clock3 },
+              ].map(({ label, value, icon: Icon, href }) => (
+                <div key={label} className="flex items-center gap-3 px-3 py-3 first:pl-0 last:pr-0 sm:py-2 lg:min-h-[50px] lg:px-5 lg:py-0">
+                  <Icon className="h-4 w-4 shrink-0 text-neutral-400 sm:hidden" />
+                  <div>
+                    <p className="text-[13px] leading-tight text-neutral-400 sm:text-[14px]">{label}</p>
+                    {href ? (
+                      <a href={href} className="mt-1 block text-[17px] font-semibold leading-tight tracking-[-0.025em] text-[#171719] hover:underline sm:text-[18px]">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="mt-1 text-[17px] font-semibold leading-tight tracking-[-0.025em] text-[#171719] sm:text-[18px]">
+                        {value}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+          <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
+            <div className="lg:col-span-2 lg:pt-1">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+                <Sparkles className="h-3 w-3" /> Frequently asked questions
               </div>
-              <h4 className="text-lg font-medium text-white mb-2">Dedicated Enterprise Support</h4>
-              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-6">
-                All custom enterprise installations include 24/7 incident response, private Slack/Teams channels, and quarterly executive reviews.
+              <h2 className="mt-5 max-w-[390px] text-[38px] font-medium leading-[1.06] tracking-[-0.065em] text-[#66666a] sm:text-[42px]">
+                Questions? We&apos;re
+                <br />
+                here to assist!
+              </h2>
+              <p className="mt-5 max-w-[380px] text-[12px] leading-[1.45] text-neutral-500">
+                Position your brand at the forefront, leading trends, captivating audiences, and creating lasting market impressions.
               </p>
-              <button
-                onClick={() => setIsDemoModalOpen(true)}
-                className="w-full py-3 rounded-full bg-white text-neutral-950 font-medium text-xs hover:bg-neutral-100 transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                Schedule Architecture Review
+              <button onClick={() => setIsDemoModalOpen(true)} className="mt-8 min-w-[128px] rounded-lg bg-gradient-to-b from-[#303030] to-[#080808] px-7 py-3 text-[11px] font-medium text-white shadow-[0_5px_10px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5">
+                Contact Us
               </button>
             </div>
-          </div>
-        </div>
 
-        {/* FAQ Section */}
-        <div className="mt-24 max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 bg-white text-xs font-medium text-neutral-800 mb-3">
-              COMMON QUESTIONS
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-normal text-neutral-950 tracking-tight">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-sm sm:text-base text-neutral-600 mt-2">
-              Everything you need to know about starting an engagement with Axonix.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden transition-all duration-200"
-                >
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full py-5 px-6 sm:px-8 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-neutral-50/50 transition-colors"
-                  >
-                    <span className="text-base font-medium text-neutral-950">
+            <div className="space-y-4 lg:col-span-3">
+              {faqs.map((faq, index) => {
+                const isOpen = openFaq === index;
+                return (
+                  <div key={faq.question} className={`overflow-hidden rounded-xl border border-neutral-200 transition ${isOpen ? 'bg-gradient-to-b from-[#4a4a4a] to-[#252525] text-white shadow-[0_8px_16px_rgba(0,0,0,0.24)]' : 'bg-gradient-to-b from-white to-[#fafafa] shadow-[0_5px_12px_rgba(0,0,0,0.08)]'}`}>
+                    <button onClick={() => setOpenFaq(isOpen ? -1 : index)} className="flex min-h-[50px] w-full items-center justify-between gap-4 px-4 py-4 text-left text-[13px] font-medium sm:min-h-[51px] sm:px-5">
                       {faq.question}
-                    </span>
-                    <span
-                      className={`w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700 shrink-0 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 bg-neutral-900 text-white' : ''
-                      }`}
-                    >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 sm:px-8 pb-6 pt-1 text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 animate-fadeIn">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                      {isOpen ? <ChevronUp className="h-4 w-4 shrink-0 text-neutral-300" /> : <ChevronDown className="h-4 w-4 shrink-0 text-neutral-500" />}
+                    </button>
+                    {isOpen && <p className="border-t border-white/10 px-4 pb-4 pt-2 text-[11px] leading-relaxed text-neutral-300 sm:px-5">{faq.answer}</p>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-neutral-200 bg-gradient-to-b from-[#fafafa] to-[#f0f0f0] px-7 py-7 shadow-[0_8px_20px_rgba(0,0,0,0.07)] sm:flex-row sm:items-center sm:px-10">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white bg-white px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] shadow-sm">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-neutral-900 text-white"><Sparkles className="h-2.5 w-2.5" /></span>
+                AI automation for businesses
+              </div>
+              <h2 className="mt-4 text-2xl font-medium tracking-[-0.05em] text-[#4f4f54] sm:text-3xl">Let&apos;s Build the Future, Together</h2>
+              <p className="mt-2 text-[11px] text-neutral-500">Whether you&apos;re exploring AI for the first time or scaling an existing system, we&apos;re ready to help.</p>
+            </div>
+            <button onClick={() => setIsDemoModalOpen(true)} className="shrink-0 rounded-lg bg-gradient-to-b from-[#303030] to-[#080808] px-5 py-3 text-[11px] font-medium text-white shadow-[0_5px_10px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5">
+              Book a Free Consultation
+            </button>
+          </div>
+        </section>
       </main>
 
-      {/* Pre-Footer Final CTA with floating cube visual */}
-      <FinalCTA onConsultationClick={() => setIsDemoModalOpen(true)} />
-
-      {/* Footer */}
       <Footer onNavigate={onNavigate} />
-
-      {/* Book Demo Modal */}
-      <DemoModal
-        isOpen={isDemoModalOpen}
-        onClose={() => setIsDemoModalOpen(false)}
-      />
+      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </div>
   );
 };

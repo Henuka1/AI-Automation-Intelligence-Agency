@@ -7,7 +7,7 @@ import blogBackground from '../assets/images/blog_bg.png';
 
 interface PrivacyProps {
   onNavigate?: (
-    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy'
+    page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404'
   ) => void;
 }
 
