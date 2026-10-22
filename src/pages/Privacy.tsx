@@ -3,6 +3,7 @@ import { Navbar } from '../components/Navbar';
 import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
+import { ChipPillIcon } from '../components/BrandLogos';
 import blogBackground from '../assets/images/blog_bg.png';
 
 interface PrivacyProps {
@@ -35,51 +36,38 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
 
       <main className="flex-1">
         {/* 2. HERO / HEADER SECTION */}
-        <section className="relative pt-36 sm:pt-44 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
-          {/* Subtle wavy background overlay matching screenshot */}
-          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-60" aria-hidden="true">
-            <img
-              src={blogBackground}
-              alt=""
-              className="absolute -top-12 h-[calc(100%+32px)] w-full object-cover object-center"
-            />
-          </div>
-
-          <div className="max-w-4xl mx-auto relative z-10">
+        <section className="relative isolate overflow-hidden bg-white px-4 pb-12 pt-36 text-center sm:px-6 sm:pb-16 sm:pt-44 lg:px-8">
+          <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
             {/* Eyebrow Pill Badge: Lock/Shield Icon + PRIVACY POLICY */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-7 select-none">
-              <div className="w-5 h-5 rounded-full bg-[#111113] flex items-center justify-center text-white">
-                <svg
-                  className="w-3 h-3 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
+            <div className="mb-7 flex w-fit shrink-0 items-center gap-3 rounded-full border border-white bg-gradient-to-b from-white to-[#f1f1f1] px-3 py-2 shadow-[inset_0_1px_0_#fff,0_2px_5px_rgba(0,0,0,0.12),0_8px_18px_rgba(0,0,0,0.08)] select-none">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_28%,#454545_0%,#171717_48%,#050505_100%)] text-white shadow-[inset_0_1px_2px_rgba(255,255,255,0.18),0_2px_5px_rgba(0,0,0,0.24)]">
+                <ChipPillIcon className="h-5 w-5" />
               </div>
-              <span className="text-[11.5px] font-bold tracking-[0.14em] uppercase text-neutral-800">
+              <span className="pr-2 text-[16px] font-medium tracking-[-0.04em] text-[#171719]">
                 PRIVACY POLICY
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-medium tracking-tight text-[#111113] leading-[1.12]">
+            <h1 className="hero-gradient-headline block text-[42px] font-medium leading-[1.05] tracking-[-0.065em] sm:text-[50px] lg:text-[56px]">
               Privacy Policy
             </h1>
           </div>
         </section>
 
         {/* 3. LEGAL CONTENT (Exact text and layout from reference screenshot) */}
-        <section className="py-12 sm:py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-6 sm:px-8 space-y-12 sm:space-y-14">
+        <section className="relative isolate overflow-hidden bg-white px-6 py-12 sm:px-8 sm:py-20">
+          <div className="pointer-events-none absolute inset-0 z-0 opacity-35" aria-hidden="true">
+            <img
+              src={blogBackground}
+              alt=""
+              className="absolute inset-y-0 left-0 h-full w-full object-cover object-left"
+            />
+          </div>
+          <div className="relative z-10 mx-auto max-w-5xl space-y-12 sm:space-y-14">
             {/* Introduction */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[25px] font-medium leading-[1.15] tracking-[-0.045em] text-[#111113] sm:text-[27px]">
                 Introduction
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
@@ -92,7 +80,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
 
             {/* 1.1 Personal Information */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[25px] font-medium leading-[1.15] tracking-[-0.045em] text-[#111113] sm:text-[27px]">
                 1.1 Personal Information
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
@@ -102,7 +90,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
 
             {/* 1.2 Non-Personal Information */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[25px] font-medium leading-[1.15] tracking-[-0.045em] text-[#111113] sm:text-[27px]">
                 1.2 Non-Personal Information
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
@@ -112,7 +100,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
 
             {/* 1.3 Content Liability */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[25px] font-medium leading-[1.15] tracking-[-0.045em] text-[#111113] sm:text-[27px]">
                 1.3 Content Liability
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
@@ -122,18 +110,18 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
                 Providing and maintaining our services.
               </p>
 
-              <div className="my-5 space-y-1.5 text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
-                <p>• &nbsp;Personalizing your experience on our website.</p>
-                <p>• &nbsp;Sending you relevant communications, such as newsletters and updates.</p>
-                <p>• &nbsp;Improving our website and services.</p>
-                <p>• &nbsp;Responding to your inquiries and providing customer support.</p>
-                <p>• &nbsp;Complying with legal obligations.</p>
-              </div>
+              <ul className="my-5 list-disc space-y-1.5 pl-5 text-[14.5px] font-normal leading-[1.7] text-neutral-600 sm:text-[15.5px]">
+                <li>Personalizing your experience on our website.</li>
+                <li>Sending you relevant communications, such as newsletters and updates.</li>
+                <li>Improving our website and services.</li>
+                <li>Responding to your inquiries and providing customer support.</li>
+                <li>Complying with legal obligations.</li>
+              </ul>
             </div>
 
             {/* 1.4 Cookies and Tracking Technologies */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[25px] font-medium leading-[1.15] tracking-[-0.045em] text-[#111113] sm:text-[27px]">
                 1.4 Cookies and Tracking Technologies
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
@@ -143,7 +131,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
 
             {/* 1.5 Third-Party Links */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[19px] font-medium leading-[1.25] tracking-[-0.04em] text-[#111113] sm:text-[21px]">
                 1.5 Third-Party Links
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
@@ -153,7 +141,7 @@ export const Privacy: React.FC<PrivacyProps> = ({ onNavigate }) => {
 
             {/* Contact Us */}
             <div>
-              <h2 className="text-2xl sm:text-[28px] font-semibold text-[#111113] tracking-tight mb-4">
+              <h2 className="mb-4 text-[25px] font-medium leading-[1.15] tracking-[-0.045em] text-[#111113] sm:text-[27px]">
                 Contact Us
               </h2>
               <p className="text-[14.5px] sm:text-[15.5px] text-neutral-600 leading-[1.7] font-normal">
