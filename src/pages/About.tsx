@@ -174,9 +174,9 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             </h1>
 
             {/* Subtitle */}
-            <p className="about-hero-feature__copy about-hero-feature__description mt-7 text-[15px] sm:text-base md:text-[17px] font-normal leading-relaxed max-w-none mx-auto whitespace-nowrap">
+            <p className="about-hero-feature__copy about-hero-feature__description mt-7 text-[15px] sm:text-base md:text-[17px] font-normal leading-relaxed max-w-fit mx-auto whitespace-nowrap">
               We build intelligent tools, systems, and strategies that help businesses scale,
-              automate, and innovate—faster.
+              automate, and innovate - faster.
             </p>
           </div>
         </section>
@@ -282,7 +282,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             {/* Heading */}
             <h2 className="about-journey-feature__title text-2xl sm:text-3xl md:text-[42px] font-medium text-[#111113] tracking-[-0.045em] leading-[1.2] max-w-5xl mx-auto text-center mb-12 sm:mb-16">
               <span className="block">We&apos;re a team of builders, designers, and strategists</span>
-              <span className="block">who believe software shouldn&apos;t slow you down — it</span>
+              <span className="block">who believe software shouldn&apos;t slow you down - it</span>
               <span className="block">should accelerate your business.</span>
             </h2>
 
@@ -347,7 +347,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
                 Our values are the foundation of everything we do. They guide how we think, create, and
               </span>
               <span className="block">
-                collaborate—shaping the way we approach challenges and deliver solutions.
+                collaborate-shaping the way we approach challenges and deliver solutions.
               </span>
             </p>
 
@@ -425,7 +425,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
 
             {/* Subtitle */}
             <p className="about-team-feature__description mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-              Live dashboards and custom reports that surface the insights you need—instantly.
+              Live dashboards and custom reports that surface the insights you need-instantly.
             </p>
 
             {/* 6 Monochrome Portrait Cards Grid matching screenshot */}

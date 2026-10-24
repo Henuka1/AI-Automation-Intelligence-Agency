@@ -211,7 +211,7 @@ export const CaseStudy: React.FC<CaseStudyProps> = ({ onNavigate }) => {
 
             {/* Subtitle */}
             <p className="case-study-hero__description mt-3.5 sm:mt-4 mx-auto whitespace-normal sm:whitespace-nowrap">
-              We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
+              We provide powerful, flexible, and secure AI solutions-built for real business outcomes.
             </p>
           </div>
         </section>
