@@ -408,7 +408,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden md:flex items-center">
           <button
             onClick={handleBookDemo}
-            className="bg-[#111113] hover:bg-neutral-800 text-white rounded-full px-5 py-2.5 text-[13.5px] font-medium transition-all shadow-xs hover:shadow active:scale-98 whitespace-nowrap"
+            className="whitespace-nowrap rounded-[9px] bg-gradient-to-b from-[#2b2b2d] to-[#111113] px-6 py-3 text-[12px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_16px_rgba(0,0,0,0.2)] transition-all hover:-translate-y-0.5 hover:from-[#333335] hover:to-[#171719] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_10px_20px_rgba(0,0,0,0.24)] active:translate-y-0 active:scale-[0.98]"
           >
             Book a Demo
           </button>
@@ -518,7 +518,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-2">
             <button
               onClick={handleBookDemo}
-              className="w-full bg-[#111113] text-white rounded-full py-2.5 text-sm font-medium cursor-pointer"
+              className="w-full cursor-pointer rounded-[9px] bg-gradient-to-b from-[#2b2b2d] to-[#111113] py-3 text-[12px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_16px_rgba(0,0,0,0.2)] transition-all hover:from-[#333335] hover:to-[#171719] active:scale-[0.98]"
             >
               Book a Demo
             </button>
