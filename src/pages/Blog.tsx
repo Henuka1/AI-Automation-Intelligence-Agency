@@ -229,7 +229,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
               <span className="hero-gradient-headline">Automation &amp; Innovation</span>
             </h1>
             <p className="mx-auto mt-4 sm:mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
-              We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
+              We provide powerful, flexible, and secure AI solutions-built for real business outcomes.
             </p>
           </div>
         </section>
