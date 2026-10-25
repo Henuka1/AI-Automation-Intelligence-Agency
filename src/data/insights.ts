@@ -18,23 +18,23 @@ export interface InsightArticle {
 export const insightsData: InsightArticle[] = [
   {
     id: '1',
-    imageKey: 'insightWaves',
-    category: 'Machine Learning',
+    imageKey: 'insightSpiral',
+    category: 'Insights & Research',
     readTime: '5 min read',
-    date: 'Oct 8, 2025',
+    date: 'May 18, 2025',
     author: {
-      name: 'Dr. Marcus Vance',
-      role: 'Principal Research Scientist',
+      name: 'Dr. Aris Thorne',
+      role: 'Chief AI Architect',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     },
     featured: true,
-    title: 'The Architecture of Autonomous Agents: Moving from Prompts to Production',
+    title: 'Explore trends, case studies, and insights from our AI experts.',
     excerpt:
-      'Why prompt engineering was only the beginning. Discover how multi-agent consensus algorithms and deterministic verification layers are enabling mission-critical enterprise autonomy.',
+      'Explore trends, case studies, and insights from our AI experts.',
     content: [
-      'In early 2023, the industry was captivated by prompt engineering—crafting precise instructions for single LLM completions. Today, enterprise architectures have matured dramatically.',
-      'Autonomous agent systems do not rely on single prompts. Instead, they leverage modular graph architectures with specialized sub-agents: a planning engine, execution units, memory retrieval systems, and deterministic evaluation gatekeepers.',
-      'By decoupling reasoning from raw execution and introducing sandboxed verification environments, companies achieve 99.7% operational accuracy in automated supply chain reconciliation, real-time fraud mitigation, and continuous code deployment.',
+      'Artificial intelligence is progressing from disconnected narrow tools into deeply unified autonomous enterprise nervous systems.',
+      'In this briefing, our research team analyzes the key structural shifts organizations must undertake when embedding multi-agent reasoning into high-stakes operational workflows.',
+      'From dynamic prompt graphs to continuous parameter optimization, discover the patterns proven to yield defensible business advantage.'
     ],
   },
   {

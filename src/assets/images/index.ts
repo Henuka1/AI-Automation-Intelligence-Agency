@@ -19,6 +19,7 @@ import lokosArchitecture from './lokos_architecture_1792168287028.jpg';
 import collabHandsMesh from './collab_hands_mesh.png';
 import freshCareChair1 from './fresh_care_chair_1.jpg';
 import freshCareChair2 from './fresh_care_chair_2.jpg';
+import blogDetailSmartSpeaker from './blog_detail_smart_speaker.jpg';
 
 export const images = {
   heroHands,
@@ -43,4 +44,5 @@ export const images = {
   lokosArchitecture,
   freshCareChair1,
   freshCareChair2,
+  blogDetailSmartSpeaker,
 };
