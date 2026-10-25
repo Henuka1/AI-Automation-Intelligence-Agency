@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, MotionValue } from 'motion/react';
 import { Navbar } from '../components/Navbar';
 import { LogoStrip } from '../components/LogoStrip';
 import { CaseStudySection } from '../components/CaseStudySection';
@@ -15,6 +16,28 @@ interface AboutProps {
   onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' | 'privacy' | '404') => void;
 }
 
+interface StoryWordProps {
+  word: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+}
+
+const StoryWord: React.FC<StoryWordProps> = ({ word, progress, range }) => {
+  const opacity = useTransform(progress, range, [0.24, 1]);
+  const color = useTransform(progress, range, ['#A1A1AA', '#0B0C0E']);
+
+  return (
+    <span className="relative inline-block mr-[0.28em] my-[0.05em] select-none">
+      <motion.span
+        style={{ opacity, color }}
+        className="transition-colors duration-100 font-semibold"
+      >
+        {word}
+      </motion.span>
+    </span>
+  );
+};
+
 export const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedInterest, setSelectedInterest] = useState<string | undefined>(undefined);
@@ -27,6 +50,22 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  // Scroll-driven text progressive illumination matching Home IntroSection
+  const storyContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: storyScrollProgress } = useScroll({
+    target: storyContainerRef,
+    offset: ['start 0.85', 'end 0.45'],
+  });
+
+  const statement1 =
+    "Since our founding, we've helped startups, enterprises, and global brands unlock the power of intelligent automation and machine learning.";
+  const statement2 =
+    "Whether it's building custom AI tools, automating operations, or enhancing customer experiences, we partner closely with clients to turn ambitious ideas into real-world impact.";
+
+  const words1 = statement1.split(' ');
+  const words2 = statement2.split(' ');
+  const totalWords = words1.length + words2.length;
 
   // 6 team member portrait data matching reference screenshot
   const teamMembers = [
@@ -101,15 +140,15 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         <section
           className="about-hero-feature relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden"
         >
-          {/* Fully responsive background topographic wavy texture matching Case Study hero */}
+          {/* Fully responsive background topographic wavy texture */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
             aria-hidden="true"
           >
             <img
               src={blogBackground}
               alt=""
-              className="w-full h-full object-cover object-top opacity-85"
+              className="w-full h-full object-cover object-top opacity-85 min-w-[750px] sm:min-w-full"
             />
           </div>
 
@@ -135,9 +174,9 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             </h1>
 
             {/* Subtitle */}
-            <p className="about-hero-feature__copy about-hero-feature__description mt-7 text-[15px] sm:text-base md:text-[17px] font-normal leading-relaxed max-w-none mx-auto whitespace-nowrap">
+            <p className="about-hero-feature__copy about-hero-feature__description mt-7 text-[15px] sm:text-base md:text-[17px] font-normal leading-relaxed max-w-fit mx-auto whitespace-nowrap">
               We build intelligent tools, systems, and strategies that help businesses scale,
-              automate, and innovate—faster.
+              automate, and innovate - faster.
             </p>
           </div>
         </section>
@@ -146,29 +185,38 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         <LogoStrip />
 
         {/* 4. STATEMENT & 4 STAT METRICS SECTION */}
-        <section className="about-story-feature bg-white py-16 sm:py-24">
+        <section ref={storyContainerRef} className="about-story-feature bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-[1500px] px-4 sm:px-8">
-            {/* Main Statement */}
+            {/* Main Statement with Scroll-driven progressive text illumination matching Home IntroSection */}
             <div className="about-story-feature__text mx-auto text-center font-medium">
-              <p className="about-story-feature__lead text-[#0D0E11]">
-                <span className="about-story-feature__line block">
-                  Since our founding, we&apos;ve helped startups, enterprises, and global brands
-                </span>
-                <span className="about-story-feature__line block">
-                  unlock the power of intelligent automation and machine learning.
-                </span>
+              <p className="flex flex-wrap items-center justify-center text-center">
+                {words1.map((word, i) => {
+                  const start = i / totalWords;
+                  const end = Math.min(1, start + 1.8 / totalWords);
+                  return (
+                    <StoryWord
+                      key={`w1-${word}-${i}`}
+                      word={word}
+                      progress={storyScrollProgress}
+                      range={[start, end]}
+                    />
+                  );
+                })}
               </p>
-              <p className="mt-8 text-[#0D0E11] sm:mt-10">
-                <span className="about-story-feature__line block">
-                  Whether it&apos;s building custom AI tools, automating operations, or
-                </span>
-                <span className="about-story-feature__line block">
-                  enhancing customer experiences, we partner closely with clients{' '}
-                  <span className="about-story-feature__muted font-normal">to turn</span>
-                </span>
-                <span className="about-story-feature__line about-story-feature__muted block font-normal">
-                  ambitious ideas into real-world impact.
-                </span>
+              <p className="flex flex-wrap items-center justify-center text-center mt-6 sm:mt-8">
+                {words2.map((word, i) => {
+                  const overallIndex = words1.length + i;
+                  const start = overallIndex / totalWords;
+                  const end = Math.min(1, start + 1.8 / totalWords);
+                  return (
+                    <StoryWord
+                      key={`w2-${word}-${i}`}
+                      word={word}
+                      progress={storyScrollProgress}
+                      range={[start, end]}
+                    />
+                  );
+                })}
               </p>
             </div>
 
@@ -234,7 +282,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             {/* Heading */}
             <h2 className="about-journey-feature__title text-2xl sm:text-3xl md:text-[42px] font-medium text-[#111113] tracking-[-0.045em] leading-[1.2] max-w-5xl mx-auto text-center mb-12 sm:mb-16">
               <span className="block">We&apos;re a team of builders, designers, and strategists</span>
-              <span className="block">who believe software shouldn&apos;t slow you down — it</span>
+              <span className="block">who believe software shouldn&apos;t slow you down - it</span>
               <span className="block">should accelerate your business.</span>
             </h2>
 
@@ -299,7 +347,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
                 Our values are the foundation of everything we do. They guide how we think, create, and
               </span>
               <span className="block">
-                collaborate—shaping the way we approach challenges and deliver solutions.
+                collaborate-shaping the way we approach challenges and deliver solutions.
               </span>
             </p>
 
@@ -377,7 +425,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
 
             {/* Subtitle */}
             <p className="about-team-feature__description mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-              Live dashboards and custom reports that surface the insights you need—instantly.
+              Live dashboards and custom reports that surface the insights you need-instantly.
             </p>
 
             {/* 6 Monochrome Portrait Cards Grid matching screenshot */}

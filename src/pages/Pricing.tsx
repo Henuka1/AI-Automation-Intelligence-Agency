@@ -5,6 +5,7 @@ import { FAQSection } from '../components/FAQSection';
 import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
+import blogBackground from '../assets/images/blog_bg.png';
 
 interface PricingProps {
   onNavigate?: (page: 'home' | 'about' | 'features' | 'pricing' | 'blog' | 'contact' | 'terms' | 'case-study' |  'privacy' | '404') => void;
@@ -90,22 +91,18 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
 
       <main className="flex-1 pt-24 sm:pt-28">
         {/* 2. HERO & PRICING PLANS SECTION */}
-        <section className="relative isolate overflow-hidden bg-white pt-12 sm:pt-16 pb-16 sm:pb-24">
-          <svg
+        <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white pt-12 sm:pt-16 pb-16 sm:pb-24">
+          {/* Fully responsive background topographic wavy texture */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 h-[680px] w-full opacity-70"
-            viewBox="0 0 1440 680"
-            preserveAspectRatio="none"
-            fill="none"
           >
-            <path d="M-80 140C140 300 280 300 460 232C630 168 790 176 940 230C1110 292 1280 312 1520 132" stroke="white" strokeWidth="2" />
-            <path d="M-80 164C140 324 280 324 460 256C630 192 790 200 940 254C1110 316 1280 336 1520 156" stroke="white" strokeWidth="2" />
-            <path d="M-80 188C140 348 280 348 460 280C630 216 790 224 940 278C1110 340 1280 360 1520 180" stroke="white" strokeWidth="2" />
-            <path d="M-80 212C140 372 280 372 460 304C630 240 790 248 940 302C1110 364 1280 384 1520 204" stroke="white" strokeWidth="2" />
-            <path d="M-80 236C140 396 280 396 460 328C630 264 790 272 940 326C1110 388 1280 408 1520 228" stroke="white" strokeWidth="2" />
-            <path d="M-80 260C140 420 280 420 460 352C630 288 790 296 940 350C1110 412 1280 432 1520 252" stroke="white" strokeWidth="2" />
-            <path d="M-80 284C140 444 280 444 460 376C630 312 790 320 940 374C1110 436 1280 456 1520 276" stroke="white" strokeWidth="2" />
-          </svg>
+            <img
+              src={blogBackground}
+              alt=""
+              className="w-full h-full object-cover object-top opacity-85 min-w-[750px] sm:min-w-full"
+            />
+          </div>
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
             {/* Pill Eyebrow Badge matching screenshot */}
             <div className="text-center mb-4">

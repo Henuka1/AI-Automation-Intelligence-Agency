@@ -93,10 +93,13 @@
 
 .about-story-feature__text {
   font-family: "Inter Tight", "Inter", sans-serif;
-  max-width: 1400px;
+  max-width: 1080px;
   font-size: clamp(1.5rem, 2.2vw, 2.2rem);
-  line-height: 1.14;
-  letter-spacing: -0.055em;
+  line-height: 1.26;
+  letter-spacing: -0.015em;
+  word-spacing: 0.04em;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .about-story-feature {
@@ -109,7 +112,13 @@
 }
 
 .about-story-feature__muted {
-  color: #a2a2a2;
+  color: #0D0E11;
+}
+
+/* Scroll-triggered fade-in for statement paragraphs */
+@keyframes aboutParaFadeIn {
+  0%   { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .about-story-feature__lead {

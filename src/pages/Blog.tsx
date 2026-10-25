@@ -199,15 +199,15 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
       <main className="flex-1">
         {/* HERO SECTION */}
         <section className="relative pt-36 sm:pt-44 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
-          {/* Fully responsive background topographic wavy texture matching Case Study */}
+          {/* Fully responsive background topographic wavy texture */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]"
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
             aria-hidden="true"
           >
             <img
               src={blogBackground}
               alt=""
-              className="w-full h-full object-cover object-top opacity-85"
+              className="w-full h-full object-cover object-top opacity-85 min-w-[750px] sm:min-w-full"
             />
           </div>
 
@@ -229,7 +229,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
               <span className="hero-gradient-headline">Automation &amp; Innovation</span>
             </h1>
             <p className="mx-auto mt-4 sm:mt-5 max-w-2xl font-['Inter'] text-[15px] font-normal leading-[1.5] tracking-[-0.01em] text-neutral-600 sm:text-[17px] lg:max-w-none lg:whitespace-nowrap">
-              We provide powerful, flexible, and secure AI solutions—built for real business outcomes.
+              We provide powerful, flexible, and secure AI solutions-built for real business outcomes.
             </p>
           </div>
         </section>

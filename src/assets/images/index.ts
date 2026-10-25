@@ -17,6 +17,9 @@ import securedShieldAi from './secured_shield_ai_1791832849225.jpg';
 import kondamSwirlFabric from './kondam_swirl_fabric_1792168261826.jpg';
 import lokosArchitecture from './lokos_architecture_1792168287028.jpg';
 import collabHandsMesh from './collab_hands_mesh.png';
+import freshCareChair1 from './fresh_care_chair_1.jpg';
+import freshCareChair2 from './fresh_care_chair_2.jpg';
+import blogDetailSmartSpeaker from './blog_detail_smart_speaker.jpg';
 
 export const images = {
   heroHands,
@@ -39,4 +42,7 @@ export const images = {
   securedShieldAi,
   kondamSwirlFabric,
   lokosArchitecture,
+  freshCareChair1,
+  freshCareChair2,
+  blogDetailSmartSpeaker,
 };

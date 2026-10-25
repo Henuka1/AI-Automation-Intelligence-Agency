@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar } from '../components/Navbar';
+import { FAQSection } from '../components/FAQSection';
 import { FinalCTA } from '../components/FinalCTA';
 import { Footer } from '../components/Footer';
 import { DemoModal } from '../components/DemoModal';
@@ -87,14 +88,17 @@ export const BlogDetails: React.FC<BlogDetailsProps> = ({ onNavigate, id }) => {
 
   const moreBlogs = [
     {
+      id: '2',
       image: images.insightParticles,
       title: 'Discover trends, case studies, and insights from our AI specialists.',
     },
     {
+      id: '1',
       image: images.insightSpiral,
       title: 'Explore the latest trends, success stories,from our AI experts.',
     },
     {
+      id: '3',
       image: images.caseStudyFabric,
       title: 'Get inspired by emerging trends, real-world case studies, and AI insights.',
     },
@@ -112,12 +116,15 @@ export const BlogDetails: React.FC<BlogDetailsProps> = ({ onNavigate, id }) => {
       <main className="flex-1">
         {/* 2. HERO SECTION */}
         <section className="relative pt-32 sm:pt-40 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white overflow-hidden">
-          {/* Subtle wavy background overlay matching screenshot */}
-          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-60" aria-hidden="true">
+          {/* Fully responsive background topographic wavy texture */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
+            aria-hidden="true"
+          >
             <img
               src={blogBackground}
               alt=""
-              className="absolute -top-12 h-[calc(100%+32px)] w-full object-cover object-center"
+              className="w-full h-full object-cover object-top opacity-85 min-w-[750px] sm:min-w-full"
             />
           </div>
 
@@ -129,8 +136,8 @@ export const BlogDetails: React.FC<BlogDetailsProps> = ({ onNavigate, id }) => {
               </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[52px] font-semibold tracking-tight text-[#111113] leading-[1.15] max-w-3xl">
+            {/* Headline matching image style and typography */}
+            <h1 className="case-study-hero__title block w-full text-center font-['Inter_Tight',sans-serif] tracking-[-0.04em] leading-[1.12] max-w-4xl mx-auto">
               {title}
             </h1>
 
@@ -156,185 +163,126 @@ export const BlogDetails: React.FC<BlogDetailsProps> = ({ onNavigate, id }) => {
           </div>
         </section>
 
-        {/* 3. FEATURED HERO ARTICLE IMAGE */}
-        <section className="pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
+        {/* 3. FEATURED HERO ARTICLE IMAGE & ON-FEATURE CARD */}
+        <section className="pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-5xl mx-auto">
-            <div className="rounded-3xl sm:rounded-[36px] overflow-hidden border border-neutral-200/80 bg-neutral-100 aspect-[16/9] sm:aspect-[21/10] shadow-md">
-              <img
-                src={images[post.imageKey]}
-                alt={title}
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </section>
+            {/* Outer On-Feature Bento Card matching screenshot */}
+            <div className="rounded-[28px] sm:rounded-[36px] p-[1.5px] bg-gradient-to-b from-white via-white/80 to-white/40 shadow-[0_12px_40px_rgba(0,0,0,0.06),0_2px_6px_rgba(0,0,0,0.03)] font-['Inter_Tight',sans-serif]">
+              <div className="bg-[#f7f7f8]/95 backdrop-blur-md rounded-[26px] sm:rounded-[34px] border border-white p-4 sm:p-6 md:p-7 overflow-hidden">
+                {/* Main Article Image inside card */}
+                <div className="rounded-[20px] sm:rounded-[26px] overflow-hidden border border-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] bg-neutral-100 aspect-[16/9] sm:aspect-[21/10] md:aspect-[2.1/1]">
+                  <img
+                    src={images[post.imageKey]}
+                    alt={title}
+                    className="w-full h-full object-cover object-center"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
 
-        {/* 4. ARTICLE BODY CONTENT */}
-        <section className="pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto space-y-12">
-            <div className="space-y-4">
-              {(content || []).map((p, i) => (
-                <p key={i} className="text-sm sm:text-[15px] text-neutral-600 leading-relaxed">
-                  {p}
-                </p>
-              ))}
+                {/* Bottom Paragraph Container / Article Content Details */}
+                <div className="pt-6 sm:pt-7 px-1 sm:px-3 text-left space-y-4">
+                  {(content && content.length > 0) ? (
+                    content.map((paragraph, idx) => (
+                      <p
+                        key={idx}
+                        className="text-[14px] sm:text-[15.5px] text-[#666670] leading-[1.7] font-normal font-['Inter_Tight',sans-serif]"
+                      >
+                        {paragraph}
+                      </p>
+                    ))
+                  ) : (
+                    <p className="text-[14px] sm:text-[15.5px] text-[#666670] leading-[1.7] font-normal font-['Inter_Tight',sans-serif]">
+                      Personalization is a key benefit of data analytics in marketing. By understanding the unique preferences and behaviors of different consumer segments, marketers can create highly targeted and personalized campaigns.
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* 5. "SEE MORE BLOG" SECTION */}
-        <section className="py-16 sm:py-24 bg-[#F8F8FA] border-t border-neutral-200/60">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-2xs">
-                <Cpu className="w-3.5 h-3.5 text-neutral-800" />
-                <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-neutral-800">
-                  BLOG &amp; INSIGHT
-                </span>
+        <section className="py-16 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 space-y-4">
+              <div className="flex justify-center">
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-white bg-white px-5 py-2.5 font-['Inter_Tight',sans-serif] text-[13px] font-semibold tracking-[-0.01em] text-[#1a1a1a] shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-transform hover:scale-105 select-none">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#111"
+                    strokeWidth="1.9"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    className="shrink-0"
+                  >
+                    <circle cx="15" cy="15" r="5.5" />
+                    <path
+                      d="M8.2 3.8 L13.4 12.6 Q13.9 13.4 13 13.4 L3.4 13.4 Q2.5 13.4 3 12.6 L7.2 3.8 Q7.7 3 8.2 3.8 Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                  <span className="uppercase tracking-[0.06em] text-[12px] font-semibold text-neutral-800">
+                    BLOG &amp; INSIGHT
+                  </span>
+                </div>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-[#111113] tracking-tight">
-                See more blog
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold tracking-[-0.035em] leading-[1.12]">
+                <span className="hero-gradient-headline font-['Inter_Tight',sans-serif]">
+                  See more blog
+                </span>
               </h2>
-              <p className="text-xs sm:text-[14.5px] text-neutral-500 leading-relaxed">
+              <p className="font-['Inter_Tight',sans-serif] text-[15px] sm:text-[16.5px] text-[#55565e] leading-relaxed font-normal">
                 Explore trends, case studies, and insights from our AI experts.
               </p>
             </div>
 
-            {/* 3 Grid Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-              {moreBlogs.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white rounded-3xl border border-neutral-200/80 p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-all group"
+            {/* 3 Featured Blog Cards matching Blog page & On-Feature styling */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+              {moreBlogs.map((post) => (
+                <article
+                  key={post.id}
+                  className="blog-card-hover group flex flex-col"
                 >
-                  <div className="space-y-5">
-                    <div className="rounded-2xl overflow-hidden border border-neutral-200/80 bg-neutral-100 aspect-[16/11]">
-                      <img
-                        src={item.image}
-                        alt=""
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#111113] leading-snug">
-                      {item.title}
-                    </h3>
+                  {/* Top Image Frame */}
+                  <div className="relative aspect-[1.38/1] overflow-hidden rounded-[24px] border border-white bg-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px]">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="h-full w-full object-cover object-center grayscale contrast-105 transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-neutral-100">
+                  {/* Bottom Content Container */}
+                  <div className="-mt-px flex min-h-[214px] flex-1 flex-col rounded-[24px] border border-white bg-[#f7f7f7] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:rounded-[28px] sm:p-7">
+                    <h3 className="text-[21px] font-medium leading-[1.28] tracking-[-0.045em] text-[#111113] sm:text-[24px]">
+                      {post.title}
+                    </h3>
+
                     <button
-                      onClick={() => handleOpenModal('Read Blog')}
-                      className="w-full bg-white hover:bg-neutral-50 border border-neutral-200/90 text-neutral-900 rounded-xl py-3 text-xs sm:text-sm font-medium transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => {
+                        if (onNavigate) {
+                          onNavigate('blog');
+                          window.history.pushState({}, '', `/blog-details?id=${post.id}`);
+                        } else {
+                          window.location.href = `/blog-details?id=${post.id}`;
+                        }
+                      }}
+                      className="mt-auto w-full rounded-[14px] border border-neutral-200/90 bg-white px-4 py-4 text-center text-[16px] font-medium text-[#111113] shadow-[0_8px_18px_rgba(0,0,0,0.08)] transition-all hover:border-neutral-300 hover:bg-neutral-50 active:scale-[0.99] cursor-pointer"
                     >
                       Read Blog
                     </button>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 6. CAPABILITIES MARQUEE STRIP */}
-        <section className="border-y border-neutral-100/90 bg-neutral-50/50 py-3.5 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-8 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600 whitespace-nowrap overflow-x-auto scrollbar-none">
-            {marqueeItems.concat(marqueeItems).map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <React.Fragment key={idx}>
-                  <span className="flex items-center gap-2 shrink-0">
-                    <Icon className="w-3.5 h-3.5 text-neutral-800 shrink-0" />
-                    <span>{item.title}</span>
-                  </span>
-                  <span className="text-neutral-300">✦</span>
-                </React.Fragment>
-              );
-            })}
-          </div>
-        </section>
-
         {/* 7. FREQUENTLY ASKED QUESTIONS SECTION */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              {/* Left Column: Eyebrow, Heading, Description, Contact Us Button */}
-              <div className="lg:col-span-5 space-y-6">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200 shadow-2xs">
-                    <HelpCircle className="w-3.5 h-3.5 text-neutral-700" />
-                    <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-neutral-800">
-                      FREQUENTLY ASKED QUESTIONS
-                    </span>
-                  </div>
-                </div>
-
-                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-tight text-[#111113] leading-[1.15]">
-                  Questions? We&apos;re
-                  <br />
-                  here to assist!
-                </h2>
-
-                <p className="text-xs sm:text-[14px] text-neutral-500 leading-relaxed max-w-sm">
-                  Position your brand at the forefront, leading trends, captivating audiences, and creating lasting market impressions.
-                </p>
-
-                <div className="pt-2">
-                  <button
-                    onClick={handleContactClick}
-                    className="bg-[#111113] hover:bg-neutral-800 text-white rounded-full px-7 py-3 text-xs sm:text-[13px] font-medium transition-all shadow-xs hover:shadow active:scale-98 cursor-pointer"
-                  >
-                    Contact Us
-                  </button>
-                </div>
-              </div>
-
-              {/* Right Column: 6 FAQ Accordion items */}
-              <div className="lg:col-span-7 space-y-3.5">
-                {faqs.map((faq, idx) => {
-                  const isOpen = openFaq === idx;
-                  return (
-                    <div
-                      key={idx}
-                      className={`rounded-2xl transition-all duration-200 overflow-hidden ${
-                        isOpen
-                          ? 'bg-[#141414] text-white shadow-xs'
-                          : 'bg-[#F5F5F7] hover:bg-[#efeff2] text-neutral-900'
-                      }`}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer"
-                      >
-                        <span
-                          className={`text-sm sm:text-[15.5px] font-medium ${
-                            isOpen ? 'text-white' : 'text-neutral-900'
-                          }`}
-                        >
-                          {faq.q}
-                        </span>
-                        <ChevronDown
-                          className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
-                            isOpen ? 'rotate-180 text-white' : 'text-neutral-500'
-                          }`}
-                        />
-                      </button>
-
-                      {isOpen && (
-                        <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-0">
-                          <p className="text-xs sm:text-[13.5px] text-neutral-300 leading-relaxed border-t border-neutral-800 pt-4">
-                            {faq.a}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
+        <FAQSection variant="pricing" onContactClick={handleContactClick} />
 
         {/* 8. PRE-FOOTER CTA SECTION */}
         <FinalCTA onConsultationClick={() => handleOpenModal('Blog Consultation')} />
