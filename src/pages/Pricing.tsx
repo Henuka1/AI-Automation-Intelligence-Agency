@@ -89,12 +89,12 @@ export const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
         onBookDemo={() => handleOpenModal('Pricing Demo')}
       />
 
-      <main className="flex-1 pt-24 sm:pt-28">
+      <main className="flex-1">
         {/* 2. HERO & PRICING PLANS SECTION */}
-        <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white pt-12 sm:pt-16 pb-16 sm:pb-24">
+        <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#fbfbfb] via-[#f8f8f9] to-white pt-36 sm:pt-44 pb-16 sm:pb-24">
           {/* Fully responsive background topographic wavy texture */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-full z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] flex justify-center"
+            className="pointer-events-none absolute inset-x-0 top-0 h-[560px] sm:h-[620px] md:h-[680px] z-0 overflow-hidden select-none [mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)] flex justify-center"
             aria-hidden="true"
           >
             <img
